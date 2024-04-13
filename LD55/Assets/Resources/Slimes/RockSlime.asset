@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: RockSlime
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Rock Slime
-  <DamageMin>k__BackingField: 1.5
-  <DamageMax>k__BackingField: 2
-  <Speed>k__BackingField: 12500
+  <DamageMin>k__BackingField: 2
+  <DamageMax>k__BackingField: 2.5
+  <Speed>k__BackingField: 9000
   <Mass>k__BackingField: 10
   <Radius>k__BackingField: 0.5
   <Rarity>k__BackingField: 1

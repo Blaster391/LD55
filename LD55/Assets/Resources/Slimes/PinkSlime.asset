@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: PinkSlime
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Pink Slime
-  <DamageMin>k__BackingField: 0
-  <DamageMax>k__BackingField: 0
-  <Speed>k__BackingField: 12500
+  <DamageMin>k__BackingField: 3
+  <DamageMax>k__BackingField: 4
+  <Speed>k__BackingField: 17500
   <Mass>k__BackingField: 10
   <Radius>k__BackingField: 0.5
   <Rarity>k__BackingField: 3

@@ -401,6 +401,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GachaAvailablePopup
       objectReference: {fileID: 0}
+    - target: {fileID: 6191673987238206479, guid: 5747cbbec0917164f8f44a05edd8e4c1, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8692429279778139380, guid: 5747cbbec0917164f8f44a05edd8e4c1, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

@@ -43,6 +43,7 @@ namespace Gacha
                 // Figure out what to show
                 SlimeAsset selectedSlimeAsset = m_GachaSystem.PickRandomSlime(m_GachaSystem.PickRandomRarity());
                 m_ImageDisplay.texture = selectedSlimeAsset.SpriteList[0].texture;
+                m_ImageDisplay.color = Color.white;
 
                 // Figure out how long to show it
                 float spinProgress = spinProgressTime / m_SpinDuration;
@@ -58,6 +59,7 @@ namespace Gacha
             }
 
             m_ImageDisplay.texture = rollResult.SelectedSlime.SpriteList[0].texture;
+            m_ImageDisplay.color = Color.white;
 
             SpinVisualComplete?.Invoke(rollResult);
 

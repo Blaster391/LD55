@@ -12,11 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88fc226dde390464abfcf12fc7cfa26e, type: 3}
   m_Name: PinkSlime
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: 
-  <DamageMin>k__BackingField: 0
-  <DamageMax>k__BackingField: 0
-  <Speed>k__BackingField: 0
-  <Mass>k__BackingField: 0
-  <Radius>k__BackingField: 0
-  <Rarity>k__BackingField: 0
-  <Sprite>k__BackingField: {fileID: 0}
+  <Name>k__BackingField: Pink Slime
+  <DamageMin>k__BackingField: 3
+  <DamageMax>k__BackingField: 4
+  <Speed>k__BackingField: 17500
+  <Mass>k__BackingField: 10
+  <Radius>k__BackingField: 0.5
+  <Rarity>k__BackingField: 3
+  <SpriteList>k__BackingField:
+  - {fileID: 21300000, guid: 37e50d1313d42c64c8e476c34912332f, type: 3}
+  - {fileID: 21300000, guid: 320e111974cb5fb44bbb16fc8f3119dc, type: 3}

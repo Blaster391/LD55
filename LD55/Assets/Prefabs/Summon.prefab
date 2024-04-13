@@ -29,8 +29,8 @@ Transform:
   m_GameObject: {fileID: 4919554255291708372}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.4384084, y: 0.07, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 370c0aba065ed0041b951b47e7bd3426, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7a262333c407f264c95b50a7e4af1f9d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -119,9 +119,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.2}
   serializedVersion: 2
-  m_Radius: 1
+  m_Radius: 0.5
 --- !u!114 &5169146559436458062
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -134,16 +134,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5aff8287100ab34985716f09e05d79a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_movementForce: 250
+  m_movementForce: 12500
   m_targetPriority: 1
   m_cohesion: 0.25
-  m_minFlockSeparationDistance: 2
+  m_minFlockSeparationDistance: 3
   m_minPlayerTargetDistance: 1.5
   m_maxPlayerTargetDistance: 3
   m_minTargetSeparationDistance: 0.5
   m_maxTargetSeparationDistance: 2
   m_separation: 0.6
   m_follow: 1
+  m_damage: 1
+  m_aggroRange: 5
+  m_bounceForce: 25
+  m_pushForce: 20
+  m_maxRecoilTime: 1
 --- !u!50 &7445583349418370594
 Rigidbody2D:
   serializedVersion: 4

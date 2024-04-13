@@ -41,6 +41,21 @@ public class Summon : MonoBehaviour
     [SerializeField]
     private float m_follow = 0.75f;
 
+    [SerializeField]
+    private float m_damage = 1.0f;
+
+    [SerializeField]
+    private float m_aggroRange = 10.0f;
+
+    [SerializeField]
+    private float m_bounceForce = 20.0f;
+
+    [SerializeField]
+    private float m_pushForce = 20.0f;
+
+    [SerializeField]
+    private float m_maxRecoilTime = 1.0f;
+
     private float m_playerTargetDistance = 2.0f;
     private float m_targetTargetDistance = 1.0f;
 
@@ -48,6 +63,8 @@ public class Summon : MonoBehaviour
     private State m_state = State.Follow;
     private Vector2 m_movement = Vector2.zero;
     private Rigidbody2D m_rigidbody = null;
+    private Enemy m_targetEnemy = null;
+    private float m_recoilTime = 0.0f;
 
     void Start()
     {
@@ -67,7 +84,7 @@ public class Summon : MonoBehaviour
 
     private void FixedUpdate()
     {
-        m_rigidbody.AddForce(m_movement * m_movementForce);
+        m_rigidbody.AddForce(m_movement * m_movementForce * Time.fixedDeltaTime);
     }
 
     void Update()
@@ -122,7 +139,6 @@ public class Summon : MonoBehaviour
             {
                 Vector2 direction = transform.position - member.transform.position;
                 direction.Normalize();
-                //direction *= (m_minFlockSeparationDistance - distance); // Inverse to prioritise closer targets
 
                 separationDirection += direction;
                 ++separationTargets;
@@ -143,15 +159,72 @@ public class Summon : MonoBehaviour
         {
             m_movement += GameManager.Instance.Player.MovementInput * m_follow;
         }
+
+        foreach(Enemy enemy in m_flockManager.Enemies)
+        {
+            if(Vector2.Distance(transform.position, enemy.transform.position) < m_aggroRange)
+            {
+                m_targetEnemy = enemy;
+                m_state = State.Attack;
+                return;
+            }
+        }
     }
 
     private void UpdateAttack()
     {
+        if(m_targetEnemy == null)
+        {
+            m_state = State.Follow;
+            return;
+        }
 
+        if (Vector2.Distance(transform.position, m_targetEnemy.transform.position) > m_aggroRange * 1.25f)
+        {
+            m_targetEnemy = null;
+            m_state = State.Follow;
+            return;
+        }
+
+        Vector2 targetDirection = m_targetEnemy.transform.position - transform.position;
+        m_movement = targetDirection;
     }
 
     private void UpdateRecoil()
     {
+        m_movement = Vector2.zero;
+        m_recoilTime += Time.deltaTime;
 
+        if (m_recoilTime < m_maxRecoilTime)
+        {
+            return;
+        }
+
+        m_recoilTime = 0.0f;
+
+        if (m_targetEnemy == null)
+        {
+            m_state = State.Follow;
+        }
+        else
+        {
+            m_state = State.Attack;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D _collision)
+    {
+        m_rigidbody.AddForce(_collision.GetContact(0).normal * m_bounceForce, ForceMode2D.Impulse);
+
+        if (_collision.collider.gameObject.GetComponent<Enemy>() != null)
+        {
+            _collision.rigidbody.AddForce(-_collision.GetContact(0).normal * m_pushForce, ForceMode2D.Impulse);
+            _collision.collider.GetComponent<Enemy>().OnDamaged(m_damage);
+        }
+
+        if (_collision.collider.gameObject.GetComponent<Summon>() == null)
+        {
+            m_state = State.Recoil;
+        }
     }
 }

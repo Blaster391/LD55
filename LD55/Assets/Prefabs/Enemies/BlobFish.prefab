@@ -77,6 +77,14 @@ PrefabInstance:
       value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8325090502583505455, guid: dbfb58c5f5344a94d9ea712188210692, type: 3}
+      propertyPath: m_dropMax
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 8325090502583505455, guid: dbfb58c5f5344a94d9ea712188210692, type: 3}
+      propertyPath: m_dropMin
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8325090502583505455, guid: dbfb58c5f5344a94d9ea712188210692, type: 3}
       propertyPath: m_movementForce
       value: 800
       objectReference: {fileID: 0}

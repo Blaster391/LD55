@@ -84,7 +84,7 @@ public class Player : MonoBehaviour
         float movementMagintude = movement.magnitude;
         if(movementMagintude > 0.0f)
         {
-            RaycastHit2D hit = Physics2D.CircleCast(newPosition, m_playerRadius * 0.51f, movement, movementMagintude, layerMask);
+            RaycastHit2D hit = Physics2D.CircleCast(newPosition, m_playerRadius, movement, movementMagintude, layerMask);
             if (hit.collider != null)
             {
                 movement *= (hit.distance / movementMagintude);

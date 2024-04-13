@@ -72,6 +72,14 @@ PrefabInstance:
       propertyPath: m_health
       value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 8325090502583505455, guid: dbfb58c5f5344a94d9ea712188210692, type: 3}
+      propertyPath: m_dropMax
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 8325090502583505455, guid: dbfb58c5f5344a94d9ea712188210692, type: 3}
+      propertyPath: m_dropMin
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 8844895681710896565, guid: dbfb58c5f5344a94d9ea712188210692, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -101,3 +109,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f895a4bb8e599d7448111fc3d99213b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_maxPuff: 3
+  m_maxPuffTime: 10

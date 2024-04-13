@@ -22,6 +22,8 @@ public class WorldSpawnManager : MonoBehaviour
     private List<GameObject> m_decor = new List<GameObject>();
     [SerializeField]
     private GameObject m_chest = null;
+    [SerializeField]
+    private GameObject m_funnySub = null;
 
     [SerializeField]
     private int m_coralCount = 100;
@@ -76,24 +78,6 @@ public class WorldSpawnManager : MonoBehaviour
         m_freeSpace[m_widthIndexScale / 2 + 1, m_heightIndexScale / 2 - 1] = false;
         m_freeSpace[m_widthIndexScale / 2 + 1, m_heightIndexScale / 2 + 1] = false;
 
-        for (int i = 0; i < m_coralCount; ++i)
-        {
-            Vector2 worldPos = Vector2.zero;
-            worldPos.x = Random.Range(-m_worldWidth * 0.5f, m_worldWidth * 0.5f);
-            worldPos.y = Random.Range(-m_worldHeight * 0.5f, m_worldHeight * 0.5f);
-
-            Vector2Int index = WorldToIndex(worldPos);
-
-            if(!m_freeSpace[index.x, index.y])
-            {
-                continue;
-            }
-
-            GameObject coral = Instantiate(m_corals[Random.Range(0, m_corals.Count)], m_worldParent.transform);
-            coral.transform.position = worldPos;
-            m_freeSpace[index.x, index.y] = false;
-        }
-
         for (int i = 0; i < m_chestCount; ++i)
         {
             Vector2 worldPos = Vector2.zero;
@@ -109,6 +93,39 @@ public class WorldSpawnManager : MonoBehaviour
 
             GameObject chest = Instantiate(m_chest, m_worldParent.transform);
             chest.transform.position = worldPos;
+            m_freeSpace[index.x, index.y] = false;
+        }
+
+        {
+            Vector2 worldPos = Vector2.zero;
+            worldPos.x = Random.Range(-m_worldWidth * 0.5f, m_worldWidth * 0.5f);
+            worldPos.y = Random.Range(-m_worldHeight * 0.5f, m_worldHeight * 0.5f);
+
+            Vector2Int index = WorldToIndex(worldPos);
+
+            if (m_freeSpace[index.x, index.y])
+            {
+                GameObject sub = Instantiate(m_funnySub, m_worldParent.transform);
+                sub.transform.position = worldPos;
+                m_freeSpace[index.x, index.y] = false;
+            }
+        }
+
+        for (int i = 0; i < m_coralCount; ++i)
+        {
+            Vector2 worldPos = Vector2.zero;
+            worldPos.x = Random.Range(-m_worldWidth * 0.5f, m_worldWidth * 0.5f);
+            worldPos.y = Random.Range(-m_worldHeight * 0.5f, m_worldHeight * 0.5f);
+
+            Vector2Int index = WorldToIndex(worldPos);
+
+            if(!m_freeSpace[index.x, index.y])
+            {
+                continue;
+            }
+
+            GameObject coral = Instantiate(m_corals[Random.Range(0, m_corals.Count)], m_worldParent.transform);
+            coral.transform.position = worldPos;
             m_freeSpace[index.x, index.y] = false;
         }
 

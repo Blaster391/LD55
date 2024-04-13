@@ -38,8 +38,8 @@ public class PufferScript : MonoBehaviour
             }
         }
 
-        float alpha = Mathf.Lerp(0.0f, 1.0f, m_puffTime / m_maxPuffTime);
-        transform.localScale = m_scaleRef * m_maxPuff * alpha;
+        float size = Mathf.Lerp(1.0f, m_maxPuff, m_puffTime / m_maxPuffTime);
+        transform.localScale = m_scaleRef * size;
 
     }
 }

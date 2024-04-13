@@ -16,6 +16,15 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private float m_bounceForce = 100.0f;
 
+    [SerializeField]
+    private GameObject m_dropType = null;
+
+    [SerializeField]
+    private int m_dropMin = 1;
+
+    [SerializeField]
+    private int m_dropMax = 3;
+
     private FlockManager m_flockManager = null;
     private Vector2 m_movement = Vector2.zero;
     private Rigidbody2D m_rigidbody = null;
@@ -27,6 +36,13 @@ public class Enemy : MonoBehaviour
         m_health -= _damage;
         if (m_health <= 0.0f)
         {
+            int dropCount = Random.Range(m_dropMin, m_dropMax + 1);
+            for(int i = 0; i < dropCount; i++)
+            {
+                GameObject drop = Instantiate(m_dropType, GameManager.Instance.transform);
+                drop.transform.position = transform.position;
+            }
+    
             Destroy(gameObject);
         }
     }

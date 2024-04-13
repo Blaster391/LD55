@@ -5,6 +5,11 @@ using UnityEngine;
 
 namespace Gacha
 {
+    /*
+     *  Contains all of the core behaviours of the Gacha mechanic and classes that help provide those.
+     *  This should sit at the top level of the scene's hierarchy
+     */
+
     public enum Rarity
     {
         D, C, B, A, S // etc.
@@ -46,12 +51,9 @@ namespace Gacha
 
     public class GachaSystem : MonoBehaviour, IGachaSystem
     {
-        [SerializeField] private List<RarityChance> m_RarityChances;
-        [SerializeField] private AnimationCurve m_StatRollCurve;
+        private GachaConfig m_Config;
 
-        [SerializeField] private int m_SlimeTokenCost;
-
-        public int SlimeTokenCost => m_SlimeTokenCost;
+        public int SlimeTokenCost => m_Config.SlimeTokenCost;
 
         private Dictionary<Rarity, List<SlimeAsset>> m_SlimeDatabase;
 
@@ -82,12 +84,12 @@ namespace Gacha
                 Dictionary<Rarity, float> rarityRollChances = new();
 
                 float totalChance = 0;
-                foreach (RarityChance rarityChance in m_RarityChances)
+                foreach (RarityChance rarityChance in m_Config.RarityChances)
                 {
                     totalChance += rarityChance.Chance;
                 }
 
-                foreach (RarityChance rarityChance in m_RarityChances)
+                foreach (RarityChance rarityChance in m_Config.RarityChances)
                 {
                     rarityRollChances.Add(rarityChance.Rarity, rarityChance.Chance / totalChance);
                 }
@@ -116,6 +118,8 @@ namespace Gacha
         #region System
         private void Awake()
         {
+            m_Config = Resources.FindObjectsOfTypeAll<GachaConfig>().FirstOrDefault();
+
             // Populate our database
             var slimeAssets = Resources.FindObjectsOfTypeAll<SlimeAsset>();
             m_SlimeDatabase = new();
@@ -147,7 +151,7 @@ namespace Gacha
             result.SelectedSlime = possibleSlimes.ElementAt(Random.Range(0, possibleSlimes.Count));
 
             // Other stuff
-            result.DamageModifer = m_StatRollCurve.Evaluate(Random.Range(0f, 1f));
+            result.DamageModifer = m_Config.StatRollCurve.Evaluate(Random.Range(0f, 1f));
 
             return result;
         }

@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: CRankSlime
   m_EditorClassIdentifier: 
   <Name>k__BackingField: 
-  DamageMin: 0
-  DamageMax: 0
-  Speed: 2
-  Mass: 2
-  Radius: 0
-  Rarity: 1
-  Sprite: {fileID: 0}
+  <DamageMin>k__BackingField: 0
+  <DamageMax>k__BackingField: 0
+  <Speed>k__BackingField: 0
+  <Mass>k__BackingField: 0
+  <Radius>k__BackingField: 0
+  <Rarity>k__BackingField: 1
+  <Sprite>k__BackingField: {fileID: 21300000, guid: 17242278a3db5ab418b500c36fc1dfef, type: 3}

@@ -8,16 +8,16 @@ public class SlimeAsset : ScriptableObject
 {
     [field: SerializeField] public string Name { get; private set; }
 
-    [field: SerializeField] public float DamageMin;
-    [field: SerializeField] public float DamageMax;
+    [field: SerializeField] public float DamageMin { get; private set; }
+    [field: SerializeField] public float DamageMax { get; private set; }
 
-    [field: SerializeField] public float Speed;
-    [field: SerializeField] public float Mass;
-    [field: SerializeField] public float Radius;
+    [field: SerializeField] public float Speed { get; private set; }
+    [field: SerializeField] public float Mass { get; private set; }
+    [field: SerializeField] public float Radius { get; private set; }
 
-    [field: SerializeField] public Rarity Rarity;
+    [field: SerializeField] public Rarity Rarity { get; private set; }
 
-    [field: SerializeField] public Sprite Sprite;
+    [field: SerializeField] public Sprite Sprite { get; private set; }
 
     public override string ToString()
     {

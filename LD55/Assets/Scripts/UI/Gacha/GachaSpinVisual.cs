@@ -43,8 +43,6 @@ namespace Gacha
 
             while (spinProgressTime < m_SpinDuration)
             {
-                m_ImageDisplay.texture = null;
-                yield return new WaitForSeconds(0.1f);
 
                 // Figure out what to show
                 SlimeAsset selectedSlimeAsset = m_GachaSystem.PickRandomSlime(m_GachaSystem.PickRandomRarity());
@@ -55,6 +53,9 @@ namespace Gacha
                 float timeToShowSlime = (1 - m_SpinSpeedCurve.Evaluate(spinProgress)) * m_SpinSpeed;
 
                 yield return new WaitForSeconds(timeToShowSlime);
+
+                m_ImageDisplay.texture = null;
+                yield return new WaitForSeconds(0.1f);
 
                 spinProgressTime += timeToShowSlime + 0.1f;
             }

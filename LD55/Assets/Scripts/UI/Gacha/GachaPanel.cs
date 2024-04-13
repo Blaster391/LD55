@@ -45,10 +45,14 @@ namespace Gacha
 
         public void Spin()
         {
-            if (m_RunResources.SlimeTokens < m_GachaSystem.SlimeTokenCost)
-                return;
+            // If we're in a test scene without one of these then ignore and do it free
+            if (m_RunResources != null)
+            {
+                if (m_RunResources.SlimeTokens < m_GachaSystem.SlimeTokenCost)
+                    return;
 
-            m_RunResources.SpendTokens(m_GachaSystem.SlimeTokenCost);
+                m_RunResources.SpendTokens(m_GachaSystem.SlimeTokenCost);
+            }
 
             GachaRollResult result = m_GachaSystem.RollGacha(m_RollParams);
 

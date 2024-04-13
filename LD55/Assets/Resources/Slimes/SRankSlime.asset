@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: SRankSlime
   m_EditorClassIdentifier: 
   <Name>k__BackingField: 
-  DamageMin: 0
-  DamageMax: 0
-  Speed: 0
-  Mass: 0
-  Radius: 0
-  Rarity: 0
-  Sprite: {fileID: 0}
+  <DamageMin>k__BackingField: 0
+  <DamageMax>k__BackingField: 0
+  <Speed>k__BackingField: 0
+  <Mass>k__BackingField: 0
+  <Radius>k__BackingField: 0
+  <Rarity>k__BackingField: 4
+  <Sprite>k__BackingField: {fileID: 21300000, guid: c3f70151fcd741a47993965f65d03b11, type: 3}

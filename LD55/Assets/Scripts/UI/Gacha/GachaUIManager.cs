@@ -19,6 +19,13 @@ public class GachaUIManager : MonoBehaviour
         if (m_RunResources != null)
         {
             m_RunResources.SlimeTokensChanged += OnSlimeTokensChanged;
+        }
+    }
+
+    private void Start()
+    {
+        if (m_RunResources != null)
+        {
             OnSlimeTokensChanged(0, m_RunResources.SlimeTokens);
         }
         else
@@ -29,7 +36,7 @@ public class GachaUIManager : MonoBehaviour
 
     private void OnSlimeTokensChanged(int oldTokens, int newTokens)
     {
-        if(newTokens > m_GachaSystem.SlimeTokenCost)
+        if(newTokens >= m_GachaSystem.SlimeTokenCost)
         {
             OpenPopupButton();
         }
@@ -56,6 +63,10 @@ public class GachaUIManager : MonoBehaviour
 
     public void CloseGachaPanel()
     {
+        if (m_SpinPanel.IsRolling)
+            // Can't exit while rolling or it wont finish and send back the result
+            return;
+
         m_SpinPanel.gameObject.SetActive(false);
     }
 }

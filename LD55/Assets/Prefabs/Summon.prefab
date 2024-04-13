@@ -139,8 +139,8 @@ MonoBehaviour:
   m_targetPriority: 1
   m_cohesion: 0.25
   m_minFlockSeparationDistance: 3
-  m_minPlayerTargetDistance: 2
-  m_maxPlayerTargetDistance: 4
+  m_minPlayerTargetDistance: 1.5
+  m_maxPlayerTargetDistance: 3
   m_minTargetSeparationDistance: 0.5
   m_maxTargetSeparationDistance: 2
   m_separation: 0.6
@@ -192,4 +192,4 @@ MonoBehaviour:
   m_sprites:
   - {fileID: 21300000, guid: 8c99d3e0ccd1c8043b65d3b7773b8128, type: 3}
   - {fileID: 21300000, guid: 7a262333c407f264c95b50a7e4af1f9d, type: 3}
-  m_updateTime: 1
+  m_updateTime: 0.5

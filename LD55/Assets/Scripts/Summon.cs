@@ -96,6 +96,11 @@ public class Summon : MonoBehaviour
 
     void Update()
     {
+        if (GameManager.Instance.IsPaused())
+        {
+            return;
+        }
+
         m_movement = Vector2.zero;
 
         switch (m_state)
@@ -141,6 +146,11 @@ public class Summon : MonoBehaviour
 
         foreach(Summon member in m_flockManager.Flock)
         {
+            if(member == this)
+            {
+                continue;
+            }
+
             float distance = Vector2.Distance(transform.position, member.transform.position);
             if (distance < m_minFlockSeparationDistance)
             {
@@ -157,15 +167,35 @@ public class Summon : MonoBehaviour
         }
 
         Vector2 centerDirection = m_flockManager.FlockCenter - m_rigidbody.position;
+        centerDirection.Normalize();
 
         m_movement += targetDirection * m_targetPriority;
-        m_movement += centerDirection * m_cohesion;
+
+        if (!m_flockManager.IsTargettingPlayer)
+        {
+            m_movement += centerDirection * m_cohesion;
+        }
+
         m_movement += separationDirection * m_separation;
 
-        if(m_flockManager.IsTargettingPlayer && GameManager.Instance.Player != null)
+        if(GameManager.Instance.Player != null)
         {
-            m_movement += GameManager.Instance.Player.MovementInput * m_follow;
+            if (m_flockManager.IsTargettingPlayer)
+            {
+                m_movement += GameManager.Instance.Player.MovementInput * m_follow;
+            }
+
+            Vector2 playerPosition = GameManager.Instance.Player.transform.position;
+            Vector2 directionToPlayer = (playerPosition - m_rigidbody.position);
+            if ((directionToPlayer.magnitude < m_playerTargetDistance * 0.9f && Vector2.Distance(playerPosition, targetPosition) < Vector2.Distance(m_rigidbody.position, targetPosition)))
+            {
+                Vector2 normalToPlayer = new Vector2(-directionToPlayer.y, directionToPlayer.x);
+
+                m_movement += normalToPlayer;
+                m_movement -= targetDirection * m_targetPriority * 0.75f;
+            }
         }
+
 
         foreach(Enemy enemy in m_flockManager.Enemies)
         {

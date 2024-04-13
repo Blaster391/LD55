@@ -49,11 +49,11 @@ namespace Gacha
                 float spinProgress = spinProgressTime / m_SpinDuration;
                 float timeToShowSlime = (1 - m_SpinSpeedCurve.Evaluate(spinProgress)) * m_SpinSpeed;
 
-                yield return new WaitForSeconds(timeToShowSlime);
+                yield return new WaitForSecondsRealtime(timeToShowSlime);
 
                 m_ImageDisplay.texture = null;
                 m_ImageDisplay.color = Color.clear;
-                yield return new WaitForSeconds(0.05f);
+                yield return new WaitForSecondsRealtime(0.05f);
 
                 spinProgressTime += timeToShowSlime + 0.05f;
             }

@@ -50,7 +50,12 @@ public class FlockManager : MonoBehaviour
             return;
         }
 
-        if(Input.GetButtonDown("FlockTarget"))
+        if (GameManager.Instance.IsPaused())
+        {
+            return;
+        }
+
+        if (Input.GetButtonDown("FlockTarget"))
         {
             IsTargettingPlayer = false;
             TargetPosition = GameHelper.MouseToWorldPosition();
@@ -60,13 +65,13 @@ public class FlockManager : MonoBehaviour
             IsTargettingPlayer = true;
         }
 
-        FlockCenter = Vector2.zero;
-        if (IsTargettingPlayer)
+        if(IsTargettingPlayer)
         {
             TargetPosition = m_player.transform.position;
-            FlockCenter = TargetPosition;
         }
-        else if(Flock.Count > 0)
+
+        FlockCenter = m_player.transform.position;
+        if(Flock.Count > 0)
         {
             foreach (Summon s in Flock)
             {

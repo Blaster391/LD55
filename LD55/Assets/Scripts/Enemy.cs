@@ -54,6 +54,11 @@ public class Enemy : MonoBehaviour
             return;
         }
 
+        if (GameManager.Instance.IsPaused())
+        {
+            return;
+        }
+
         Vector2 target = (m_player.transform.position - transform.position);
         m_movement = target;
         m_movement.Normalize();

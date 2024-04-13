@@ -86,6 +86,11 @@ public class Player : MonoBehaviour
 
     private void UpdateInputs()
     {
+        if(GameManager.Instance.IsPaused())
+        {
+            return;
+        }
+
         Vector2 movementInput = Vector2.zero;
         movementInput.x = Input.GetAxis("Horizontal");
         movementInput.y = Input.GetAxis("Vertical");

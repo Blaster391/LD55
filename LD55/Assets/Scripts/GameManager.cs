@@ -28,6 +28,8 @@ public class GameManager : MonoBehaviour
     public void SetPaused(bool _paused)
     {
         m_isPaused = _paused;
+        Time.timeScale = (m_isPaused) ? 0.0f : 1.0f;
+        
     }
 
 

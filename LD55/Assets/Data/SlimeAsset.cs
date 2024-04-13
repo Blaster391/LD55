@@ -17,8 +17,7 @@ public class SlimeAsset : ScriptableObject
 
     [field: SerializeField] public Rarity Rarity { get; private set; }
 
-    [field: SerializeField] public Sprite Sprite { get; private set; }
-
+    [field: SerializeField] public List<Sprite> SpriteList { get; private set; }
     public override string ToString()
     {
         // Add as we care about stuff

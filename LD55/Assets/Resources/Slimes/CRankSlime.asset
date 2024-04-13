@@ -12,11 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88fc226dde390464abfcf12fc7cfa26e, type: 3}
   m_Name: CRankSlime
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: 
-  <DamageMin>k__BackingField: 0
-  <DamageMax>k__BackingField: 0
-  <Speed>k__BackingField: 0
-  <Mass>k__BackingField: 0
-  <Radius>k__BackingField: 0
+  <Name>k__BackingField: REPLACE ME
+  <DamageMin>k__BackingField: 1
+  <DamageMax>k__BackingField: 2
+  <Speed>k__BackingField: 12500
+  <Mass>k__BackingField: 10
+  <Radius>k__BackingField: 0.5
   <Rarity>k__BackingField: 1
   <Sprite>k__BackingField: {fileID: 21300000, guid: 17242278a3db5ab418b500c36fc1dfef, type: 3}
+  <SpriteList>k__BackingField:
+  - {fileID: 21300000, guid: 8c99d3e0ccd1c8043b65d3b7773b8128, type: 3}
+  - {fileID: 21300000, guid: 7a262333c407f264c95b50a7e4af1f9d, type: 3}

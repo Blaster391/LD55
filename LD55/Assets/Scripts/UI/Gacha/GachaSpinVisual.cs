@@ -16,7 +16,7 @@ namespace Gacha
         [Header("References")]
         [SerializeField] private RawImage m_ImageDisplay;
 
-        public event Action SpinVisualComplete;
+        public event Action<GachaRollResult> SpinVisualComplete;
 
         private GachaSystem m_GachaSystem;
         private GachaPanel m_GachaPanel;
@@ -42,7 +42,7 @@ namespace Gacha
             {
                 // Figure out what to show
                 SlimeAsset selectedSlimeAsset = m_GachaSystem.PickRandomSlime(m_GachaSystem.PickRandomRarity());
-                m_ImageDisplay.texture = selectedSlimeAsset.Sprite.texture;
+                m_ImageDisplay.texture = selectedSlimeAsset.SpriteList[0].texture;
 
                 // Figure out how long to show it
                 float spinProgress = spinProgressTime / m_SpinDuration;
@@ -51,14 +51,15 @@ namespace Gacha
                 yield return new WaitForSeconds(timeToShowSlime);
 
                 m_ImageDisplay.texture = null;
-                yield return new WaitForSeconds(0.1f);
+                m_ImageDisplay.color = Color.clear;
+                yield return new WaitForSeconds(0.05f);
 
-                spinProgressTime += timeToShowSlime + 0.1f;
+                spinProgressTime += timeToShowSlime + 0.05f;
             }
 
-            m_ImageDisplay.texture = rollResult.SelectedSlime.Sprite.texture;
+            m_ImageDisplay.texture = rollResult.SelectedSlime.SpriteList[0].texture;
 
-            SpinVisualComplete?.Invoke();
+            SpinVisualComplete?.Invoke(rollResult);
 
             IsRolling = false;
         }

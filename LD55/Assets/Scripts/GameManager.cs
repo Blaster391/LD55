@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
     public Player Player { get; private set; }
     public FlockManager FlockManager { get; private set; }
+    public IRunResources RunResources { get; private set; }
 
     private bool m_isPaused = false;
 
@@ -14,6 +15,7 @@ public class GameManager : MonoBehaviour
     {
         Player = GetComponentInChildren<Player>();
         FlockManager = GetComponent<FlockManager>();
+        RunResources = GetComponentInParent<IRunResources>();
 
         Instance = this;
     }

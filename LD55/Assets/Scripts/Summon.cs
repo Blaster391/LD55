@@ -66,6 +66,11 @@ public class Summon : MonoBehaviour
     private Enemy m_targetEnemy = null;
     private float m_recoilTime = 0.0f;
 
+    public State GetState()
+    {
+        return m_state;
+    }
+
     void Start()
     {
         m_flockManager = GameManager.Instance.FlockManager;

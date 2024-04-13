@@ -232,4 +232,13 @@ public class Summon : MonoBehaviour
             m_state = State.Recoil;
         }
     }
+
+    public void Setup(SlimeAsset _slimeAsset)
+    {
+        m_movementForce = _slimeAsset.Speed;
+        m_rigidbody.mass = _slimeAsset.Mass;
+        m_damage = Random.Range(_slimeAsset.DamageMin, _slimeAsset.DamageMax);
+        GetComponent<CircleCollider2D>().radius = _slimeAsset.Radius;
+        GetComponent<SpriteHandler>().SetSpriteList(_slimeAsset.SpriteList);
+    }
 }

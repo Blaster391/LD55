@@ -15,6 +15,13 @@ public class SpriteHandler : MonoBehaviour
 
     private SpriteRenderer m_renderer = null;
     private Vector2 m_previousPosition = Vector2.zero;
+
+    public void SetSpriteList(List<Sprite> _spriteList)
+    {
+        m_sprites = _spriteList;
+        m_renderer.sprite = m_sprites[0];
+    }
+
     void Start()
     {
         m_renderer = GetComponent<SpriteRenderer>();

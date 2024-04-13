@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class FlockManager : MonoBehaviour
 {
+    [SerializeField]
+    private Summon m_summonPrefab = null;
+
     public bool IsTargettingPlayer { get; private set; } = true;
     public Vector2 TargetPosition { get; private set; } = Vector2.zero;
     public List<Summon> Flock { get; private set; } = new List<Summon>();
@@ -12,7 +15,6 @@ public class FlockManager : MonoBehaviour
     public Vector2 FlockCenter { get; private set; } = Vector2.zero;
 
     private Player m_player = null;
-
 
     public void Register(Summon _summon)
     {
@@ -38,6 +40,7 @@ public class FlockManager : MonoBehaviour
     void Start()
     {
         m_player = GameManager.Instance.Player;
+        GameManager.Instance.RunResources.SlimeAdded += OnSlimeAdded;
     }
 
     void Update()
@@ -74,5 +77,14 @@ public class FlockManager : MonoBehaviour
         }
 
         Enemies = Enemies.OrderBy(x => Vector2.Distance(x.transform.position, m_player.transform.position)).ToList();
+    }
+
+    private void OnSlimeAdded(SlimeAsset _slimeAsset)
+    {
+        Summon newSummon = Instantiate<Summon>(m_summonPrefab, GameManager.Instance.transform);
+        newSummon.gameObject.name = $"{_slimeAsset.Name}{Flock.Count}";
+        newSummon.Setup(_slimeAsset);
+        newSummon.transform.position = m_player.transform.position + new Vector3(Random.value, Random.value, 0.0f) * 2.0f;
+
     }
 }

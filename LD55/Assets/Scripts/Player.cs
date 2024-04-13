@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         m_rigidbody = GetComponent<Rigidbody2D>();
-        m_playerRadius = GetComponent<CircleCollider2D>().radius;
+        m_playerRadius = GetComponent<CircleCollider2D>().radius / transform.localScale.x;
     }
 
     private void FixedUpdate()

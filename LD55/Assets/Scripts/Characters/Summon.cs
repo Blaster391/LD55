@@ -64,10 +64,12 @@ public class Summon : MonoBehaviour
     private float m_targetTargetDistance = 1.0f;
 
     private FlockManager m_flockManager = null;
+    private WorldSpawnManager m_spawnManager = null;
     private State m_state = State.Follow;
     private Vector2 m_movement = Vector2.zero;
     private Rigidbody2D m_rigidbody = null;
     private Enemy m_targetEnemy = null;
+    private Chest m_targetChest = null;
     private float m_recoilTime = 0.0f;
 
     public State GetState()
@@ -82,6 +84,7 @@ public class Summon : MonoBehaviour
     void Start()
     {
         m_flockManager = GameManager.Instance.FlockManager;
+        m_spawnManager = GameManager.Instance.WorldSpawnManager;
         m_flockManager.Register(this);
 
         m_playerTargetDistance = Random.Range(m_minPlayerTargetDistance, m_maxPlayerTargetDistance);
@@ -116,7 +119,7 @@ public class Summon : MonoBehaviour
                 UpdateAttack();
                 break;
             case State.AttackChest:
-                UpdateAttack();
+                UpdateAttackChest();
                 break;
             case State.Recoil:
                 UpdateRecoil();
@@ -203,13 +206,22 @@ public class Summon : MonoBehaviour
             }
         }
 
-
         foreach(Enemy enemy in m_flockManager.Enemies)
         {
             if(Vector2.Distance(transform.position, enemy.transform.position) < m_aggroRange)
             {
                 m_targetEnemy = enemy;
                 m_state = State.Attack;
+                return;
+            }
+        }
+
+        foreach(Chest chest in m_spawnManager.ActiveChests)
+        {
+            if (Vector2.Distance(transform.position, chest.transform.position) < m_chestAggroRange)
+            {
+                m_targetChest = chest;
+                m_state = State.AttackChest;
                 return;
             }
         }
@@ -231,6 +243,25 @@ public class Summon : MonoBehaviour
         }
 
         Vector2 targetDirection = m_targetEnemy.transform.position - transform.position;
+        m_movement = targetDirection;
+    }
+
+    private void UpdateAttackChest()
+    {
+        if (m_targetChest == null)
+        {
+            m_state = State.Follow;
+            return;
+        }
+
+        if (Vector2.Distance(transform.position, m_targetChest.transform.position) > m_chestAggroRange * 1.25f)
+        {
+            m_targetChest = null;
+            m_state = State.Follow;
+            return;
+        }
+
+        Vector2 targetDirection = m_targetChest.transform.position - transform.position;
         m_movement = targetDirection;
     }
 

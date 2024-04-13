@@ -46,7 +46,7 @@ public class UIManager : MonoBehaviour
     {
         int health = m_player != null ? m_player.GetHealth() : 0;
         m_health.text = $"Health {health}";
-        m_health.text = $"Score {GameManager.Instance.Score}";
+        m_score.text = $"Score {GameManager.Instance.Score}";
 
         float timeRemaining = GameManager.Instance.GetTimeRemaining();
         int minRemaining = Mathf.FloorToInt(timeRemaining / 60.0f);

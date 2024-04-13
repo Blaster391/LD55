@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class WorldSpawnManager : MonoBehaviour
 {
+    public List<Chest> ActiveChests { get; private set; } = new List<Chest>();
+
     [SerializeField]
     private GameObject m_worldParent = null;
 
@@ -36,6 +38,16 @@ public class WorldSpawnManager : MonoBehaviour
     {
         Vector2Int index = WorldToIndex(_worldPos);
         return m_freeSpace[index.x, index.y];
+    }
+
+    public void Register(Chest _chest)
+    {
+        ActiveChests.Add(_chest);
+    }
+
+    public void Unregister(Chest _chest) 
+    {
+        ActiveChests.Remove(_chest);
     }
 
     void Awake()
@@ -77,7 +89,7 @@ public class WorldSpawnManager : MonoBehaviour
                 continue;
             }
 
-            GameObject coral = Instantiate(m_corals[Random.Range(0, m_corals.Count - 1)], m_worldParent.transform);
+            GameObject coral = Instantiate(m_corals[Random.Range(0, m_corals.Count)], m_worldParent.transform);
             coral.transform.position = worldPos;
             m_freeSpace[index.x, index.y] = false;
         }
@@ -113,7 +125,7 @@ public class WorldSpawnManager : MonoBehaviour
                 continue;
             }
 
-            GameObject decor = Instantiate(m_decor[Random.Range(0, m_decor.Count - 1)], m_worldParent.transform);
+            GameObject decor = Instantiate(m_decor[Random.Range(0, m_decor.Count)], m_worldParent.transform);
             decor.transform.position = worldPos;
             m_freeSpace[index.x, index.y] = false;
         }

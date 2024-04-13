@@ -19,13 +19,12 @@ public class Chest : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        GameManager.Instance.WorldSpawnManager.Register(this);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnDestroy()
     {
-        
+        GameManager.Instance.WorldSpawnManager.Unregister(this);
     }
 
     public void Open()
@@ -33,12 +32,14 @@ public class Chest : MonoBehaviour
         GetComponent<SpriteRenderer>().sprite = m_openSprite;
         GetComponent<Collider2D>().enabled = false;
 
-        int coinsToSpawn = Random.Range(m_minCoints, m_maxCoins);
+        int coinsToSpawn = Random.Range(m_minCoints, m_maxCoins + 1);
         for(int i = 0; i < coinsToSpawn; i++)
         {
             GameObject coin = Instantiate(m_coinPrefab, transform.parent);
             coin.transform.position = transform.position + new Vector3(Random.value, (Random.value - 0.5f) * 2.0f);
         }
 
+        // Kill the component, leave the sprite
+        Destroy(this);
     }
 }

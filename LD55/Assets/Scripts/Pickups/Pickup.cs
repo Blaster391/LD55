@@ -38,17 +38,17 @@ public abstract class Pickup : MonoBehaviour
         {
             m_bounceTime += Time.deltaTime;
 
-            float alpha = (m_bounceTime / m_bounceTotalTime) * Mathf.PI;
+            float alpha = (m_bounceTime / m_bounceTotalTime);
 
             Vector2 newPosition = m_initialPosition;
 
-            float horizontal = Mathf.Sin(alpha) * m_horizontalBounce;
+            float horizontal = Mathf.Sin(alpha * Mathf.PI * 0.5f) * m_horizontalBounce;
             if(m_bounceLeft)
             {
                 horizontal = -horizontal;
             }
 
-            float vertical = Mathf.Sin(alpha) * m_verticalBounce;
+            float vertical = Mathf.Sin(alpha * Mathf.PI * 0.9f) * m_verticalBounce;
 
             newPosition.x += horizontal;
             newPosition.y += vertical;

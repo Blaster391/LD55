@@ -139,7 +139,7 @@ namespace Gacha
             GachaRollResult result = new();
 
             // Select a rarity
-            Rarity selectedRarity = (Rarity)Random.Range((int)rollParams.MinimumRarity, (int)rollParams.MaximumRarity);
+            Rarity selectedRarity = (Rarity)Random.Range((int)rollParams.MinimumRarity, (int)rollParams.MaximumRarity + 1);
 
             // Select a random slime of this rarity
             var possibleSlimes = m_SlimeDatabase[selectedRarity];

@@ -4,15 +4,66 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField]
+    private float m_movementForce = 1.0f;
+
+    [SerializeField]
+    private float m_health = 3.0f;
+
+    private FlockManager m_flockManager = null;
+    private Vector2 m_movement = Vector2.zero;
+    private Rigidbody2D m_rigidbody = null;
+    private Player m_player = null;
+    public void OnDamaged(float _damage)
     {
-        
+        m_health -= _damage;
+        if (m_health <= 0.0f)
+        {
+            Destroy(gameObject);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    void Start()
     {
-        
+        m_flockManager = GameManager.Instance.FlockManager;
+        m_player = GameManager.Instance.Player;
+        m_rigidbody = GetComponent<Rigidbody2D>();
+
+        m_flockManager.Register(this);
+    }
+
+    private void OnDestroy()
+    {
+        m_flockManager.Unregister(this);
+    }
+
+    private void FixedUpdate()
+    {
+        if (m_player == null)
+        {
+            return;
+        }
+
+        m_rigidbody.AddForce(m_movement * m_movementForce * Time.fixedDeltaTime);
+    }
+
+    private void Update()
+    {
+        if(m_player == null)
+        {
+            return;
+        }
+
+        Vector2 target = (m_player.transform.position - transform.position);
+        m_movement = target;
+        m_movement.Normalize();
+    }
+
+    private void OnCollisionEnter2D(Collision2D _collision)
+    {
+        if (_collision.collider.gameObject.GetComponent<Player>() != null)
+        {
+            Destroy(_collision.collider.gameObject);
+        }
     }
 }

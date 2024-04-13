@@ -10,6 +10,9 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private float m_health = 3.0f;
 
+    [SerializeField]
+    private float m_bounceForce = 20.0f;
+
     private FlockManager m_flockManager = null;
     private Vector2 m_movement = Vector2.zero;
     private Rigidbody2D m_rigidbody = null;
@@ -68,6 +71,8 @@ public class Enemy : MonoBehaviour
     {
         if (_collision.collider.gameObject.GetComponent<Player>() != null)
         {
+            m_rigidbody.AddForce(_collision.GetContact(0).normal * m_bounceForce, ForceMode2D.Impulse);
+
             Destroy(_collision.collider.gameObject);
         }
     }

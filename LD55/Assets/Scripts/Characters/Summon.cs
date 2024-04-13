@@ -8,6 +8,7 @@ public class Summon : MonoBehaviour
     {
         Follow,
         Attack,
+        AttackChest,
         Recoil
     }
 
@@ -46,6 +47,9 @@ public class Summon : MonoBehaviour
 
     [SerializeField]
     private float m_aggroRange = 10.0f;
+
+    [SerializeField]
+    private float m_chestAggroRange = 7.0f;
 
     [SerializeField]
     private float m_bounceForce = 20.0f;
@@ -109,6 +113,9 @@ public class Summon : MonoBehaviour
                 UpdateFollow();
                 break;
             case State.Attack:
+                UpdateAttack();
+                break;
+            case State.AttackChest:
                 UpdateAttack();
                 break;
             case State.Recoil:

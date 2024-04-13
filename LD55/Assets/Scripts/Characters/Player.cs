@@ -7,10 +7,26 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float m_movementSpeed = 1.0f;
 
+    [SerializeField]
+    private int m_health = 5;
     public Vector2 MovementInput { get; private set; } = Vector2.zero;
 
     private Rigidbody2D m_rigidbody = null;
     private float m_playerRadius = 1.0f;
+
+    public int GetHealth()
+    {
+        return m_health;
+    }
+
+    public void TakeDamage()
+    {
+        --m_health;
+        if(m_health <= 0) 
+        {
+            Destroy(gameObject);
+        }
+    }
 
     private void Start()
     {
@@ -102,15 +118,4 @@ public class Player : MonoBehaviour
 
         MovementInput = movementInput;
     }
-
-    //private void OnCollisionEnter2D(Collision2D _collision)
-    //{
-    //    Vector2 newPosition = m_rigidbody.position;
-
-    //    ColliderDistance2D contactDistance = Physics2D.Distance(_collision.collider, _collision.otherCollider);
-    //    Vector2 resolutionDirection = contactDistance.normal * contactDistance.distance;
-    //    newPosition -= resolutionDirection;
-
-    //    m_rigidbody.MovePosition(newPosition);
-    //}
 }

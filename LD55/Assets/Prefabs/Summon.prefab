@@ -192,4 +192,4 @@ MonoBehaviour:
   m_sprites:
   - {fileID: 21300000, guid: 8c99d3e0ccd1c8043b65d3b7773b8128, type: 3}
   - {fileID: 21300000, guid: 7a262333c407f264c95b50a7e4af1f9d, type: 3}
-  m_updateTime: 1
+  m_updateTime: 0.5

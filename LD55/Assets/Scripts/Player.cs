@@ -67,9 +67,9 @@ public class Player : MonoBehaviour
             if (hit.collider != null)
             {
                 movement *= (hit.distance / movementMagintude);
+                // TODO - issues with sliding along walls (use normal here?)
             }
         }
-
 
         m_rigidbody.MovePosition(newPosition + movement);
     }

@@ -402,6 +402,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1427570212 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1759811700390269094, guid: 23cf1bbbdbca56b4b9fa279c1e965dbd, type: 3}
+  m_PrefabInstance: {fileID: 1621607854}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1528508651
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -569,6 +580,10 @@ PrefabInstance:
       propertyPath: m_time
       value: 
       objectReference: {fileID: 1621607858}
+    - target: {fileID: 1514469068078481344, guid: 1f4980ed9fef57b43a6f3f38a1ab93b4, type: 3}
+      propertyPath: m_score
+      value: 
+      objectReference: {fileID: 1427570212}
     - target: {fileID: 1514469068078481344, guid: 1f4980ed9fef57b43a6f3f38a1ab93b4, type: 3}
       propertyPath: m_health
       value: 
@@ -851,6 +866,18 @@ PrefabInstance:
     - target: {fileID: 1406670569037271775, guid: 81d9d6db24bb3c64f889198880581ff2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1584440557295612914, guid: 81d9d6db24bb3c64f889198880581ff2, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1584440557295612914, guid: 81d9d6db24bb3c64f889198880581ff2, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1584440557295612914, guid: 81d9d6db24bb3c64f889198880581ff2, type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4919554255291708372, guid: 81d9d6db24bb3c64f889198880581ff2, type: 3}
       propertyPath: m_Name

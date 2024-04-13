@@ -11,6 +11,8 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private TMPro.TextMeshProUGUI m_time = null;
     [SerializeField]
+    private TMPro.TextMeshProUGUI m_score = null;
+    [SerializeField]
     private TMPro.TextMeshProUGUI m_gameOver = null;
     [SerializeField]
     private TMPro.TextMeshProUGUI m_win = null;
@@ -44,10 +46,11 @@ public class UIManager : MonoBehaviour
     {
         int health = m_player != null ? m_player.GetHealth() : 0;
         m_health.text = $"Health {health}";
+        m_health.text = $"Score {GameManager.Instance.Score}";
 
         float timeRemaining = GameManager.Instance.GetTimeRemaining();
         int minRemaining = Mathf.FloorToInt(timeRemaining / 60.0f);
-        int secondsRemaining = Mathf.CeilToInt(timeRemaining - (minRemaining * 60.0f));
+        int secondsRemaining = Mathf.FloorToInt(timeRemaining - (minRemaining * 60.0f));
         m_time.text = $"Remaining {minRemaining}:{secondsRemaining:00}";
 
         m_gameOver.gameObject.SetActive(GameManager.Instance.IsGameOver());

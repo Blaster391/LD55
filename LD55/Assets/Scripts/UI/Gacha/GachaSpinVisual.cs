@@ -20,30 +20,26 @@ namespace Gacha
 
         private GachaSystem m_GachaSystem;
         private GachaPanel m_GachaPanel;
+        public bool IsRolling { get; private set; } = false;
 
         private void Awake()
         {
             m_GachaSystem = GetComponentInParent<GachaSystem>();
-
-            m_GachaPanel = GetComponentInParent<GachaPanel>();
-            m_GachaPanel.RollStarted += OnSpinStarted;
         }
 
-        private void OnSpinStarted(GachaRollResult rollResult)
+        public void VisualiseSpin(GachaRollResult rollResult)
         {
-            // Who knows what this will do yet
-            //m_GachaSystem.SlimeDatabase
-
-            StartCoroutine(VisualiseSpin(rollResult));
+            StartCoroutine(VisualiseSpinRoutine(rollResult));
         }
 
-        private IEnumerator VisualiseSpin(GachaRollResult rollResult)
+        private IEnumerator VisualiseSpinRoutine(GachaRollResult rollResult)
         {
+            IsRolling = true;
+
             float spinProgressTime = 0;
 
             while (spinProgressTime < m_SpinDuration)
             {
-
                 // Figure out what to show
                 SlimeAsset selectedSlimeAsset = m_GachaSystem.PickRandomSlime(m_GachaSystem.PickRandomRarity());
                 m_ImageDisplay.texture = selectedSlimeAsset.Sprite.texture;
@@ -63,6 +59,8 @@ namespace Gacha
             m_ImageDisplay.texture = rollResult.SelectedSlime.Sprite.texture;
 
             SpinVisualComplete?.Invoke();
+
+            IsRolling = false;
         }
     }
 }

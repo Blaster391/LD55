@@ -118,10 +118,10 @@ namespace Gacha
         #region System
         private void Awake()
         {
-            m_Config = Resources.FindObjectsOfTypeAll<GachaConfig>().FirstOrDefault();
+            m_Config = Resources.LoadAll<GachaConfig>("Config")[0]; // Load on its own doesn't find it, idk why
 
             // Populate our database
-            var slimeAssets = Resources.FindObjectsOfTypeAll<SlimeAsset>();
+            var slimeAssets = Resources.LoadAll<SlimeAsset>("Slimes");
             m_SlimeDatabase = new();
             foreach (SlimeAsset slime in slimeAssets)
             {
@@ -131,11 +131,6 @@ namespace Gacha
                 }
                 m_SlimeDatabase[slime.Rarity].Add(slime);
             }
-        }
-
-        private void OnDestroy()
-        {
-            m_SlimeDatabase.Clear();
         }
         #endregion
 

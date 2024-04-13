@@ -14,6 +14,36 @@ public class Summon : MonoBehaviour
     [SerializeField]
     private float m_movementForce = 1.0f;
 
+    [SerializeField]
+    private float m_targetPriority = 1.0f;
+
+    [SerializeField]
+    private float m_cohesion = 0.5f;
+
+    [SerializeField]
+    private float m_minFlockSeparationDistance = 0.5f;
+
+    [SerializeField]
+    private float m_minPlayerTargetDistance = 2.0f;
+
+    [SerializeField]
+    private float m_maxPlayerTargetDistance = 3.0f;
+
+    [SerializeField]
+    private float m_minTargetSeparationDistance = 1.0f;
+
+    [SerializeField]
+    private float m_maxTargetSeparationDistance = 2.0f;
+
+    [SerializeField]
+    private float m_separation = 0.5f;
+
+    [SerializeField]
+    private float m_follow = 0.75f;
+
+    private float m_playerTargetDistance = 2.0f;
+    private float m_targetTargetDistance = 1.0f;
+
     private FlockManager m_flockManager = null;
     private State m_state = State.Follow;
     private Vector2 m_movement = Vector2.zero;
@@ -23,6 +53,16 @@ public class Summon : MonoBehaviour
     {
         m_flockManager = GameManager.Instance.FlockManager;
         m_rigidbody = GetComponent<Rigidbody2D>();
+
+        m_flockManager.Register(this);
+
+        m_playerTargetDistance = Random.Range(m_minPlayerTargetDistance, m_maxPlayerTargetDistance);
+        m_targetTargetDistance = Random.Range(m_minTargetSeparationDistance, m_maxTargetSeparationDistance);
+    }
+
+    private void OnDestroy()
+    {
+        m_flockManager.Unregister(this);
     }
 
     private void FixedUpdate()
@@ -56,7 +96,53 @@ public class Summon : MonoBehaviour
     private void UpdateFollow()
     {
         Vector2 targetPosition = m_flockManager.TargetPosition;
-        m_movement = targetPosition - m_rigidbody.position;
+
+        Vector2 targetDirection = targetPosition - m_rigidbody.position;
+        if ((m_flockManager.IsTargettingPlayer && targetDirection.magnitude < m_playerTargetDistance) || (!m_flockManager.IsTargettingPlayer && targetDirection.magnitude < m_targetTargetDistance))
+        {
+            targetDirection = -targetDirection;
+        }
+        else if((m_flockManager.IsTargettingPlayer && targetDirection.magnitude < m_playerTargetDistance * 1.1f)|| (!m_flockManager.IsTargettingPlayer && targetDirection.magnitude < m_targetTargetDistance * 1.1f))
+        {
+            targetDirection = Vector2.zero;
+        }
+
+        if(targetDirection.magnitude > 0.0f)
+        {
+            targetDirection.Normalize();
+        }
+
+        Vector2 separationDirection = Vector2.zero;
+        int separationTargets = 0;
+
+        foreach(Summon member in m_flockManager.Flock)
+        {
+            float distance = Vector2.Distance(transform.position, member.transform.position);
+            if (distance < m_minFlockSeparationDistance)
+            {
+                Vector2 direction = transform.position - member.transform.position;
+                direction.Normalize();
+                //direction *= (m_minFlockSeparationDistance - distance); // Inverse to prioritise closer targets
+
+                separationDirection += direction;
+                ++separationTargets;
+            }
+        }
+        if(separationTargets > 0)
+        {
+            separationDirection.Normalize();
+        }
+
+        Vector2 centerDirection = m_flockManager.FlockCenter - m_rigidbody.position;
+
+        m_movement += targetDirection * m_targetPriority;
+        m_movement += centerDirection * m_cohesion;
+        m_movement += separationDirection * m_separation;
+
+        if(m_flockManager.IsTargettingPlayer && GameManager.Instance.Player != null)
+        {
+            m_movement += GameManager.Instance.Player.MovementInput * m_follow;
+        }
     }
 
     private void UpdateAttack()

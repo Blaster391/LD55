@@ -12,11 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88fc226dde390464abfcf12fc7cfa26e, type: 3}
   m_Name: MagmaSlime
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: 
-  <DamageMin>k__BackingField: 0
-  <DamageMax>k__BackingField: 0
-  <Speed>k__BackingField: 0
-  <Mass>k__BackingField: 0
-  <Radius>k__BackingField: 0
-  <Rarity>k__BackingField: 0
-  <Sprite>k__BackingField: {fileID: 0}
+  <Name>k__BackingField: Magma Slime
+  <DamageMin>k__BackingField: 4
+  <DamageMax>k__BackingField: 6
+  <Speed>k__BackingField: 10000
+  <Mass>k__BackingField: 10
+  <Radius>k__BackingField: 0.5
+  <Rarity>k__BackingField: 2
+  <SpriteList>k__BackingField:
+  - {fileID: 21300000, guid: 45ffeaa4b6730a94a91d0115bd6c08b6, type: 3}
+  - {fileID: 21300000, guid: 5d7109f9b3c4f45489df8b5620d146da, type: 3}

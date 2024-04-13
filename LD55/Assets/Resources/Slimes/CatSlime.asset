@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 88fc226dde390464abfcf12fc7cfa26e, type: 3}
-  m_Name: BRankSlime
+  m_Name: CatSlime
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: Green Slime
-  <DamageMin>k__BackingField: 0
-  <DamageMax>k__BackingField: 0
+  <Name>k__BackingField: Cat Slime
+  <DamageMin>k__BackingField: 5
+  <DamageMax>k__BackingField: 7
   <Speed>k__BackingField: 12500
   <Mass>k__BackingField: 10
   <Radius>k__BackingField: 0.5
-  <Rarity>k__BackingField: 2
-  <Sprite>k__BackingField: {fileID: 21300000, guid: 1246649ff12fe7a4f9201371e29204cd, type: 3}
+  <Rarity>k__BackingField: 4
+  <Sprite>k__BackingField: {fileID: 21300000, guid: c3f70151fcd741a47993965f65d03b11, type: 3}
   <SpriteList>k__BackingField:
-  - {fileID: 21300000, guid: a63ca9be16e91b84fb5998ced157950e, type: 3}
-  - {fileID: 21300000, guid: bf5c20a6e3c5e084c91cc72d521b89fc, type: 3}
+  - {fileID: 21300000, guid: 20e18e339e04b9d4b8c1653eeab0b9bd, type: 3}
+  - {fileID: 21300000, guid: e0be4b3b4722d2d43ad2ec9acdac5a7b, type: 3}

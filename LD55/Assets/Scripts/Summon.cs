@@ -70,12 +70,14 @@ public class Summon : MonoBehaviour
     {
         return m_state;
     }
+    private void Awake()
+    {
+        m_rigidbody = GetComponent<Rigidbody2D>();
+    }
 
     void Start()
     {
         m_flockManager = GameManager.Instance.FlockManager;
-        m_rigidbody = GetComponent<Rigidbody2D>();
-
         m_flockManager.Register(this);
 
         m_playerTargetDistance = Random.Range(m_minPlayerTargetDistance, m_maxPlayerTargetDistance);

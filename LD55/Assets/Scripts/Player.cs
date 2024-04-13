@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float m_movementSpeed = 1.0f;
 
-    private Vector2 m_movementInput = Vector2.zero;
+    public Vector2 MovementInput { get; private set; } = Vector2.zero;
 
     private Rigidbody2D m_rigidbody = null;
     private float m_playerRadius = 1.0f;
@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
     private void FixedUpdate()
     {
         Vector2 newPosition = m_rigidbody.position;
-        Vector2 movement = (m_movementInput * m_movementSpeed * Time.fixedDeltaTime);
+        Vector2 movement = (MovementInput * m_movementSpeed * Time.fixedDeltaTime);
 
         List<ContactPoint2D> contacts = new List<ContactPoint2D>();
         m_rigidbody.GetContacts(contacts);
@@ -86,14 +86,16 @@ public class Player : MonoBehaviour
 
     private void UpdateInputs()
     {
-        m_movementInput = Vector2.zero;
-        m_movementInput.x = Input.GetAxis("Horizontal");
-        m_movementInput.y = Input.GetAxis("Vertical");
+        Vector2 movementInput = Vector2.zero;
+        movementInput.x = Input.GetAxis("Horizontal");
+        movementInput.y = Input.GetAxis("Vertical");
 
-        if(m_movementInput.magnitude > 1.0f)
+        if(movementInput.magnitude > 1.0f)
         {
-            m_movementInput.Normalize();
+            movementInput.Normalize();
         }
+
+        MovementInput = movementInput;
     }
 
     //private void OnCollisionEnter2D(Collision2D _collision)

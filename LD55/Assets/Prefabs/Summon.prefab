@@ -134,7 +134,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5aff8287100ab34985716f09e05d79a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_movementForce: 2
+  m_movementForce: 250
+  m_targetPriority: 1
+  m_cohesion: 0.25
+  m_minFlockSeparationDistance: 2
+  m_minPlayerTargetDistance: 1.5
+  m_maxPlayerTargetDistance: 3
+  m_minTargetSeparationDistance: 0.5
+  m_maxTargetSeparationDistance: 2
+  m_separation: 0.6
+  m_follow: 1
 --- !u!50 &7445583349418370594
 Rigidbody2D:
   serializedVersion: 4
@@ -147,8 +156,8 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 1
+  m_Mass: 10
+  m_LinearDrag: 10
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -161,4 +170,4 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4

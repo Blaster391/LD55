@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public Player Player { get; private set; }
     public FlockManager FlockManager { get; private set; }
     public IRunResources RunResources { get; private set; }
+    public int Score { get; private set; } = 0;
 
     private bool m_isPaused = false;
     private float m_time = 0.0f;
@@ -64,5 +65,10 @@ public class GameManager : MonoBehaviour
     public bool IsGameWon()
     {
         return GetTimeRemaining() <= 0.0f;
+    }
+
+    public void AddScore(int _score)
+    {
+        Score += _score;
     }
 }

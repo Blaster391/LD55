@@ -266,6 +266,11 @@ public class Summon : MonoBehaviour
             _collision.collider.GetComponent<Enemy>().OnDamaged(m_damage);
         }
 
+        if (_collision.collider.gameObject.GetComponent<Chest>() != null)
+        {
+            _collision.collider.gameObject.GetComponent<Chest>().Open();
+        }
+
         if (_collision.collider.gameObject.GetComponent<Summon>() == null)
         {
             m_state = State.Recoil;

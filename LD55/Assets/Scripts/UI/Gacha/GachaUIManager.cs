@@ -59,6 +59,7 @@ public class GachaUIManager : MonoBehaviour
     public void OpenGachaPanel()
     {
         m_SpinPanel.gameObject.SetActive(true);
+        GameManager.Instance.SetPaused(true);
     }
 
     public void CloseGachaPanel()
@@ -68,5 +69,6 @@ public class GachaUIManager : MonoBehaviour
             return;
 
         m_SpinPanel.gameObject.SetActive(false);
+        GameManager.Instance.SetPaused(false);
     }
 }

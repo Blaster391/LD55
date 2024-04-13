@@ -139,8 +139,8 @@ MonoBehaviour:
   m_targetPriority: 1
   m_cohesion: 0.25
   m_minFlockSeparationDistance: 3
-  m_minPlayerTargetDistance: 2
-  m_maxPlayerTargetDistance: 4
+  m_minPlayerTargetDistance: 1.5
+  m_maxPlayerTargetDistance: 3
   m_minTargetSeparationDistance: 0.5
   m_maxTargetSeparationDistance: 2
   m_separation: 0.6

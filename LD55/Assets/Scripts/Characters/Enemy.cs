@@ -11,12 +11,17 @@ public class Enemy : MonoBehaviour
     private float m_health = 3.0f;
 
     [SerializeField]
-    private float m_bounceForce = 20.0f;
+    private float m_maxRecoveryTime = 0.5f;
+
+    [SerializeField]
+    private float m_bounceForce = 100.0f;
 
     private FlockManager m_flockManager = null;
     private Vector2 m_movement = Vector2.zero;
     private Rigidbody2D m_rigidbody = null;
     private Player m_player = null;
+    private float m_recoveryTime = 0.0f;
+
     public void OnDamaged(float _damage)
     {
         m_health -= _damage;
@@ -62,6 +67,14 @@ public class Enemy : MonoBehaviour
             return;
         }
 
+        if(m_recoveryTime > 0.0f) 
+        {
+            m_recoveryTime -= Time.deltaTime;
+            m_movement = Vector2.zero;
+            return;
+        }
+
+
         Vector2 target = (m_player.transform.position - transform.position);
         m_movement = target;
         m_movement.Normalize();
@@ -72,8 +85,8 @@ public class Enemy : MonoBehaviour
         if (_collision.collider.gameObject.GetComponent<Player>() != null)
         {
             m_rigidbody.AddForce(_collision.GetContact(0).normal * m_bounceForce, ForceMode2D.Impulse);
-
-            Destroy(_collision.collider.gameObject);
+            _collision.collider.gameObject.GetComponent<Player>().TakeDamage();
+            m_recoveryTime = m_maxRecoveryTime;
         }
     }
 }

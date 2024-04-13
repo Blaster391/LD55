@@ -64,3 +64,6 @@ crashlytics-build.properties
 *.scoreboard.meta
 
 !Newtonsoft.Json.dll
+LD55/.vscode/extensions.json
+LD55/.vscode/launch.json
+LD55/.vscode/settings.json

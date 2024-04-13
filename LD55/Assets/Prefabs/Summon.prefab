@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 8184662999345022757}
   - component: {fileID: 5169146559436458062}
   - component: {fileID: 7445583349418370594}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Summon
-  m_TagString: Untagged
+  m_TagString: Unit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -134,6 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5aff8287100ab34985716f09e05d79a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_movementForce: 2
 --- !u!50 &7445583349418370594
 Rigidbody2D:
   serializedVersion: 4
@@ -147,7 +148,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 1
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}

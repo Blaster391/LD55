@@ -31,6 +31,11 @@ public class Player : MonoBehaviour
             Vector2 resolvedPosition = newPosition;
             foreach (ContactPoint2D contact in contacts)
             {
+                if(contact.collider.tag == "Unit")
+                {
+                    continue;
+                }
+
                 ColliderDistance2D contactDistance = Physics2D.Distance(contact.collider, contact.otherCollider);
                 Vector2 resolutionDirection = contactDistance.normal * contactDistance.distance;
 
@@ -91,14 +96,14 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D _collision)
-    {
-        Vector2 newPosition = m_rigidbody.position;
+    //private void OnCollisionEnter2D(Collision2D _collision)
+    //{
+    //    Vector2 newPosition = m_rigidbody.position;
 
-        ColliderDistance2D contactDistance = Physics2D.Distance(_collision.collider, _collision.otherCollider);
-        Vector2 resolutionDirection = contactDistance.normal * contactDistance.distance;
-        newPosition -= resolutionDirection;
+    //    ColliderDistance2D contactDistance = Physics2D.Distance(_collision.collider, _collision.otherCollider);
+    //    Vector2 resolutionDirection = contactDistance.normal * contactDistance.distance;
+    //    newPosition -= resolutionDirection;
 
-        m_rigidbody.MovePosition(newPosition);
-    }
+    //    m_rigidbody.MovePosition(newPosition);
+    //}
 }

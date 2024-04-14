@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
+using UnityEngine.UI;
+using Unity.VisualScripting;
 
 public class UIManager : MonoBehaviour
 {
@@ -14,6 +17,8 @@ public class UIManager : MonoBehaviour
     private TMPro.TextMeshProUGUI m_score = null;
     [SerializeField]
     private TMPro.TextMeshProUGUI m_gameOver = null;
+    [SerializeField]
+    private Button m_ReturnToMenuButton = null;
     [SerializeField]
     private TMPro.TextMeshProUGUI m_win = null;
 
@@ -55,5 +60,11 @@ public class UIManager : MonoBehaviour
 
         m_gameOver.gameObject.SetActive(GameManager.Instance.IsGameOver());
         m_win.gameObject.SetActive(GameManager.Instance.IsGameWon());
+        m_ReturnToMenuButton.gameObject.SetActive(GameManager.Instance.IsGameOver() || GameManager.Instance.IsGameWon());
+    }
+
+    public void ReturnToMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 }

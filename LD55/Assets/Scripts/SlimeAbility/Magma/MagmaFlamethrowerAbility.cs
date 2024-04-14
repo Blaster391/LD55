@@ -22,6 +22,11 @@ public class MagmaFlamethrowerAbility : SlimeAbility
 
     protected override void UpdatePassive(float deltaTime)
     {
+        if(GameManager.Instance.Player == null)
+        {
+            return;
+        }
+
         if(m_FlamethrowerActive)
         {
             m_TimeSinceFlamethrowerTick += deltaTime;

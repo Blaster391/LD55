@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Winged Slime
   <Rarity>k__BackingField: 2
-  <Prefab>k__BackingField: {fileID: 0}
-  <GachaSprite>k__BackingField: {fileID: 0}
+  <Prefab>k__BackingField: {fileID: 3938338694274316852, guid: 7c938e214a6278940b98d6256fb3c2d3, type: 3}
+  <GachaSprite>k__BackingField: {fileID: 21300000, guid: dc0ce5336d6e8e64191500e8627c2323, type: 3}

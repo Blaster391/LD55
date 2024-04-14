@@ -14,8 +14,10 @@ public class GameManager : MonoBehaviour
     public WorldSpawnManager WorldSpawnManager { get; private set; }
     public int Score { get; private set; } = 0;
 
-    private bool m_isPaused = false;
-    private float m_time = 0.0f;
+    public float GameTime { get; private set; } = 0.0f;
+    public float GameDeltaTime { get; private set; } = 0.0f;
+    public bool IsPaused { get; private set; } = false;
+
 
     void Awake()
     {
@@ -34,30 +36,32 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        m_time += Time.deltaTime;
+        if (!IsPaused)
+        {
+            GameTime += Time.deltaTime;
+            GameDeltaTime = Time.deltaTime;
+        }
+        else
+        {
+            GameDeltaTime = 0f;
+        }
+
         float timeRemaining = GetTimeRemaining();
 
         if(timeRemaining <= 0.0f)
         {
-            m_isPaused = true;
+            IsPaused = true;
         }
-    }
-
-    public bool IsPaused()
-    {
-        return m_isPaused;
     }
 
     public void SetPaused(bool _paused)
     {
-        m_isPaused = _paused;
-        Time.timeScale = (m_isPaused) ? 0.0f : 1.0f;
-        
+        IsPaused = _paused;
     }
 
     public float GetTimeRemaining()
     {
-        return Mathf.Clamp(m_timeLimit - m_time, 0.0f, m_timeLimit);
+        return Mathf.Clamp(m_timeLimit - GameTime, 0.0f, m_timeLimit);
     }
 
     public bool IsGameOver()

@@ -78,8 +78,9 @@ public class Enemy : MonoBehaviour
             return;
         }
 
-        if (GameManager.Instance.IsPaused())
+        if (GameManager.Instance.IsPaused)
         {
+            m_movement = Vector2.zero;
             return;
         }
 

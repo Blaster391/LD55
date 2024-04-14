@@ -16,6 +16,10 @@ PrefabInstance:
       propertyPath: m_sprites.Array.data[1]
       value: 
       objectReference: {fileID: 21300000, guid: 6153c1579f8a06649b9c7f77766b5df7, type: 3}
+    - target: {fileID: 1993451946085242048, guid: dbfb58c5f5344a94d9ea712188210692, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 25701bc5a89f75d488735160e60a40eb, type: 3}
     - target: {fileID: 2368832239754429170, guid: dbfb58c5f5344a94d9ea712188210692, type: 3}
       propertyPath: m_Name
       value: EelFish

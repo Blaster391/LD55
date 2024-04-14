@@ -102,8 +102,9 @@ public class Player : MonoBehaviour
 
     private void UpdateInputs()
     {
-        if(GameManager.Instance.IsPaused())
+        if(GameManager.Instance.IsPaused)
         {
+            MovementInput = Vector2.zero;
             return;
         }
 

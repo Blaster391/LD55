@@ -16,6 +16,7 @@ namespace Gacha
     {
         private IGachaSystem m_GachaSystem;
         private IRunResources m_RunResources;
+        [SerializeField]
         private GachaSpinVisual m_SpinVisual;
 
         private GachaRollParams m_RollParams;

@@ -6,6 +6,7 @@ using UnityEngine;
 public class GachaSpinCompleteEffects : MonoBehaviour
 {
     private GachaSpinVisual m_SpinVisual;
+    [SerializeField]
     private ParticleSystem m_FanfareParticleSystem;
 
     private void Awake()

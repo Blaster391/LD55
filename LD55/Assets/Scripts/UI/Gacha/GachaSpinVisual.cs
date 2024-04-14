@@ -27,6 +27,9 @@ namespace Gacha
 
         public event Action<GachaRollResult> SpinVisualComplete;
 
+        [SerializeField]
+        private ParticleSystem m_FanfareParticleSystem;
+
         private GachaSystem m_GachaSystem;
         private GachaPanel m_GachaPanel;
         public bool IsRolling { get; private set; } = false;
@@ -80,6 +83,10 @@ namespace Gacha
             m_SlimeDamageModifier.text = $"+{RandomDamage}";
 
             SpinVisualComplete?.Invoke(rollResult);
+
+            int particles = (int)rollResult.SelectedSlime.Rarity * 10;
+
+            m_FanfareParticleSystem.Emit(particles);
 
             IsRolling = false;
         }

@@ -12,7 +12,7 @@ namespace Gacha
 
     public enum Rarity
     {
-        D, C, B, A, S // etc.
+        C, B, A, S // etc.
     }
 
     [System.Serializable]
@@ -32,14 +32,10 @@ namespace Gacha
     public struct GachaRollResult
     {
         public SlimeAsset SelectedSlime;
-        // The slime - this could contain the rarity itself
-        // Any stat shifts 0 -> 1 
-        public float DamageModifer;
 
         public override string ToString()
         {
-            return $"Slime: {SelectedSlime}" + System.Environment.NewLine
-                + $"Damage Modifier: {DamageModifer}";
+            return $"Slime: {SelectedSlime}";
         }
     }
 
@@ -111,7 +107,7 @@ namespace Gacha
                 randomPickValue -= rarityRollChances[rarity];
             }
 
-            return Rarity.D;
+            return Rarity.C;
         }
 
 
@@ -144,9 +140,6 @@ namespace Gacha
             // Select a random slime of this rarity
             var possibleSlimes = m_SlimeDatabase[selectedRarity];
             result.SelectedSlime = possibleSlimes.ElementAt(Random.Range(0, possibleSlimes.Count));
-
-            // Other stuff
-            result.DamageModifer = m_Config.StatRollCurve.Evaluate(Random.Range(0f, 1f));
 
             return result;
         }

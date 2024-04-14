@@ -7,7 +7,6 @@ using UnityEngine;
 public class GachaConfig : ScriptableObject
 {
     [field: SerializeField] public List<RarityChance> RarityChances { get; private set; }
-    [field: SerializeField] public AnimationCurve StatRollCurve { get; private set; }
 
     [field: SerializeField] public int SlimeTokenCost { get; private set; }
 }

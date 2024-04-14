@@ -13,12 +13,6 @@ MonoBehaviour:
   m_Name: PinkSlime
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Pink Slime
-  <DamageMin>k__BackingField: 3
-  <DamageMax>k__BackingField: 4
-  <Speed>k__BackingField: 17500
-  <Mass>k__BackingField: 10
-  <Radius>k__BackingField: 0.5
-  <Rarity>k__BackingField: 3
-  <SpriteList>k__BackingField:
-  - {fileID: 21300000, guid: 37e50d1313d42c64c8e476c34912332f, type: 3}
-  - {fileID: 21300000, guid: 320e111974cb5fb44bbb16fc8f3119dc, type: 3}
+  <Rarity>k__BackingField: 1
+  <Prefab>k__BackingField: {fileID: 7977104994731242694, guid: f4ce4a07eda257d4da03a6e2b6e402e0, type: 3}
+  <GachaSprite>k__BackingField: {fileID: 21300000, guid: 37e50d1313d42c64c8e476c34912332f, type: 3}

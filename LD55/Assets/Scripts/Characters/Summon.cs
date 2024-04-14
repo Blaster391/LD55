@@ -12,53 +12,25 @@ public class Summon : MonoBehaviour
         Recoil
     }
 
-    [SerializeField]
-    private float m_movementForce = 1.0f;
+    [Header("Combat")]
+    [SerializeField] private float m_damage = 1.0f;
+    [SerializeField] private float m_targetPriority = 1.0f;
+    [SerializeField] private float m_bounceForce = 20.0f;
+    [SerializeField] private float m_pushForce = 20.0f;
+    [SerializeField] private float m_maxRecoilTime = 1.0f;
+    [SerializeField] private float m_aggroRange = 10.0f;
+    [SerializeField] private float m_chestAggroRange = 7.0f;
 
-    [SerializeField]
-    private float m_targetPriority = 1.0f;
-
-    [SerializeField]
-    private float m_cohesion = 0.5f;
-
-    [SerializeField]
-    private float m_minFlockSeparationDistance = 0.5f;
-
-    [SerializeField]
-    private float m_minPlayerTargetDistance = 2.0f;
-
-    [SerializeField]
-    private float m_maxPlayerTargetDistance = 3.0f;
-
-    [SerializeField]
-    private float m_minTargetSeparationDistance = 1.0f;
-
-    [SerializeField]
-    private float m_maxTargetSeparationDistance = 2.0f;
-
-    [SerializeField]
-    private float m_separation = 0.5f;
-
-    [SerializeField]
-    private float m_follow = 0.75f;
-
-    [SerializeField]
-    private float m_damage = 1.0f;
-
-    [SerializeField]
-    private float m_aggroRange = 10.0f;
-
-    [SerializeField]
-    private float m_chestAggroRange = 7.0f;
-
-    [SerializeField]
-    private float m_bounceForce = 20.0f;
-
-    [SerializeField]
-    private float m_pushForce = 20.0f;
-
-    [SerializeField]
-    private float m_maxRecoilTime = 1.0f;
+    [Header("Movement")]
+    [SerializeField] private float m_movementForce = 1.0f;
+    [SerializeField] private float m_cohesion = 0.5f;
+    [SerializeField] private float m_minFlockSeparationDistance = 0.5f;
+    [SerializeField] private float m_minPlayerTargetDistance = 2.0f;
+    [SerializeField] private float m_maxPlayerTargetDistance = 3.0f;
+    [SerializeField] private float m_minTargetSeparationDistance = 1.0f;
+    [SerializeField] private float m_maxTargetSeparationDistance = 2.0f;
+    [SerializeField] private float m_separation = 0.5f;
+    [SerializeField] private float m_follow = 0.75f;
 
     private float m_playerTargetDistance = 2.0f;
     private float m_targetTargetDistance = 1.0f;
@@ -217,13 +189,16 @@ public class Summon : MonoBehaviour
             }
         }
 
-        foreach(Chest chest in m_spawnManager.ActiveChests)
+        if (m_spawnManager != null)
         {
-            if (Vector2.Distance(transform.position, chest.transform.position) < m_chestAggroRange)
+            foreach (Chest chest in m_spawnManager.ActiveChests)
             {
-                m_targetChest = chest;
-                m_state = State.AttackChest;
-                return;
+                if (Vector2.Distance(transform.position, chest.transform.position) < m_chestAggroRange)
+                {
+                    m_targetChest = chest;
+                    m_state = State.AttackChest;
+                    return;
+                }
             }
         }
     }
@@ -307,14 +282,5 @@ public class Summon : MonoBehaviour
         {
             m_state = State.Recoil;
         }
-    }
-
-    public void Setup(SlimeAsset _slimeAsset)
-    {
-        m_movementForce = _slimeAsset.Speed;
-        m_rigidbody.mass = _slimeAsset.Mass;
-        m_damage = Random.Range(_slimeAsset.DamageMin, _slimeAsset.DamageMax);
-        GetComponent<CircleCollider2D>().radius = _slimeAsset.Radius;
-        GetComponent<SpriteHandler>().SetSpriteList(_slimeAsset.SpriteList);
     }
 }

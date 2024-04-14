@@ -16,6 +16,15 @@ namespace Gacha
         [Header("References")]
         [SerializeField] private RawImage m_ImageDisplay;
 
+        [SerializeField]
+        private TMPro.TextMeshProUGUI m_SlimeRank = null;
+
+        [SerializeField]
+        private TMPro.TextMeshProUGUI m_SlimeType = null;
+
+        [SerializeField]
+        private TMPro.TextMeshProUGUI m_SlimeDamageModifier = null;
+
         public event Action<GachaRollResult> SpinVisualComplete;
 
         private GachaSystem m_GachaSystem;
@@ -37,6 +46,7 @@ namespace Gacha
             IsRolling = true;
 
             float spinProgressTime = 0;
+            int RandomDamage = 0;
 
             while (spinProgressTime < m_SpinDuration)
             {
@@ -44,6 +54,10 @@ namespace Gacha
                 SlimeAsset selectedSlimeAsset = m_GachaSystem.PickRandomSlime(m_GachaSystem.PickRandomRarity());
                 m_ImageDisplay.texture = selectedSlimeAsset.GachaSprite.texture;
                 m_ImageDisplay.color = Color.white;
+                m_SlimeRank.text = $"{selectedSlimeAsset.Rarity}";
+                m_SlimeType.text = $"{selectedSlimeAsset.Name}";
+                RandomDamage = (int)UnityEngine.Random.Range(selectedSlimeAsset.DamageMin, selectedSlimeAsset.DamageMax+1);
+                m_SlimeDamageModifier.text = $"+{RandomDamage}";
 
                 // Figure out how long to show it
                 float spinProgress = spinProgressTime / m_SpinDuration;
@@ -60,6 +74,10 @@ namespace Gacha
 
             m_ImageDisplay.texture = rollResult.SelectedSlime.GachaSprite.texture;
             m_ImageDisplay.color = Color.white;
+            m_SlimeRank.text = $"{rollResult.SelectedSlime.Rarity}";
+            m_SlimeType.text = $"{rollResult.SelectedSlime.Name}";
+            RandomDamage = (int)UnityEngine.Random.Range(rollResult.SelectedSlime.DamageMin, rollResult.SelectedSlime.DamageMax+1);
+            m_SlimeDamageModifier.text = $"+{RandomDamage}";
 
             SpinVisualComplete?.Invoke(rollResult);
 

@@ -16,14 +16,16 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private float m_bounceForce = 100.0f;
 
-    [SerializeField]
-    private GameObject m_dropType = null;
+    [System.Serializable]
+    private struct DropData
+    {
+        public GameObject DropPrefab;
+        public int Min;
+        public int Max;
+    }
 
     [SerializeField]
-    private int m_dropMin = 1;
-
-    [SerializeField]
-    private int m_dropMax = 3;
+    private List<DropData> Drops;
 
     public event System.Action<Enemy> Died;
 
@@ -40,11 +42,14 @@ public class Enemy : MonoBehaviour
         {
             Died?.Invoke(this);
 
-            int dropCount = Random.Range(m_dropMin, m_dropMax + 1);
-            for(int i = 0; i < dropCount; i++)
+            foreach(DropData dropData in Drops)
             {
-                GameObject drop = Instantiate(m_dropType, GameManager.Instance.transform);
-                drop.transform.position = transform.position;
+                int dropCount = Random.Range(dropData.Min, dropData.Max + 1);
+                for (int i = 0; i < dropCount; i++)
+                {
+                    GameObject drop = Instantiate(dropData.DropPrefab, GameManager.Instance.transform);
+                    drop.transform.position = transform.position;
+                }
             }
     
             Destroy(gameObject);

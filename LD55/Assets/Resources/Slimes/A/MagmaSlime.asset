@@ -10,15 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 88fc226dde390464abfcf12fc7cfa26e, type: 3}
-  m_Name: RedSlime
+  m_Name: MagmaSlime
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: Red Slime
-  <DamageMin>k__BackingField: 3
-  <DamageMax>k__BackingField: 4
-  <Speed>k__BackingField: 12500
-  <Mass>k__BackingField: 10
-  <Radius>k__BackingField: 0.5
+  <Name>k__BackingField: Magma Slime
   <Rarity>k__BackingField: 2
-  <SpriteList>k__BackingField:
-  - {fileID: 21300000, guid: 91b1c58972cd6de4ea3c044f58b85a46, type: 3}
-  - {fileID: 21300000, guid: f50eb571753535a4488b8e9bb669ab9b, type: 3}
+  <Prefab>k__BackingField: {fileID: 3938338694274316852, guid: 279f7fc20a75adc49ba7da5818681565, type: 3}
+  <GachaSprite>k__BackingField: {fileID: 21300000, guid: 45ffeaa4b6730a94a91d0115bd6c08b6, type: 3}

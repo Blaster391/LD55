@@ -203,9 +203,13 @@ MonoBehaviour:
   m_health: 3
   m_maxRecoveryTime: 0.5
   m_bounceForce: 100
-  m_dropType: {fileID: 707632874574495476, guid: 794cf8dfa93469248b636ed8aa2dc2cf, type: 3}
-  m_dropMin: 1
-  m_dropMax: 3
+  Drops:
+  - DropPrefab: {fileID: 2381090889578926630, guid: 133bc071b3c999a43aa097f7c287578a, type: 3}
+    Min: 0
+    Max: 1
+  - DropPrefab: {fileID: 707632874574495476, guid: 794cf8dfa93469248b636ed8aa2dc2cf, type: 3}
+    Min: 0
+    Max: 5
 --- !u!58 &3514800791911883010
 CircleCollider2D:
   m_ObjectHideFlags: 0

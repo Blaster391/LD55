@@ -8,6 +8,8 @@ public class FlockManager : MonoBehaviour
     [SerializeField]
     private Summon m_summonPrefab = null;
 
+    public event System.Action ActivateSlimeActives;
+
     public bool IsTargettingPlayer { get; private set; } = true;
     public Vector2 TargetPosition { get; private set; } = Vector2.zero;
     public List<Summon> Flock { get; private set; } = new List<Summon>();
@@ -40,11 +42,14 @@ public class FlockManager : MonoBehaviour
     void Start()
     {
         m_player = GameManager.Instance.Player;
-        GameManager.Instance.RunResources.SlimeAdded += OnSlimeAdded;
-
-        foreach (SlimeAsset slime in GameManager.Instance.RunResources.SlimeInventory)
+        if (GameManager.Instance.RunResources != null)
         {
-            OnSlimeAdded(slime);
+            GameManager.Instance.RunResources.SlimeAdded += OnSlimeAdded;
+
+            foreach (SlimeAsset slime in GameManager.Instance.RunResources.SlimeInventory)
+            {
+                OnSlimeAdded(slime);
+            }
         }
     }
 
@@ -70,6 +75,11 @@ public class FlockManager : MonoBehaviour
             IsTargettingPlayer = true;
         }
 
+        if(Input.GetButtonDown("ActivateSlimeActives"))
+        {
+            ActivateSlimeActives?.Invoke();
+        }
+
         if(IsTargettingPlayer)
         {
             TargetPosition = m_player.transform.position;
@@ -91,10 +101,8 @@ public class FlockManager : MonoBehaviour
 
     private void OnSlimeAdded(SlimeAsset _slimeAsset)
     {
-        Summon newSummon = Instantiate<Summon>(m_summonPrefab, GameManager.Instance.transform);
+        Summon newSummon = Instantiate(_slimeAsset.Prefab, GameManager.Instance.transform);
         newSummon.gameObject.name = $"{_slimeAsset.Name}{Flock.Count}";
-        newSummon.Setup(_slimeAsset);
         newSummon.transform.position = m_player.transform.position + new Vector3(Random.value, Random.value, 0.0f) * 2.0f;
-
     }
 }

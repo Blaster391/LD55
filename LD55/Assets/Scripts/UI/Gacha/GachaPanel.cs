@@ -54,7 +54,7 @@ namespace Gacha
         {
             m_RollParams = new GachaRollParams()
             {
-                MinimumRarity = Rarity.D,
+                MinimumRarity = Rarity.C,
                 MaximumRarity = Rarity.S,
             };
         }

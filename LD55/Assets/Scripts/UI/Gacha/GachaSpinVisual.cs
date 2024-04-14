@@ -55,12 +55,11 @@ namespace Gacha
             {
                 // Figure out what to show
                 SlimeAsset selectedSlimeAsset = m_GachaSystem.PickRandomSlime(m_GachaSystem.PickRandomRarity());
-                m_ImageDisplay.texture = selectedSlimeAsset.SpriteList[0].texture;
+                m_ImageDisplay.texture = selectedSlimeAsset.GachaSprite.texture;
                 m_ImageDisplay.color = Color.white;
                 m_SlimeRank.text = $"{selectedSlimeAsset.Rarity}";
                 m_SlimeType.text = $"{selectedSlimeAsset.Name}";
-                RandomDamage = (int)UnityEngine.Random.Range(selectedSlimeAsset.DamageMin, selectedSlimeAsset.DamageMax+1);
-                m_SlimeDamageModifier.text = $"+{RandomDamage}";
+                //m_SlimeDamageModifier.text = $"+{RandomDamage}";
 
                 // Figure out how long to show it
                 float spinProgress = spinProgressTime / m_SpinDuration;
@@ -75,12 +74,11 @@ namespace Gacha
                 spinProgressTime += timeToShowSlime + 0.05f;
             }
 
-            m_ImageDisplay.texture = rollResult.SelectedSlime.SpriteList[0].texture;
+            m_ImageDisplay.texture = rollResult.SelectedSlime.GachaSprite.texture;
             m_ImageDisplay.color = Color.white;
             m_SlimeRank.text = $"{rollResult.SelectedSlime.Rarity}";
             m_SlimeType.text = $"{rollResult.SelectedSlime.Name}";
-            RandomDamage = (int)UnityEngine.Random.Range(rollResult.SelectedSlime.DamageMin, rollResult.SelectedSlime.DamageMax+1);
-            m_SlimeDamageModifier.text = $"+{RandomDamage}";
+            //m_SlimeDamageModifier.text = $"+{RandomDamage}";
 
             SpinVisualComplete?.Invoke(rollResult);
 

@@ -885,15 +885,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8286801540745389469, guid: 1f4980ed9fef57b43a6f3f38a1ab93b4, type: 3}
       propertyPath: m_StageData.Array.data[0].MobWaveMinDuration
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8286801540745389469, guid: 1f4980ed9fef57b43a6f3f38a1ab93b4, type: 3}
       propertyPath: m_StageData.Array.data[1].MobWaveMinDuration
-      value: 10
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8286801540745389469, guid: 1f4980ed9fef57b43a6f3f38a1ab93b4, type: 3}
       propertyPath: m_StageData.Array.data[2].MobWaveMinDuration
-      value: 5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8286801540745389469, guid: 1f4980ed9fef57b43a6f3f38a1ab93b4, type: 3}
       propertyPath: m_StageData.Array.data[0].MobEnemies.Array.size

@@ -14,37 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <RarityChances>k__BackingField:
   - Rarity: 0
-    Chance: 100
+    Chance: 50
   - Rarity: 1
-    Chance: 60
+    Chance: 25
   - Rarity: 2
-    Chance: 35
-  - Rarity: 3
     Chance: 20
-  - Rarity: 4
-    Chance: 10
-  <StatRollCurve>k__BackingField:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
+  - Rarity: 3
+    Chance: 5
   <SlimeTokenCost>k__BackingField: 10

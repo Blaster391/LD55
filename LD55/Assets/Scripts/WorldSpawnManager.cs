@@ -21,6 +21,8 @@ public class WorldSpawnManager : MonoBehaviour
     [SerializeField]
     private List<GameObject> m_decor = new List<GameObject>();
     [SerializeField]
+    private List<GameObject> m_shells = new List<GameObject>();
+    [SerializeField]
     private GameObject m_chest = null;
     [SerializeField]
     private GameObject m_funnySub = null;
@@ -30,7 +32,9 @@ public class WorldSpawnManager : MonoBehaviour
     [SerializeField]
     private int m_chestCount = 20;
     [SerializeField]
-    private int m_decorCount = 500;
+    private int m_decorCount = 200;
+    [SerializeField]
+    private int m_shellCount = 300;
 
     private bool[,] m_freeSpace;
     private int m_widthIndexScale = 10;
@@ -126,6 +130,7 @@ public class WorldSpawnManager : MonoBehaviour
 
             GameObject coral = Instantiate(m_corals[Random.Range(0, m_corals.Count)], m_worldParent.transform);
             coral.transform.position = worldPos;
+            coral.transform.localScale = new Vector3((Random.Range(0,2) == 0 ? 2 : -2), 2, 2);
             m_freeSpace[index.x, index.y] = false;
         }
 
@@ -144,6 +149,27 @@ public class WorldSpawnManager : MonoBehaviour
 
             GameObject decor = Instantiate(m_decor[Random.Range(0, m_decor.Count)], m_worldParent.transform);
             decor.transform.position = worldPos;
+            decor.transform.localScale = new Vector3((Random.Range(0,2) == 0 ? 1 : -1), 1, 1);
+            m_freeSpace[index.x, index.y] = false;
+        }
+
+        for (int i = 0; i < m_shellCount; ++i)
+        {
+            Vector2 worldPos = Vector2.zero;
+            worldPos.x = Random.Range(-m_worldWidth * 0.5f, m_worldWidth * 0.5f);
+            worldPos.y = Random.Range(-m_worldHeight * 0.5f, m_worldHeight * 0.5f);
+
+            Vector2Int index = WorldToIndex(worldPos);
+
+            if (!m_freeSpace[index.x, index.y])
+            {
+                continue;
+            }
+
+            GameObject shell = Instantiate(m_shells[Random.Range(0, m_shells.Count)], m_worldParent.transform);
+            shell.transform.position = worldPos;
+            shell.transform.Rotate(0,0, Random.Range(0,360));
+            shell.transform.localScale = new Vector3(1, (Random.Range(0,2) == 0 ? 1 : -1), 1);
             m_freeSpace[index.x, index.y] = false;
         }
     }

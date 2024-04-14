@@ -15,7 +15,7 @@ TagManager:
   - Player
   - Wall
   - Unit
-  - 
+  - Post Processing
   - 
   - 
   - 
@@ -39,6 +39,15 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: BackgroundLayer
+    uniqueID: 398054459
+    locked: 0
+  - name: ShadowLayer
+    uniqueID: 1096706945
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: CoralLayer
+    uniqueID: 4147546371
     locked: 0

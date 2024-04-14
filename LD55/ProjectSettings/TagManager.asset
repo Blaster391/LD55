@@ -39,6 +39,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: ShadowLayer
+    uniqueID: 1096706945
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

@@ -11,25 +11,53 @@ public class EnemySpawnManager : MonoBehaviour
     private struct StageData
     {
         // Each stage will have waves of easier mobs to keep the player occupied
-        public List<GameObject> MobEnemies;
-        public float MobWaveTimer;
-        public int MobWaveEnemyBaseCount;
+        // These enemies can be spawned
+        public List<Enemy> MobEnemies;
+
+        // This is how many mobs could be spawned in a single wave
+        public int MobWaveCountMax;
+
+        // This is a fixed delay between waves regardless of how many enemies are alive. To stop them all spawning instantly.
+        public float MobWaveMinDuration;
+
+        // The number at which we will spawn the next wave to ensure there's always something coming at ya
+        public int MobTotalCountMin;
+
+        // The total number of mobs we allow to exist in this wave
+        public int MobTotalCountMax;
+
 
         // And harder 'boss' like enemies that spawn less frequently but require some focus fire and attention
-        public List<GameObject> BossEnemies;
+        public Enemy BossEnemy;
         public float BossSpawnTimer;
+
+
+        // The number of kills required to move to the next stage
+        public int KillCountRequired;
     }
-
+    [Header("Spawning Rules")]
     [SerializeField] private List<StageData> m_StageData;
-    [SerializeField] private float m_StageDuration;
 
-    [SerializeField] private float m_MobEnemyCountMultiplierPerSlime = 0.05f;
-
+    [Header("Location")]
     [SerializeField] private float m_SpawnDistanceFromPlayer;
+
+    public event Action<int> StageIncreased;
+    private int m_CurrentStage = 0;
 
     private float m_DurationSinceMobWaveSpawned = 0;
     private float m_DurationSinceBossSpawned = 0;
 
+    private List<Enemy> m_SpawnedMobEnemies = new List<Enemy>();
+    private List<Enemy> m_SpawnedBossEnemies = new List<Enemy>();
+
+    private int m_EnemiesKilledThisStage = 0;
+
+
+    private void Awake()
+    {
+        // Make sure we spawn the first wave straight away
+        m_DurationSinceMobWaveSpawned = m_StageData[m_CurrentStage].MobWaveMinDuration;
+    }
 
     void Update()
     {
@@ -38,25 +66,25 @@ public class EnemySpawnManager : MonoBehaviour
         if (gameManager.IsPaused)
             return;
 
-        float gameTime = gameManager.GameTime;
-        int stageIndex = Mathf.FloorToInt(gameTime / m_StageDuration);
-        if (m_StageData.Count <= stageIndex)
-            // Finished spawning
-            return;
-
-        StageData currentStage = m_StageData[stageIndex];
+        StageData currentStage = m_StageData[m_CurrentStage];
 
         m_DurationSinceMobWaveSpawned += gameManager.GameDeltaTime;
         m_DurationSinceBossSpawned += gameManager.GameDeltaTime;
 
-        if(m_DurationSinceMobWaveSpawned >= currentStage.MobWaveTimer)
+        // We must wait a fixed time before spawning the next wave
+        if(m_DurationSinceMobWaveSpawned >= currentStage.MobWaveMinDuration)
         {
-            m_DurationSinceMobWaveSpawned = 0;
+            // Then after that we'll spawn it whenever the player has killed enough other things
+            if (m_SpawnedMobEnemies.Count <= currentStage.MobTotalCountMin)
+            {
+                m_DurationSinceMobWaveSpawned = 0;
 
-            SpawnMobWave(currentStage);
+                SpawnMobWave(currentStage);
+            }
         }
 
-        if(m_DurationSinceBossSpawned >= currentStage.BossSpawnTimer)
+        // Bosses just spawn periodically atm
+        if (m_DurationSinceBossSpawned >= currentStage.BossSpawnTimer)
         {
             m_DurationSinceBossSpawned = 0;
 
@@ -66,30 +94,71 @@ public class EnemySpawnManager : MonoBehaviour
 
     private void SpawnMobWave(StageData forStage)
     {
-        int enemiesToSpawn = Mathf.FloorToInt(forStage.MobWaveEnemyBaseCount * (1 + m_MobEnemyCountMultiplierPerSlime * GameManager.Instance.RunResources.SlimeInventory.Count));
-        for(int i = 0; i < enemiesToSpawn; ++i)
+        // Work out how many to spawn
+        int currentMobCount = m_SpawnedMobEnemies.Count;
+        int currentMobLimit = forStage.MobTotalCountMax;
+
+        int mobCountToSpawn = Mathf.Min(forStage.MobWaveCountMax, currentMobLimit - currentMobCount);
+
+        for(int i = 0; i < mobCountToSpawn; ++i)
         {
-            SpawnRandomEnemy(forStage.MobEnemies);
+            SpawnRandomMob(forStage.MobEnemies);
         }
     }
 
     private void SpawnBoss(StageData forStage)
     {
-        SpawnRandomEnemy(forStage.BossEnemies);
+        Enemy boss = SpawnEnemy(forStage.BossEnemy);
+        m_SpawnedBossEnemies.Add(boss);
+        boss.Died += OnBossDied;
     }
 
-    private void SpawnRandomEnemy(List<GameObject> possibleEnemies)
+    private void OnBossDied(Enemy boss)
+    {
+        m_SpawnedBossEnemies.Remove(boss);
+        boss.Died -= OnMobDied;
+
+        IncrementKillCount();
+    }
+
+    private void SpawnRandomMob(List<Enemy> possibleEnemies)
     {
         if (possibleEnemies.Count == 0)
             return;
 
-        SpawnEnemy(possibleEnemies[UnityEngine.Random.Range(0, possibleEnemies.Count)]);
+        Enemy mob = SpawnEnemy(possibleEnemies[UnityEngine.Random.Range(0, possibleEnemies.Count)]);
+        m_SpawnedMobEnemies.Add(mob);
+        mob.Died += OnMobDied;
     }
 
-    private void SpawnEnemy(GameObject enemyPrefab)
+    private void OnMobDied(Enemy mob)
+    {
+        m_SpawnedMobEnemies.Remove(mob);
+        mob.Died -= OnBossDied;
+
+        IncrementKillCount();
+    }
+
+    private Enemy SpawnEnemy(Enemy enemyPrefab)
     {
         Vector2 direction = UnityEngine.Random.insideUnitCircle.normalized;
 
-        GameObject enemy = Instantiate(enemyPrefab, GameManager.Instance.Player.transform.position + (Vector3)(direction * m_SpawnDistanceFromPlayer), Quaternion.identity, GameManager.Instance.transform);
+        return Instantiate(enemyPrefab, GameManager.Instance.Player.transform.position + (Vector3)(direction * m_SpawnDistanceFromPlayer), Quaternion.identity, GameManager.Instance.transform);
+    }
+
+    private void IncrementKillCount()
+    {
+        m_EnemiesKilledThisStage++;
+
+        if (m_EnemiesKilledThisStage > m_StageData[m_CurrentStage].KillCountRequired)
+        {
+            if (m_StageData.Count > m_CurrentStage - 1)
+            {
+                m_CurrentStage++;
+                m_EnemiesKilledThisStage = 0;
+
+                StageIncreased?.Invoke(m_CurrentStage);
+            }
+        }
     }
 }

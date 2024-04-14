@@ -103,8 +103,9 @@ public class Summon : MonoBehaviour
 
     void Update()
     {
-        if (GameManager.Instance.IsPaused())
+        if (GameManager.Instance.IsPaused)
         {
+            m_movement = Vector2.zero;
             return;
         }
 

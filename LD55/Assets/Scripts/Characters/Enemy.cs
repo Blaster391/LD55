@@ -25,6 +25,8 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private int m_dropMax = 3;
 
+    public event System.Action<Enemy> Died;
+
     private FlockManager m_flockManager = null;
     private Vector2 m_movement = Vector2.zero;
     private Rigidbody2D m_rigidbody = null;
@@ -36,6 +38,8 @@ public class Enemy : MonoBehaviour
         m_health -= _damage;
         if (m_health <= 0.0f)
         {
+            Died?.Invoke(this);
+
             int dropCount = Random.Range(m_dropMin, m_dropMax + 1);
             for(int i = 0; i < dropCount; i++)
             {
@@ -78,8 +82,9 @@ public class Enemy : MonoBehaviour
             return;
         }
 
-        if (GameManager.Instance.IsPaused())
+        if (GameManager.Instance.IsPaused)
         {
+            m_movement = Vector2.zero;
             return;
         }
 

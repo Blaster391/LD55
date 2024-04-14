@@ -28,7 +28,7 @@ public class UIManager : MonoBehaviour
 
     private void Update()
     {
-        if(!GameManager.Instance.IsPaused())
+        if(!GameManager.Instance.IsPaused)
         {
             UpdateTarget();
         }

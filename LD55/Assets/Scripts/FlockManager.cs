@@ -41,6 +41,11 @@ public class FlockManager : MonoBehaviour
     {
         m_player = GameManager.Instance.Player;
         GameManager.Instance.RunResources.SlimeAdded += OnSlimeAdded;
+
+        foreach (SlimeAsset slime in GameManager.Instance.RunResources.SlimeInventory)
+        {
+            OnSlimeAdded(slime);
+        }
     }
 
     void Update()
@@ -50,7 +55,7 @@ public class FlockManager : MonoBehaviour
             return;
         }
 
-        if (GameManager.Instance.IsPaused())
+        if (GameManager.Instance.IsPaused)
         {
             return;
         }

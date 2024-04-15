@@ -1,6 +1,4 @@
 using Gacha;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Slime", menuName = "ScriptableObjects/Slime", order = 1)]

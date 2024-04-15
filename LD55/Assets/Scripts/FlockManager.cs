@@ -78,6 +78,7 @@ public class FlockManager : MonoBehaviour
 
         if(Input.GetButtonDown("ActivateSlimeActives"))
         {
+            GameManager.Instance.AudioManager.ActiveAbilityFail();
             ActivateSlimeActives?.Invoke();
         }
 

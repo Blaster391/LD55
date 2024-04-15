@@ -34,7 +34,15 @@ public class MagmaFlamethrowerAbility : SlimeAbility
             {
                 m_TimeSinceFlamethrowerTick = 0;
 
-                Vector2 direction = (transform.position - GameManager.Instance.Player.transform.position).normalized;
+                Summon summon = GetComponentInParent<Summon>();
+                Vector3 target = GameManager.Instance.Player.transform.position;
+                Vector2 direction = (transform.position - target).normalized;
+                if (summon.GetAttackTarget() != null)
+                {
+                    target = summon.GetAttackTarget().transform.position;
+                    direction = (target - transform.position).normalized;
+                }
+
                 SpawnFlames(direction);
             }
 

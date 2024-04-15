@@ -31,9 +31,11 @@ public class Player : MonoBehaviour
 
     public void TakeDamage()
     {
+        GameManager.Instance.AudioManager.PlayerDamage();
         --m_health;
         if(m_health <= 0) 
         {
+            GameManager.Instance.AudioManager.LoseGame();
             Destroy(gameObject);
         }
     }

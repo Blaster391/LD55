@@ -25,6 +25,8 @@ public class AudioManager : MonoBehaviour
     [SerializeField]
     private AudioClip m_musicClip;
     [SerializeField]
+    private AudioClip m_gachaClip;
+    [SerializeField]
     private AudioClip m_winClip;
     [SerializeField]
     private AudioClip m_loseClip;
@@ -32,15 +34,19 @@ public class AudioManager : MonoBehaviour
     private AudioClip m_activeSuccessClip;
     [SerializeField]
     private AudioClip m_activeFailClip;
+    [SerializeField]
+    private AudioClip m_gachaStartClip;
+    [SerializeField]
+    private AudioClip m_gachaEndClip;
 
     [SerializeField]
     private AudioSource m_ostSource;
     [SerializeField]
     private AudioSource m_playerDamageSource;
     [SerializeField]
-    private AudioSource m_gameOverSource;
-    [SerializeField]
     private AudioSource m_activeAbilitySource;
+    [SerializeField]
+    private AudioSource m_gachaSource;
 
     [SerializeField]
     private List<AudioSource> m_pickupSources;
@@ -72,18 +78,47 @@ public class AudioManager : MonoBehaviour
 
     public void LoseGame()
     {
-        StopAudio();
+        float currentTime = m_ostSource.time * 1.2f;
+        m_ostSource.clip = m_loseClip;
 
-        m_gameOverSource.clip = m_loseClip;
-        m_gameOverSource.Play();
+        m_ostSource.Stop();
+        m_ostSource.Play();
+        m_ostSource.time = currentTime;
     }
 
     public void WinGame()
     {
-        StopAudio();
+        float currentTime = m_ostSource.time;
+        m_ostSource.clip = m_winClip;
 
-        m_gameOverSource.clip = m_winClip;
-        m_gameOverSource.Play();
+        m_ostSource.Stop();
+        m_ostSource.Play();
+        m_ostSource.time = currentTime;
+    }
+
+    public void OpenGacha()
+    {
+        float currentTime = m_ostSource.time;
+        m_ostSource.clip = m_gachaClip;
+
+        m_ostSource.Stop();
+        m_ostSource.Play();
+        m_ostSource.time = currentTime;
+    }
+
+    public void CloseGacha()
+    {
+        if(GameManager.Instance.IsGameWon() || GameManager.Instance.IsGameOver())
+        {
+            return;
+        }
+
+        float currentTime = m_ostSource.time;
+        m_ostSource.clip = m_musicClip;
+
+        m_ostSource.Stop();
+        m_ostSource.Play();
+        m_ostSource.time = currentTime;
     }
 
     public void SlimeKill()
@@ -130,11 +165,25 @@ public class AudioManager : MonoBehaviour
         PlayFromFreeSource(m_pickupSources, m_pickupCoinsAudioClips[index]);
     }
 
+    public void GachaStart()
+    {
+        m_gachaSource.clip = m_gachaStartClip;
+        m_gachaSource.Stop();
+        m_gachaSource.Play();
+    }
+
+    public void GachaEnd()
+    {
+        m_gachaSource.clip = m_gachaEndClip;
+        m_gachaSource.Stop();
+        m_gachaSource.Play();
+    }
+
+
 
     private void StopAudio()
     {
         m_ostSource.Stop();
-        m_gameOverSource.Stop();
     }
 
     private void PlayFromFreeSource(List<AudioSource> _sources, AudioClip _clip)

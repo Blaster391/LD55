@@ -476,21 +476,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bc54836f0874a847b10d7efabe209ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_fishKillAudioClips: []
-  m_pickupScoreAudioClips: []
-  m_pickupHealthAudioClips: []
-  m_pickupCoinsAudioClips: []
-  m_playerDamagedAudioClips: []
-  m_slimeAttackAudioClips: []
+  m_fishKillAudioClips:
+  - {fileID: 8300000, guid: 45a0983bb683910479711d8902f67824, type: 3}
+  - {fileID: 8300000, guid: fbeb7609c0ddffa468e19875a6b7c5b3, type: 3}
+  - {fileID: 8300000, guid: 06b924927e5ce8d4f82f630aeeb329c2, type: 3}
+  m_pickupScoreAudioClips:
+  - {fileID: 8300000, guid: c65b93d4763f30c41b08a2850e906cfc, type: 3}
+  - {fileID: 8300000, guid: 6e7db25851b8bf1408a798ba45c96341, type: 3}
+  - {fileID: 8300000, guid: 0143f074486ea014d9e39c8c05f2d938, type: 3}
+  - {fileID: 8300000, guid: bc5e4af4e10996b4c82f652469309590, type: 3}
+  m_pickupHealthAudioClips:
+  - {fileID: 8300000, guid: 3457138097e5e8d468eae47e383a4336, type: 3}
+  - {fileID: 8300000, guid: 8eaeeb17617165247a195d64bd5230d7, type: 3}
+  m_pickupCoinsAudioClips:
+  - {fileID: 8300000, guid: f64edc99cf07d7f4fa8d92b50700aa95, type: 3}
+  - {fileID: 8300000, guid: 4678ab2aeb23c2b47b838006d6a306bd, type: 3}
+  - {fileID: 8300000, guid: 6f2b6d82b0b3c2e4ab21836e233964fa, type: 3}
+  - {fileID: 8300000, guid: 33e3557145121ac45a17ff0bc7dda8ab, type: 3}
+  m_playerDamagedAudioClips:
+  - {fileID: 8300000, guid: 6177bfdeb1399704091437abcf35fa3c, type: 3}
+  - {fileID: 8300000, guid: 4698dbffaf89cc541910a72957c0cf83, type: 3}
+  m_slimeAttackAudioClips:
+  - {fileID: 8300000, guid: aaa59d8367faa2845975b676fdd864bb, type: 3}
+  - {fileID: 8300000, guid: 06549049fed9ad94592728a47ef508a0, type: 3}
+  - {fileID: 8300000, guid: 18a2b72bf9e650c419852a5ed2d371ce, type: 3}
+  - {fileID: 8300000, guid: 74f6b94d2d5a28d408714e8d59f4a315, type: 3}
   m_musicClip: {fileID: 8300000, guid: 4cdb0db4bfa1a33458001a03edaa4068, type: 3}
-  m_winClip: {fileID: 0}
-  m_loseClip: {fileID: 0}
-  m_activeSuccessClip: {fileID: 0}
+  m_gachaClip: {fileID: 8300000, guid: 24f786fdb81343e44a290973f9d92d6c, type: 3}
+  m_winClip: {fileID: 8300000, guid: 57c951da7bfaec5449250f6f284312c7, type: 3}
+  m_loseClip: {fileID: 8300000, guid: 4cbf4e95ebf199f428d52668737c6c43, type: 3}
+  m_activeSuccessClip: {fileID: 8300000, guid: 0015b7e7af521344a8d91d4498740ae3, type: 3}
   m_activeFailClip: {fileID: 0}
+  m_gachaStartClip: {fileID: 0}
+  m_gachaEndClip: {fileID: 0}
   m_ostSource: {fileID: 5799908238428093631}
   m_playerDamageSource: {fileID: 5344349363289033719}
-  m_gameOverSource: {fileID: 897327977850581001}
   m_activeAbilitySource: {fileID: 686758185366312419}
+  m_gachaSource: {fileID: 897327977850581001}
   m_pickupSources:
   - {fileID: 487739303416715695}
   - {fileID: 4538232307454712820}
@@ -642,7 +664,7 @@ GameObject:
   - component: {fileID: 884333189129815421}
   - component: {fileID: 897327977850581001}
   m_Layer: 0
-  m_Name: GameEnded
+  m_Name: Gacha
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

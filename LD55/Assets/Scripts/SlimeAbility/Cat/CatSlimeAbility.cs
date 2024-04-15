@@ -12,7 +12,9 @@ public class CatSlimeAbility : SlimeAbility
 
     protected override void ActiveActive()
     {
-        for(int i = 0; i < m_kittenCount; i++)
+        GameManager.Instance.AudioManager.ActiveAbilitySuccess();
+
+        for (int i = 0; i < m_kittenCount; i++)
         {
             Kitten kitten = Instantiate(m_kittenPrefab, GameManager.Instance.transform);
             kitten.transform.position = transform.position;

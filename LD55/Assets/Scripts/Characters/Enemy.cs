@@ -83,6 +83,8 @@ public class Enemy : MonoBehaviour
         m_health -= _damage;
         if (m_health <= 0.0f)
         {
+            GameManager.Instance.AudioManager.SlimeKill();
+
             Died?.Invoke(this);
 
             foreach(DropData dropData in Drops)

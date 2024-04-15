@@ -24134,6 +24134,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 327117243}
     m_Modifications:
+    - target: {fileID: 606167045957702692, guid: 1f4980ed9fef57b43a6f3f38a1ab93b4, type: 3}
+      propertyPath: m_gachaEndClip
+      value: 
+      objectReference: {fileID: 8300000, guid: de788db03e94eb7419e09b48b6151482, type: 3}
+    - target: {fileID: 606167045957702692, guid: 1f4980ed9fef57b43a6f3f38a1ab93b4, type: 3}
+      propertyPath: m_activeFailClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 3d7db4cd5e659fb43adb4cc52a12cc7b, type: 3}
+    - target: {fileID: 606167045957702692, guid: 1f4980ed9fef57b43a6f3f38a1ab93b4, type: 3}
+      propertyPath: m_gachaStartClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 66185a3b0464d9449aaf523e2d331b97, type: 3}
     - target: {fileID: 962053659409375930, guid: 1f4980ed9fef57b43a6f3f38a1ab93b4, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.5

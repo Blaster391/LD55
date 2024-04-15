@@ -145,6 +145,8 @@ public class GachaUIManager : MonoBehaviour
         m_SpinPanel.gameObject.SetActive(true);
         GameManager.Instance.SetPaused(true);
         GameManager.Instance.FlockManager.RecallFlock();
+
+        GameManager.Instance.AudioManager.OpenGacha();
     }
 
     public void CloseGachaPanel()
@@ -156,5 +158,7 @@ public class GachaUIManager : MonoBehaviour
         m_SpinPanel.gameObject.SetActive(false);
         GameManager.Instance.SetPaused(false);
         GameManager.Instance.FlockManager.RecallFlock();
+
+        GameManager.Instance.AudioManager.CloseGacha();
     }
 }

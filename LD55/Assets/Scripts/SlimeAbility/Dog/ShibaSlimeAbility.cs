@@ -15,6 +15,8 @@ public class ShibaSlimeAbility : SlimeAbility
 
     protected override void ActiveActive()
     {
+        GameManager.Instance.AudioManager.ActiveAbilitySuccess();
+
         int digAmount = Random.Range(m_minDig, m_maxDig + 1);
 
         for(int i = 0; i < digAmount; ++i)

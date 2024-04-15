@@ -52,6 +52,7 @@ public class Kitten : MonoBehaviour
     {
         if(collision.GetComponent<Enemy>() != null)
         {
+            GameManager.Instance.AudioManager.SlimeAttack();
             collision.GetComponent<Enemy>().OnDamaged(m_damage);
             Destroy(gameObject);
         }

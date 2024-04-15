@@ -93,6 +93,8 @@ namespace Gacha
 
         private IEnumerator SpinRoutine(GachaRollResult rollResult)
         {
+            GameManager.Instance.AudioManager.GachaStart();
+
             RollStarted?.Invoke();
             IsRolling = true;
 
@@ -115,6 +117,8 @@ namespace Gacha
             m_SpinVisual.UpdateSpinCostUI(m_GachaSystem.SlimeTokenCost);
 
             Debug.Log($"Completed a Spin and got:{Environment.NewLine}{rollResult}");
+
+            GameManager.Instance.AudioManager.GachaEnd();
         }
     }
 }

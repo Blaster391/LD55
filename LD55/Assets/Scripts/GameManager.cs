@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
     private bool m_bossKilled = false;
     public void OnBossKilled()
     {
+        AudioManager.WinGame();
         m_bossKilled = true;
         AddScore(GetTimeBonus());
     }

@@ -45,6 +45,20 @@ public class Summon : MonoBehaviour
     private Chest m_targetChest = null;
     private float m_recoilTime = 0.0f;
 
+    public GameObject GetAttackTarget()
+    {
+        if(m_targetEnemy != null)
+        {
+            return m_targetEnemy.gameObject;
+        }
+
+        if (m_targetChest != null)
+        {
+            return m_targetChest.gameObject;
+        }
+
+        return null;
+    }
     public State GetState()
     {
         return m_state;
@@ -306,6 +320,7 @@ public class Summon : MonoBehaviour
         {
             _collision.rigidbody.AddForce(-_collision.GetContact(0).normal * m_pushForce, ForceMode2D.Impulse);
             _collision.collider.GetComponent<Enemy>().OnDamaged(m_damage);
+            GameManager.Instance.AudioManager.SlimeAttack();
         }
 
         if (_collision.collider.gameObject.GetComponent<Chest>() != null)

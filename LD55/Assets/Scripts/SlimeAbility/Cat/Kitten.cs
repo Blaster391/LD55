@@ -34,8 +34,8 @@ public class Kitten : MonoBehaviour
     void Update()
     {
         float deltaTime = GameManager.Instance.GameDeltaTime;
-
-        transform.position = m_direction * deltaTime * m_speed;
+        Vector2 currentPos = transform.position;
+        transform.position = currentPos + m_direction * deltaTime * m_speed;
 
         transform.Rotate(new Vector3(0,0,1) * Time.deltaTime * m_spinSpeed);
 

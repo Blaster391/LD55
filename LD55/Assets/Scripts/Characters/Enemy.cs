@@ -147,7 +147,11 @@ public class Enemy : MonoBehaviour
             return;
         }
 
-        if(!m_isBoss && Vector2.Distance(m_player.transform.position, transform.position) > 50.0f)
+        float distFromPlayer = Vector2.Distance(transform.position, GameManager.Instance.Player.transform.position);
+
+        GetComponent<Collider2D>().enabled = distFromPlayer < 20.0f;
+
+        if (!m_isBoss && distFromPlayer > 50.0f)
         {
             Destroy(gameObject);
             return;

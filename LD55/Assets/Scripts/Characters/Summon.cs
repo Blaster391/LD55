@@ -97,6 +97,11 @@ public class Summon : MonoBehaviour
             return;
         }
 
+        if(GameManager.Instance.Player != null)
+        {
+            GetComponent<Collider2D>().enabled = Vector2.Distance(transform.position, GameManager.Instance.Player.transform.position) < 20.0f;
+        }
+
         m_movement = Vector2.zero;
 
         switch (m_state)

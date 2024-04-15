@@ -34,6 +34,15 @@ public class Player : MonoBehaviour
         --m_health;
         if(m_health <= 0) 
         {
+            int highScore = PlayerPrefs.GetInt("score", 0);
+            if (highScore < GameManager.Instance.Score)
+            {
+                PlayerPrefs.SetInt("score", GameManager.Instance.Score);
+                PlayerPrefs.SetInt("victory", 0);
+                PlayerPrefs.Save();
+            }
+
+            PlayerPrefs.SetInt("victory", 0);
             GameManager.Instance.SubmitScore("Lose");
             GameManager.Instance.AudioManager.LoseGame();
             Destroy(gameObject);

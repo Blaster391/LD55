@@ -26,7 +26,13 @@ public class MainMenu : MonoBehaviour
         m_highscorePanel.SetActive(false);
 
         int highScore = PlayerPrefs.GetInt("score", 0);
+
         m_personalBest.text = $"Personal Best {highScore}";
+        if(PlayerPrefs.GetInt("victory", 0) > 0)
+        {
+            m_personalBest.text += " (Victory)";
+        }
+
         m_personalBest.gameObject.SetActive(highScore > 0);
 
         m_name.text = PlayerPrefs.GetString("name", m_name.text);
@@ -56,7 +62,7 @@ public class MainMenu : MonoBehaviour
         };
 
         ScoreboardComponent scoreboard = GetComponent<ScoreboardComponent>();
-        scoreboard.GetHighscores(highscoresCallback, "Win");
+        scoreboard.GetHighscores(highscoresCallback, "");
 
         AudioListener.volume = 0.3f;
     }

@@ -32,18 +32,20 @@ public class GameManager : MonoBehaviour
     private bool m_bossKilled = false;
     public void OnBossKilled()
     {
+        AddScore(GetTimeBonus());
+
         SubmitScore("Win");
 
         int currentHighScore =  PlayerPrefs.GetInt("score", 0);
         if(currentHighScore < Score)
         {
             PlayerPrefs.SetInt("score", Score);
+            PlayerPrefs.SetInt("victory", 1);
             PlayerPrefs.Save();
         }
 
         AudioManager.WinGame();
         m_bossKilled = true;
-        AddScore(GetTimeBonus());
     }
 
     public void SubmitScore(string _level)

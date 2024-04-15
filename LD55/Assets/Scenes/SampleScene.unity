@@ -25425,7 +25425,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8286801540745389469, guid: 1f4980ed9fef57b43a6f3f38a1ab93b4, type: 3}
       propertyPath: m_StageData.Array.data[2].MobTotalCountMax
-      value: 12
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8286801540745389469, guid: 1f4980ed9fef57b43a6f3f38a1ab93b4, type: 3}
       propertyPath: m_StageData.Array.data[2].MobTotalCountMin
@@ -25433,7 +25433,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8286801540745389469, guid: 1f4980ed9fef57b43a6f3f38a1ab93b4, type: 3}
       propertyPath: m_StageData.Array.data[3].MobTotalCountMax
-      value: 15
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 8286801540745389469, guid: 1f4980ed9fef57b43a6f3f38a1ab93b4, type: 3}
       propertyPath: m_StageData.Array.data[3].MobTotalCountMin
@@ -25529,7 +25529,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8286801540745389469, guid: 1f4980ed9fef57b43a6f3f38a1ab93b4, type: 3}
       propertyPath: m_StageData.Array.data[3].MobEnemies.Array.size
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8286801540745389469, guid: 1f4980ed9fef57b43a6f3f38a1ab93b4, type: 3}
       propertyPath: m_StageData.Array.data[3].MobWaveEnemyBaseCount
@@ -25614,7 +25614,7 @@ PrefabInstance:
     - target: {fileID: 8286801540745389469, guid: 1f4980ed9fef57b43a6f3f38a1ab93b4, type: 3}
       propertyPath: m_StageData.Array.data[3].MobEnemies.Array.data[1]
       value: 
-      objectReference: {fileID: 3030266041742357923, guid: 0975d0a70a099df4099f8431150fec47, type: 3}
+      objectReference: {fileID: 8947751405365852607, guid: 842a3b9acc3239047b8b68b818afb99f, type: 3}
     - target: {fileID: 8286801540745389469, guid: 1f4980ed9fef57b43a6f3f38a1ab93b4, type: 3}
       propertyPath: m_StageData.Array.data[3].MobEnemies.Array.data[2]
       value: 

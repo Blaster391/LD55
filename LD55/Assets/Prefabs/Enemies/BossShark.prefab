@@ -101,6 +101,10 @@ PrefabInstance:
       value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8325090502583505455, guid: dbfb58c5f5344a94d9ea712188210692, type: 3}
+      propertyPath: m_ignoreRecoil
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8325090502583505455, guid: dbfb58c5f5344a94d9ea712188210692, type: 3}
       propertyPath: m_movementForce
       value: 13000
       objectReference: {fileID: 0}
@@ -111,6 +115,10 @@ PrefabInstance:
     - target: {fileID: 8325090502583505455, guid: dbfb58c5f5344a94d9ea712188210692, type: 3}
       propertyPath: m_chargeCooldown
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8325090502583505455, guid: dbfb58c5f5344a94d9ea712188210692, type: 3}
+      propertyPath: m_summonBounceForce
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 8325090502583505455, guid: dbfb58c5f5344a94d9ea712188210692, type: 3}
       propertyPath: Drops.Array.data[0].Max

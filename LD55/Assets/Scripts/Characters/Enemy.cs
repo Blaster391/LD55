@@ -25,7 +25,13 @@ public class Enemy : MonoBehaviour
     private float m_bounceForce = 100.0f;
 
     [SerializeField]
+    private float m_summonBounceForce = 0.0f;
+
+    [SerializeField]
     private bool m_isBoss = false;
+
+    [SerializeField]
+    private bool m_ignoreRecoil = false;
 
     [SerializeField]
     private bool m_canCharge = false;
@@ -68,7 +74,7 @@ public class Enemy : MonoBehaviour
 
     public void OnDamaged(float _damage)
     {
-        if(m_state == State.Attack && !m_isBoss)
+        if(m_state == State.Attack && !m_ignoreRecoil)
         {
             m_recoveryTime = m_maxRecoveryTime * (_damage / 10.0f);
             m_state = State.Recoil;
@@ -157,6 +163,11 @@ public class Enemy : MonoBehaviour
             return;
         }
 
+        if(m_state == State.Recoil && m_ignoreRecoil)
+        {
+            m_state = State.Attack;
+        }
+
         switch (m_state)
         {
             case State.Attack:
@@ -228,6 +239,11 @@ public class Enemy : MonoBehaviour
         if(m_state == State.Recoil)
         {
             return;
+        }
+
+        if (_collision.collider.gameObject.GetComponent<Summon>() != null)
+        {
+            _collision.collider.GetComponent<Rigidbody2D>().AddForce(-_collision.GetContact(0).normal * m_summonBounceForce, ForceMode2D.Impulse);
         }
 
         if (_collision.collider.gameObject.GetComponent<Player>() != null)

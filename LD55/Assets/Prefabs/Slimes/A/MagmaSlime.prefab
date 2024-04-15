@@ -47,9 +47,9 @@ MonoBehaviour:
   m_ActiveCooldown: 0
   m_TrailAffectorPrefab: {fileID: 6684601989486995734, guid: ecbcd588561bc8c4d960247ed1fde165, type: 3}
   m_TrailDropDelay: 0.25
-  m_TrailDropLifetime: 3
+  m_TrailDropLifetime: 5
   m_TrailAffectCooldown: 0.5
-  m_MagmaDamage: 0.5
+  m_MagmaDamage: 1
 --- !u!1 &1164145014929993272
 GameObject:
   m_ObjectHideFlags: 0

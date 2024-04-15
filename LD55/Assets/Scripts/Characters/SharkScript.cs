@@ -8,6 +8,7 @@ public class SharkScript : MonoBehaviour
     {
         if (_collision.collider.gameObject.layer == 7)
         {
+            GameManager.Instance.AudioManager.SlimeKill();
             Destroy(_collision.collider.gameObject);
         }
     }

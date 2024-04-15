@@ -29,6 +29,8 @@ public class Chest : MonoBehaviour
 
     public void Open()
     {
+        GameManager.Instance.AudioManager.SlimeKill();
+
         GetComponent<SpriteRenderer>().sprite = m_openSprite;
         GetComponent<Collider2D>().enabled = false;
 

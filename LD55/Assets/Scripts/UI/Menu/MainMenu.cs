@@ -19,7 +19,7 @@ public class MainMenu : MonoBehaviour
     List<TMPro.TextMeshProUGUI> m_highscores = null;
 
     [SerializeField]
-    TMPro.TextMeshProUGUI m_name = null;
+    TMPro.TMP_InputField m_name = null;
 
     private void Start()
     {

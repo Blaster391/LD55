@@ -16,9 +16,13 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private TMPro.TextMeshProUGUI m_score = null;
     [SerializeField]
+    private TMPro.TextMeshProUGUI m_menuScore = null;
+    [SerializeField]
     private TMPro.TextMeshProUGUI m_gameOver = null;
     [SerializeField]
-    private Button m_ReturnToMenuButton = null;
+    private TMPro.TextMeshProUGUI m_coins = null;
+    [SerializeField]
+    private GameObject m_menuUI = null;
     [SerializeField]
     private TMPro.TextMeshProUGUI m_win = null;
     [SerializeField]
@@ -33,12 +37,28 @@ public class UIManager : MonoBehaviour
     private FlockManager m_flockManager = null;
     private Player m_player = null;
     private Canvas m_canvas = null;
+    private bool m_showMenuUI = false;
+
+    public bool IsMenuOpen()
+    {
+        return m_showMenuUI;
+    }
 
     private void Start()
     {
         m_player = GameManager.Instance.Player;
         m_flockManager = GameManager.Instance.FlockManager;
         m_canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
+    }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene(1);
+    }
+
+    public void MainMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 
     private void Update()
@@ -48,6 +68,15 @@ public class UIManager : MonoBehaviour
             UpdateTarget();
         }
 
+        if(!GameManager.Instance.IsGameOver() && !GameManager.Instance.IsGameWon())
+        {
+            if(Input.GetKeyDown(KeyCode.Escape))
+            {
+                m_showMenuUI = !m_showMenuUI;
+            }
+        }
+
+        m_menuUI.SetActive(m_showMenuUI);
         UpdateTextUI();
         UpdateBubbles();
     }
@@ -63,6 +92,8 @@ public class UIManager : MonoBehaviour
         int health = m_player != null ? m_player.GetHealth() : 0;
         m_health.text = $"Health {health}";
         m_score.text = $"Score {GameManager.Instance.Score}";
+        m_menuScore.text = $"Score {GameManager.Instance.Score}";
+        m_coins.text = $"Coins {GameManager.Instance.RunResources.SlimeTokens}";
 
         float timeRemaining = GameManager.Instance.GetTimeRemaining();
 
@@ -80,7 +111,7 @@ public class UIManager : MonoBehaviour
 
         m_gameOver.gameObject.SetActive(GameManager.Instance.IsGameOver());
         m_win.gameObject.SetActive(GameManager.Instance.IsGameWon());
-        m_ReturnToMenuButton.gameObject.SetActive(GameManager.Instance.IsGameOver() || GameManager.Instance.IsGameWon());
+        m_showMenuUI |= GameManager.Instance.IsGameOver() || GameManager.Instance.IsGameWon();
     }
 
     private void UpdateBubbles()

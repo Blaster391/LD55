@@ -15,4 +15,6 @@ MonoBehaviour:
   <Name>k__BackingField: Rock Slime
   <Rarity>k__BackingField: 1
   <Prefab>k__BackingField: {fileID: 7977104994731242694, guid: 51e36d51bd886a04f99fb5a8a4aa3a46, type: 3}
+  <Damage>k__BackingField: High
+  <Speed>k__BackingField: Slow
   <GachaSprite>k__BackingField: {fileID: 21300000, guid: c2e4b1feba6a7bb41bf7329c3bee5c61, type: 3}

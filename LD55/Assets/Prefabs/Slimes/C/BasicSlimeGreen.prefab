@@ -64,6 +64,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BasicSlimeGreen
       objectReference: {fileID: 0}
+    - target: {fileID: 7977104994731242694, guid: 4c517fb772bcba94093b360a259d5f8a, type: 3}
+      propertyPath: m_aggroRange
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7977104994731242694, guid: 4c517fb772bcba94093b360a259d5f8a, type: 3}
+      propertyPath: m_chestAggroRange
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -13,11 +13,13 @@ public class GameManager : MonoBehaviour
     public FlockManager FlockManager { get; private set; }
     public IRunResources RunResources { get; private set; }
     public WorldSpawnManager WorldSpawnManager { get; private set; }
+    public UIManager UIManager { get; private set; }
     public int Score { get; private set; } = 0;
 
     public float GameTime { get; private set; } = 0.0f;
     public float GameDeltaTime { get; private set; } = 0.0f;
-    public bool IsPaused { get; private set; } = false;
+    private bool m_gameplayPaused = false;
+    public bool IsPaused { get { return m_gameplayPaused || UIManager.IsMenuOpen(); } private set { m_gameplayPaused = value; } }
 
     private bool m_bossKilled = false;
     public void OnBossKilled()
@@ -31,6 +33,7 @@ public class GameManager : MonoBehaviour
         FlockManager = GetComponent<FlockManager>();
         WorldSpawnManager = GetComponent<WorldSpawnManager>();
         RunResources = GetComponentInParent<IRunResources>();
+        UIManager = GetComponent<UIManager>();
 
         Instance = this;
     }

@@ -15,7 +15,6 @@ public class Summon : MonoBehaviour
 
     [Header("Combat")]
     [SerializeField] private float m_damage = 1.0f;
-    [SerializeField] private float m_targetPriority = 1.0f;
     [SerializeField] private float m_bounceForce = 20.0f;
     [SerializeField] private float m_pushForce = 20.0f;
     [SerializeField] private float m_maxRecoilTime = 1.0f;
@@ -24,6 +23,7 @@ public class Summon : MonoBehaviour
 
     [Header("Movement")]
     [SerializeField] private float m_movementForce = 1.0f;
+    [SerializeField] private float m_targetPriority = 1.0f;
     [SerializeField] private float m_cohesion = 0.5f;
     [SerializeField] private float m_minFlockSeparationDistance = 0.5f;
     [SerializeField] private float m_minPlayerTargetDistance = 2.0f;
@@ -223,14 +223,14 @@ public class Summon : MonoBehaviour
     {
         if(m_targetEnemy == null)
         {
-            foreach (Enemy enemy in m_flockManager.Enemies)
-            {
-                if (Vector2.Distance(transform.position, enemy.transform.position) < m_aggroRange && GameHelper.HasLineOfSight(gameObject, enemy.gameObject))
-                {
-                    m_targetEnemy = enemy;
-                    return;
-                }
-            }
+            //foreach (Enemy enemy in m_flockManager.Enemies)
+            //{
+            //    if (Vector2.Distance(transform.position, enemy.transform.position) < m_aggroRange && GameHelper.HasLineOfSight(gameObject, enemy.gameObject))
+            //    {
+            //        m_targetEnemy = enemy;
+            //        return;
+            //    }
+            //}
 
             m_state = State.Follow;
             return;

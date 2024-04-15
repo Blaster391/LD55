@@ -35,9 +35,19 @@ namespace Gacha
         float m_spinProgressTime = 0;
         public bool IsRolling { get; private set; } = false;
 
+        [SerializeField]
+        private float m_imageSpinTime = 2.0f;
+        [SerializeField]
+        private float m_imageSpinHeight = 3.0f;
+
+        private float m_currentImageSpinTime = 0.0f;
+        private bool m_shouldImageSpin = false;
+        private Vector2 m_imagePosition = Vector2.zero;
+
         private void Awake()
         {
             m_GachaSystem = GetComponentInParent<GachaSystem>();
+            m_imagePosition = m_ImageDisplay.transform.position;
         }
 
         public void VisualiseSpin(GachaRollResult rollResult)
@@ -45,9 +55,17 @@ namespace Gacha
             StartCoroutine(VisualiseSpinRoutine(rollResult));
         }
 
+        public void OnEnable()
+        {
+            m_ImageDisplay.texture = null;
+            m_ImageDisplay.color = Color.clear;
+            m_ImageDisplay.transform.position = m_imagePosition;
+            m_ImageDisplay.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
+        }
+
         public void SkipSpin()
         {
-            if(!IsRolling)
+            if (!IsRolling)
             {
                 return;
             }
@@ -57,6 +75,8 @@ namespace Gacha
 
         private IEnumerator VisualiseSpinRoutine(GachaRollResult rollResult)
         {
+            m_currentImageSpinTime = 0.0f;
+            m_shouldImageSpin = false;
             IsRolling = true;
 
             int RandomDamage = 0;
@@ -98,6 +118,34 @@ namespace Gacha
             m_FanfareParticleSystem.Emit(particles);
 
             IsRolling = false;
+
+            StartCoroutine(SpinImage());
+        }
+
+        private IEnumerator SpinImage()
+        {
+            m_shouldImageSpin = true;
+
+            while(m_currentImageSpinTime < m_imageSpinTime && m_shouldImageSpin)
+            {
+                m_currentImageSpinTime += Time.deltaTime;
+
+                float alpha = m_currentImageSpinTime / m_imageSpinTime;
+
+                float movementAlpha = alpha * 2.0f;
+                if (movementAlpha > 1.0f)
+                {
+                    movementAlpha = 1.0f - (movementAlpha - 1.0f);
+                }
+
+                m_ImageDisplay.transform.position = m_imagePosition + Vector2.up * movementAlpha * m_imageSpinHeight;
+                m_ImageDisplay.transform.rotation = Quaternion.Euler(0.0f, 0.0f, alpha * 360.0f);
+
+                yield return 0;
+            }
+
+            m_ImageDisplay.transform.position = m_imagePosition;
+            m_ImageDisplay.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
         }
     }
 }

@@ -209,6 +209,11 @@ public class Enemy : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D _collision)
     {
+        if(m_state == State.Recoil)
+        {
+            return;
+        }
+
         if (_collision.collider.gameObject.GetComponent<Player>() != null)
         {
             m_rigidbody.AddForce(_collision.GetContact(0).normal * m_bounceForce, ForceMode2D.Impulse);

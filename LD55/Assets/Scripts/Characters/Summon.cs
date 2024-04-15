@@ -292,6 +292,11 @@ public class Summon : MonoBehaviour
     {
         m_rigidbody.AddForce(_collision.GetContact(0).normal * m_bounceForce, ForceMode2D.Impulse);
 
+        if (m_state == State.Recoil)
+        {
+            return;
+        }
+
         if (_collision.collider.gameObject.GetComponent<Enemy>() != null)
         {
             _collision.rigidbody.AddForce(-_collision.GetContact(0).normal * m_pushForce, ForceMode2D.Impulse);

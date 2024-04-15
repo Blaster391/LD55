@@ -32,6 +32,11 @@ public class GameManager : MonoBehaviour
     private bool m_bossKilled = false;
     public void OnBossKilled()
     {
+        if(m_bossKilled)
+        {
+            return;
+        }
+
         AddScore(GetTimeBonus());
 
         SubmitScore("Win");

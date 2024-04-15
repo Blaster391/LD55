@@ -128,7 +128,7 @@ public class Enemy : MonoBehaviour
         float speedMod = 1.0f;
         if(GetComponent<PufferScript>() != null && !GetComponent<PufferScript>().IsGrowing())
         {
-            speedMod = 1.75f;
+            speedMod = 2.0f;
         }
 
         m_rigidbody.AddForce(m_movement * m_movementForce * speedMod * Time.fixedDeltaTime);

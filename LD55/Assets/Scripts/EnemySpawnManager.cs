@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class EnemySpawnManager : MonoBehaviour
@@ -74,6 +75,8 @@ public class EnemySpawnManager : MonoBehaviour
             SpawnEnemy(m_bossPrefab);
             m_bossSpawned = true;
         }
+
+        m_SpawnedMobEnemies = m_SpawnedMobEnemies.Where(x  => x != null).ToList(); 
 
         StageData currentStage = m_StageData[m_CurrentStage];
 

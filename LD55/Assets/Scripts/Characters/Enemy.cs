@@ -151,7 +151,7 @@ public class Enemy : MonoBehaviour
 
         GetComponent<Collider2D>().enabled = distFromPlayer < 20.0f;
 
-        if (!m_isBoss && distFromPlayer > 50.0f)
+        if (!m_isBoss && distFromPlayer > 30.0f)
         {
             Destroy(gameObject);
             return;

@@ -124,7 +124,7 @@ namespace Scoreboard
             private IEnumerator GetHighscoresCoroutine(Func<List<ScoreboardCore.Data.ScoreResult>, bool, bool> _onRequestComplete, string level, bool _highscoresOnly = true, int _resultsSize = 10)
             {
 
-                string getUrl = "/api/scoreboard/" + m_connection.GameName + "?level=" + level;
+                string getUrl = "/api/scoreboard/" + m_connection.GameName; //+ "?level=" + level; I HAVE DISABLED LEVEL HERE DON'T FORGET
                 getUrl += $"&amount={_resultsSize}";
                 if (_highscoresOnly)
                 {

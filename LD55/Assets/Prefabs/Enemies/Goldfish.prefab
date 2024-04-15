@@ -66,11 +66,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8325090502583505455, guid: dbfb58c5f5344a94d9ea712188210692, type: 3}
       propertyPath: m_movementForce
-      value: 800
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 8325090502583505455, guid: dbfb58c5f5344a94d9ea712188210692, type: 3}
       propertyPath: Drops.Array.size
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8325090502583505455, guid: dbfb58c5f5344a94d9ea712188210692, type: 3}
+      propertyPath: m_summonBounceForce
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8325090502583505455, guid: dbfb58c5f5344a94d9ea712188210692, type: 3}
       propertyPath: Drops.Array.data[0].Max

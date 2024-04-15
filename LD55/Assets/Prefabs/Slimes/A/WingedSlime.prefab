@@ -105,7 +105,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5169146559436458062, guid: 81d9d6db24bb3c64f889198880581ff2, type: 3}
       propertyPath: m_movementForce
-      value: 20000
+      value: 14000
       objectReference: {fileID: 0}
     - target: {fileID: 5346360539426814671, guid: 81d9d6db24bb3c64f889198880581ff2, type: 3}
       propertyPath: m_sprites.Array.data[0]
@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ActiveCooldown: 0
-  m_flyingDamage: 5
+  m_flyingDamage: 2
 --- !u!4 &7106339537084178597 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1406670569037271775, guid: 81d9d6db24bb3c64f889198880581ff2, type: 3}

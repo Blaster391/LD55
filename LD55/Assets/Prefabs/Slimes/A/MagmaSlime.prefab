@@ -191,7 +191,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5169146559436458062, guid: 81d9d6db24bb3c64f889198880581ff2, type: 3}
       propertyPath: m_damage
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5169146559436458062, guid: 81d9d6db24bb3c64f889198880581ff2, type: 3}
       propertyPath: m_pushForce
@@ -207,7 +207,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5169146559436458062, guid: 81d9d6db24bb3c64f889198880581ff2, type: 3}
       propertyPath: m_movementForce
-      value: 10000
+      value: 15000
       objectReference: {fileID: 0}
     - target: {fileID: 5346360539426814671, guid: 81d9d6db24bb3c64f889198880581ff2, type: 3}
       propertyPath: m_sprites.Array.data[0]
@@ -219,7 +219,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 5d7109f9b3c4f45489df8b5620d146da, type: 3}
     - target: {fileID: 7445583349418370594, guid: 81d9d6db24bb3c64f889198880581ff2, type: 3}
       propertyPath: m_Mass
-      value: 10
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

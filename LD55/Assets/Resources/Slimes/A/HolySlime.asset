@@ -17,4 +17,5 @@ MonoBehaviour:
   <Prefab>k__BackingField: {fileID: 7977104994731242694, guid: 1cf3d44d190629c43bcdc7cd0b272fa0, type: 3}
   <Damage>k__BackingField: Medium
   <Speed>k__BackingField: Speedy
+  <Ability>k__BackingField: DIVINE LIGHT
   <GachaSprite>k__BackingField: {fileID: 21300000, guid: b54647b3dac444045945600fbf84d7ab, type: 3}

@@ -68,6 +68,12 @@ public class Enemy : MonoBehaviour
 
     public void OnDamaged(float _damage)
     {
+        if(m_state == State.Attack)
+        {
+            m_recoveryTime = m_maxRecoveryTime * (_damage / 10.0f);
+            m_state = State.Recoil;
+        }
+ 
         m_health -= _damage;
         if (m_health <= 0.0f)
         {
@@ -138,6 +144,12 @@ public class Enemy : MonoBehaviour
         if (GameManager.Instance.IsPaused)
         {
             m_movement = Vector2.zero;
+            return;
+        }
+
+        if(!m_isBoss && Vector2.Distance(m_player.transform.position, transform.position) > 50.0f)
+        {
+            Destroy(gameObject);
             return;
         }
 

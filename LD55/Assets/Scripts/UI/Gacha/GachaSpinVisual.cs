@@ -28,6 +28,9 @@ namespace Gacha
         [SerializeField]
         private TMPro.TextMeshProUGUI m_SlimeSpeed = null;
 
+        [SerializeField]
+        private TMPro.TextMeshProUGUI m_SlimeAbility = null;
+
         public event Action<GachaRollResult> SpinVisualComplete;
 
         [SerializeField]
@@ -69,6 +72,7 @@ namespace Gacha
             m_SlimeType.text = $"";
             m_SlimeDamageModifier.text = $"";
             m_SlimeSpeed.text = $"";
+            m_SlimeAbility.text = $"";
         }
 
         public void SkipSpin()
@@ -100,6 +104,7 @@ namespace Gacha
                 m_SlimeType.text = $"{selectedSlimeAsset.Name}";
                 m_SlimeDamageModifier.text = $"{selectedSlimeAsset.Damage}";
                 m_SlimeSpeed.text = $"{selectedSlimeAsset.Speed}";
+                m_SlimeAbility.text = $"{selectedSlimeAsset.Ability}";
 
                 // Figure out how long to show it
                 float spinProgress = m_spinProgressTime / m_SpinDuration;
@@ -120,6 +125,7 @@ namespace Gacha
             m_SlimeType.text = $"{rollResult.SelectedSlime.Name}";
             m_SlimeDamageModifier.text = $"{rollResult.SelectedSlime.Damage}";
             m_SlimeSpeed.text = $"{rollResult.SelectedSlime.Speed}";
+            m_SlimeAbility.text = $"{rollResult.SelectedSlime.Ability}";
 
 
             SpinVisualComplete?.Invoke(rollResult);

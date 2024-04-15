@@ -74,7 +74,7 @@ namespace Gacha
             {
                 if (m_RunResources.SlimeTokens < m_GachaSystem.SlimeTokenCost)
                 {
-                    gameObject.SetActive(false);
+                    GetComponentInParent<GachaUIManager>().CloseGachaPanel();
                     return;
                 }
 

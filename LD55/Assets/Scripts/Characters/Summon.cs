@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Summon : MonoBehaviour
@@ -48,6 +49,13 @@ public class Summon : MonoBehaviour
     {
         return m_state;
     }
+
+    public void ResetTarget()
+    {
+        m_targetEnemy = null;
+        m_targetChest = null;
+    }
+
     private void Awake()
     {
         m_rigidbody = GetComponent<Rigidbody2D>();
@@ -179,16 +187,6 @@ public class Summon : MonoBehaviour
             }
         }
 
-        foreach(Enemy enemy in m_flockManager.Enemies)
-        {
-            if(Vector2.Distance(transform.position, enemy.transform.position) < m_aggroRange)
-            {
-                m_targetEnemy = enemy;
-                m_state = State.Attack;
-                return;
-            }
-        }
-
         if (m_spawnManager != null)
         {
             foreach (Chest chest in m_spawnManager.ActiveChests)
@@ -201,17 +199,36 @@ public class Summon : MonoBehaviour
                 }
             }
         }
+
+        foreach (Enemy enemy in m_flockManager.Enemies)
+        {
+            if(Vector2.Distance(transform.position, enemy.transform.position) < m_aggroRange && Vector2.Distance(targetPosition, enemy.transform.position) < m_aggroRange)
+            {
+                m_targetEnemy = enemy;
+                m_state = State.Attack;
+                return;
+            }
+        }
     }
 
     private void UpdateAttack()
     {
         if(m_targetEnemy == null)
         {
+            foreach (Enemy enemy in m_flockManager.Enemies)
+            {
+                if (Vector2.Distance(transform.position, enemy.transform.position) < m_aggroRange)
+                {
+                    m_targetEnemy = enemy;
+                    return;
+                }
+            }
+
             m_state = State.Follow;
             return;
         }
 
-        if (Vector2.Distance(transform.position, m_targetEnemy.transform.position) > m_aggroRange * 1.25f)
+        if (Vector2.Distance(transform.position, m_targetEnemy.transform.position) > m_aggroRange * 1.25f || Vector2.Distance(m_flockManager.TargetPosition, m_targetEnemy.transform.position) > m_aggroRange * 1.5f)
         {
             m_targetEnemy = null;
             m_state = State.Follow;

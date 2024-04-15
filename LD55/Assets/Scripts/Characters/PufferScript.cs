@@ -13,6 +13,11 @@ public class PufferScript : MonoBehaviour
     private float m_puffTime = 0.0f;
     private Vector3 m_scaleRef = Vector3.zero;
 
+    public bool IsGrowing()
+    {
+        return m_grow;
+    }
+
     void Start()
     {
         m_scaleRef = transform.localScale;

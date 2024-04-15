@@ -69,10 +69,11 @@ public class FlockManager : MonoBehaviour
         {
             IsTargettingPlayer = false;
             TargetPosition = GameHelper.MouseToWorldPosition();
+            ResetTargets();
         }
         else if(Input.GetButtonDown("FlockRecall"))
         {
-            IsTargettingPlayer = true;
+            RecallFlock();
         }
 
         if(Input.GetButtonDown("ActivateSlimeActives"))
@@ -96,7 +97,21 @@ public class FlockManager : MonoBehaviour
             FlockCenter /= Flock.Count;
         }
 
-        Enemies = Enemies.OrderBy(x => Vector2.Distance(x.transform.position, m_player.transform.position)).ToList();
+        Enemies = Enemies.OrderBy(x => Vector2.Distance(x.transform.position, TargetPosition)).ToList();
+    }
+
+    public void RecallFlock()
+    {
+        IsTargettingPlayer = true;
+        ResetTargets();
+    }
+
+    private void ResetTargets()
+    {
+        foreach (Summon s in Flock)
+        {
+            s.ResetTarget();
+        }
     }
 
     private void OnSlimeAdded(SlimeAsset _slimeAsset)

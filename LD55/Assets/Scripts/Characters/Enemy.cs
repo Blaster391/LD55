@@ -77,7 +77,13 @@ public class Enemy : MonoBehaviour
             return;
         }
 
-        m_rigidbody.AddForce(m_movement * m_movementForce * Time.fixedDeltaTime);
+        float speedMod = 1.0f;
+        if(GetComponent<PufferScript>() != null && !GetComponent<PufferScript>().IsGrowing())
+        {
+            speedMod = 1.5f;
+        }
+
+        m_rigidbody.AddForce(m_movement * m_movementForce * speedMod * Time.fixedDeltaTime);
     }
 
     private void Update()

@@ -19,6 +19,11 @@ public class Player : MonoBehaviour
         return m_health;
     }
 
+    public void AddHealth(int _hp)
+    {
+        m_health += _hp;
+    }
+
     public void TakeDamage()
     {
         --m_health;

@@ -7,6 +7,10 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField]
     private float m_timeLimit = 300.0f;
+    [SerializeField]
+    private float m_timeBonus = 1000.0f;
+    [SerializeField]
+    private float m_timeBonusDecay = 1.0f;
 
     public static GameManager Instance { get; private set; }
     public Player Player { get; private set; }
@@ -25,6 +29,12 @@ public class GameManager : MonoBehaviour
     public void OnBossKilled()
     {
         m_bossKilled = true;
+        AddScore(GetTimeBonus());
+    }
+
+    public int GetTimeBonus()
+    {
+        return Mathf.RoundToInt(m_timeBonus);
     }
 
     void Awake()
@@ -44,6 +54,9 @@ public class GameManager : MonoBehaviour
         {
             GameTime += Time.deltaTime;
             GameDeltaTime = Time.deltaTime;
+
+            m_timeBonus -= m_timeBonusDecay * Time.deltaTime;
+            m_timeBonus = Mathf.Max(m_timeBonus, 0.0f);
         }
         else
         {

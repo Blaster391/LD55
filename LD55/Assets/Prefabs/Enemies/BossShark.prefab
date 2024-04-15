@@ -105,9 +105,25 @@ PrefabInstance:
       value: 13000
       objectReference: {fileID: 0}
     - target: {fileID: 8325090502583505455, guid: dbfb58c5f5344a94d9ea712188210692, type: 3}
+      propertyPath: Drops.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8325090502583505455, guid: dbfb58c5f5344a94d9ea712188210692, type: 3}
       propertyPath: m_chargeCooldown
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 8325090502583505455, guid: dbfb58c5f5344a94d9ea712188210692, type: 3}
+      propertyPath: Drops.Array.data[0].Max
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8325090502583505455, guid: dbfb58c5f5344a94d9ea712188210692, type: 3}
+      propertyPath: Drops.Array.data[0].Min
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8325090502583505455, guid: dbfb58c5f5344a94d9ea712188210692, type: 3}
+      propertyPath: Drops.Array.data[0].DropPrefab
+      value: 
+      objectReference: {fileID: 2381090889578926630, guid: 133bc071b3c999a43aa097f7c287578a, type: 3}
     - target: {fileID: 8577379295525800088, guid: dbfb58c5f5344a94d9ea712188210692, type: 3}
       propertyPath: m_Mass
       value: 100

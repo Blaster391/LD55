@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <RarityChances>k__BackingField:
   - Rarity: 0
-    Chance: 60
+    Chance: 50
   - Rarity: 1
     Chance: 25
   - Rarity: 2
     Chance: 10
   - Rarity: 3
-    Chance: 4
+    Chance: 5
   <SlimeTokenCost>k__BackingField: 10

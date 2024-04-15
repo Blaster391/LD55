@@ -18,6 +18,8 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private TMPro.TextMeshProUGUI m_menuScore = null;
     [SerializeField]
+    private TMPro.TextMeshProUGUI m_timeBonus = null;
+    [SerializeField]
     private TMPro.TextMeshProUGUI m_gameOver = null;
     [SerializeField]
     private TMPro.TextMeshProUGUI m_coins = null;
@@ -94,6 +96,7 @@ public class UIManager : MonoBehaviour
         m_score.text = $"Score {GameManager.Instance.Score}";
         m_menuScore.text = $"Score {GameManager.Instance.Score}";
         m_coins.text = $"Coins {GameManager.Instance.RunResources.SlimeTokens}";
+        m_timeBonus.text = $"Time Bonus {GameManager.Instance.GetTimeBonus()}";
 
         float timeRemaining = GameManager.Instance.GetTimeRemaining();
 

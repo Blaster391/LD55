@@ -54,9 +54,18 @@ public class UIManager : MonoBehaviour
         m_score.text = $"Score {GameManager.Instance.Score}";
 
         float timeRemaining = GameManager.Instance.GetTimeRemaining();
-        int minRemaining = Mathf.FloorToInt(timeRemaining / 60.0f);
-        int secondsRemaining = Mathf.FloorToInt(timeRemaining - (minRemaining * 60.0f));
-        m_time.text = $"Remaining {minRemaining}:{secondsRemaining:00}";
+
+        if(timeRemaining > 0.0f)
+        {
+            int minRemaining = Mathf.FloorToInt(timeRemaining / 60.0f);
+            int secondsRemaining = Mathf.FloorToInt(timeRemaining - (minRemaining * 60.0f));
+            m_time.text = $"Remaining {minRemaining}:{secondsRemaining:00}";
+        }
+        else 
+        {
+            m_time.text = "BOSS";
+        }
+
 
         m_gameOver.gameObject.SetActive(GameManager.Instance.IsGameOver());
         m_win.gameObject.SetActive(GameManager.Instance.IsGameWon());

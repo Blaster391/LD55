@@ -1,9 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public enum State
+    {
+        Attack,
+        Charge,
+        Recoil
+    }
+
     [SerializeField]
     private float m_movementForce = 1.0f;
 
@@ -15,6 +23,23 @@ public class Enemy : MonoBehaviour
 
     [SerializeField]
     private float m_bounceForce = 100.0f;
+
+    [SerializeField]
+    private bool m_isBoss = false;
+
+    [SerializeField]
+    private bool m_canCharge = false;
+    [SerializeField]
+    private float m_chargeForce = 1000.0f;
+    [SerializeField]
+    private float m_chargeTime = 1.0f;
+    [SerializeField]
+    private float m_chargeCooldown = 3.0f;
+    [SerializeField]
+    private float m_chargeRange = 5.0f;
+
+    private float m_lastChargeTime = 0.0f;
+
 
     [System.Serializable]
     private struct DropData
@@ -34,6 +59,12 @@ public class Enemy : MonoBehaviour
     private Rigidbody2D m_rigidbody = null;
     private Player m_player = null;
     private float m_recoveryTime = 0.0f;
+    private State m_state = State.Attack;
+
+    public State GetState()
+    {
+        return m_state;
+    }
 
     public void OnDamaged(float _damage)
     {
@@ -52,6 +83,11 @@ public class Enemy : MonoBehaviour
                 }
             }
     
+            if(m_isBoss)
+            {
+                GameManager.Instance.OnBossKilled();
+            }
+
             Destroy(gameObject);
         }
     }
@@ -93,23 +129,82 @@ public class Enemy : MonoBehaviour
             return;
         }
 
+        if (GameManager.Instance.IsGameWon())
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         if (GameManager.Instance.IsPaused)
         {
             m_movement = Vector2.zero;
             return;
         }
 
-        if(m_recoveryTime > 0.0f) 
+        switch (m_state)
         {
-            m_recoveryTime -= Time.deltaTime;
-            m_movement = Vector2.zero;
+            case State.Attack:
+                UpdateAttack();
+                break;
+            case State.Charge:
+                UpdateCharge();
+                break;
+            case State.Recoil:
+                UpdateRecoil();
+                break;
+        }
+
+    }
+
+    private void UpdateAttack()
+    {
+        Vector2 target = (m_player.transform.position - transform.position);
+        m_movement = target;
+
+        if(m_canCharge && GameManager.Instance.GameTime > m_lastChargeTime + m_chargeCooldown)
+        {
+            if(m_movement.magnitude < m_chargeRange)
+            {
+                m_lastChargeTime = -1.0f;
+                m_state = State.Charge;
+                m_movement.Normalize();
+                return;
+            }
+        }
+
+        m_movement.Normalize();
+    }
+
+    private void UpdateRecoil()
+    {
+        m_recoveryTime -= Time.deltaTime;
+        m_movement = Vector2.zero;
+        if(m_recoveryTime < 0.0f)
+        {
+            m_state = State.Attack;
+        }
+    }
+
+    private void UpdateCharge()
+    {
+        if(m_lastChargeTime < 0.0f)
+        {
+            Vector2 target = (m_player.transform.position - transform.position);
+            m_movement = target;
+            m_movement.Normalize();
+
+            m_rigidbody.AddForce(m_movement * m_chargeForce, ForceMode2D.Impulse);
+
+            m_lastChargeTime = GameManager.Instance.GameTime;
+        }
+
+        if (GameManager.Instance.GameTime > m_lastChargeTime + m_chargeTime)
+        {
+            m_state = State.Attack;
             return;
         }
 
-
-        Vector2 target = (m_player.transform.position - transform.position);
-        m_movement = target;
-        m_movement.Normalize();
+        m_movement = Vector2.zero;
     }
 
     private void OnCollisionEnter2D(Collision2D _collision)
@@ -119,6 +214,7 @@ public class Enemy : MonoBehaviour
             m_rigidbody.AddForce(_collision.GetContact(0).normal * m_bounceForce, ForceMode2D.Impulse);
             _collision.collider.gameObject.GetComponent<Player>().TakeDamage();
             m_recoveryTime = m_maxRecoveryTime;
+            m_state = State.Recoil;
         }
     }
 }

@@ -6,6 +6,8 @@ public class SpriteHandler : MonoBehaviour
 {
     [SerializeField]
     private List<Sprite> m_sprites = new List<Sprite>();
+    [SerializeField]
+    private Sprite m_chargeSprite = null;
 
     [SerializeField]
     private float m_updateTime = 1.0f;
@@ -44,7 +46,22 @@ public class SpriteHandler : MonoBehaviour
             m_previousPosition = transform.position;
         }
 
-        if(Vector2.Distance(transform.position, m_previousPosition) > 0.05f)
+        if (GetComponent<Enemy>() != null)
+        {
+            Enemy enemy = GetComponent<Enemy>();
+            if(enemy.GetState() != Enemy.State.Attack)
+            {
+                m_previousPosition = transform.position;
+            }
+
+            if(enemy.GetState() == Enemy.State.Charge)
+            {
+                m_renderer.sprite = m_chargeSprite;
+                return;
+            }
+        }
+
+        if (Mathf.Abs(transform.position.x - m_previousPosition.x) > 0.05f)
         {
             m_renderer.flipX = transform.position.x > m_previousPosition.x;
             m_previousPosition = transform.position;

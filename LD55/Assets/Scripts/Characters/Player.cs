@@ -98,11 +98,17 @@ public class Player : MonoBehaviour
     private void Update()
     {
         UpdateInputs();
+
+        if(GameManager.Instance.IsGameWon())
+        {
+            float spinSpeed = 50.0f;
+            transform.Rotate(0.0f, 0.0f, spinSpeed * GameManager.Instance.GameDeltaTime);
+        }
     }
 
     private void UpdateInputs()
     {
-        if(GameManager.Instance.IsPaused)
+        if(GameManager.Instance.IsPaused || GameManager.Instance.IsGameWon())
         {
             MovementInput = Vector2.zero;
             return;

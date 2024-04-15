@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -18,6 +19,11 @@ public class GameManager : MonoBehaviour
     public float GameDeltaTime { get; private set; } = 0.0f;
     public bool IsPaused { get; private set; } = false;
 
+    private bool m_bossKilled = false;
+    public void OnBossKilled()
+    {
+        m_bossKilled = true;
+    }
 
     void Awake()
     {
@@ -46,13 +52,6 @@ public class GameManager : MonoBehaviour
             IsPaused = true;
             return;
         }
-
-        float timeRemaining = GetTimeRemaining();
-
-        if(timeRemaining <= 0.0f)
-        {
-            IsPaused = true;
-        }
     }
 
     public void SetPaused(bool _paused)
@@ -71,7 +70,7 @@ public class GameManager : MonoBehaviour
     }
     public bool IsGameWon()
     {
-        return GetTimeRemaining() <= 0.0f;
+        return m_bossKilled;
     }
 
     public void AddScore(int _score)

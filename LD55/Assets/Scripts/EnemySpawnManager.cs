@@ -36,7 +36,10 @@ public class EnemySpawnManager : MonoBehaviour
         public int KillCountRequired;
     }
     [Header("Spawning Rules")]
-    [SerializeField] private List<StageData> m_StageData;
+    [SerializeField] 
+    private List<StageData> m_StageData;
+    [SerializeField]
+    private Enemy m_bossPrefab = null;
 
     [Header("Location")]
     [SerializeField] private float m_SpawnDistanceFromPlayer;
@@ -51,7 +54,7 @@ public class EnemySpawnManager : MonoBehaviour
     private List<Enemy> m_SpawnedBossEnemies = new List<Enemy>();
 
     private int m_EnemiesKilledThisStage = 0;
-
+    private bool m_bossSpawned = false;
 
     private void Awake()
     {
@@ -65,6 +68,12 @@ public class EnemySpawnManager : MonoBehaviour
 
         if (gameManager.IsPaused)
             return;
+
+        if(!m_bossSpawned && (gameManager.GetTimeRemaining() <= 0.0f))
+        {
+            SpawnEnemy(m_bossPrefab);
+            m_bossSpawned = true;
+        }
 
         StageData currentStage = m_StageData[m_CurrentStage];
 

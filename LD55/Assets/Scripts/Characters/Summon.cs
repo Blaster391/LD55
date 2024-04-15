@@ -89,6 +89,14 @@ public class Summon : MonoBehaviour
             return;
         }
 
+        if (GameManager.Instance.IsGameWon())
+        {
+            m_movement = Vector2.zero;
+            float spinSpeed = -50.0f;
+            transform.Rotate(0.0f, 0.0f, spinSpeed * GameManager.Instance.GameDeltaTime);
+            return;
+        }
+
         m_movement = Vector2.zero;
 
         switch (m_state)

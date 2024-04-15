@@ -31972,7 +31972,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c3cf1aca149d5e4e9950a86ddcc0291, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_scoreboardConnectionFile: scoreboard.scoreboad
+  m_scoreboardConnectionFile: scoreboard.scoreboard
 --- !u!1 &2016947756
 GameObject:
   m_ObjectHideFlags: 0

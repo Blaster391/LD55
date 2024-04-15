@@ -128,9 +128,4 @@ public class UIManager : MonoBehaviour
         //    m_bubbleTime = Random.Range(m_minBubble, m_maxBubble);
         //}
     }
-
-    public void ReturnToMenu()
-    {
-        SceneManager.LoadScene(0);
-    }
 }

@@ -132,7 +132,6 @@ namespace Gacha
 
             int rarityValue = (int)rollResult.SelectedSlime.Rarity;
             int particles = rarityValue * rarityValue * 10;
-            particles *= particles;
             particles += 3;
 
             m_FanfareParticleSystem.Emit(particles);

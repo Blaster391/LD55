@@ -17,8 +17,9 @@ public class FlyingSlimePassiveDamage : SlimeAbility
     {
         m_affectedEnemies = m_affectedEnemies.Where(x => x != null).ToList();
 
-        foreach (var enemy in m_affectedEnemies)
+        for(int i = 0; i <m_affectedEnemies.Count; ++i)
         {
+            var enemy = m_affectedEnemies[i];
             enemy.OnDamaged(m_flyingDamage * _deltaTime);
         }
     }

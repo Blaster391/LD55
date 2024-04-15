@@ -64,6 +64,10 @@ PrefabInstance:
       propertyPath: m_summonBounceForce
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8325090502583505455, guid: dbfb58c5f5344a94d9ea712188210692, type: 3}
+      propertyPath: Drops.Array.data[0].Min
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

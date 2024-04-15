@@ -35,6 +35,7 @@ public class Player : MonoBehaviour
         --m_health;
         if(m_health <= 0) 
         {
+            GameManager.Instance.SubmitScore("Lose");
             GameManager.Instance.AudioManager.LoseGame();
             Destroy(gameObject);
         }

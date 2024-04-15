@@ -1,3 +1,5 @@
+using Scoreboard.Unity;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -19,6 +21,7 @@ public class GameManager : MonoBehaviour
     public WorldSpawnManager WorldSpawnManager { get; private set; }
     public UIManager UIManager { get; private set; }
     public AudioManager AudioManager { get; private set; }
+    public ScoreboardComponent ScoreboardComponent { get; private set; }
     public int Score { get; private set; } = 0;
 
     public float GameTime { get; private set; } = 0.0f;
@@ -29,9 +32,40 @@ public class GameManager : MonoBehaviour
     private bool m_bossKilled = false;
     public void OnBossKilled()
     {
+        SubmitScore("Win");
+
+        int currentHighScore =  PlayerPrefs.GetInt("score", 0);
+        if(currentHighScore < Score)
+        {
+            PlayerPrefs.SetInt("score", Score);
+            PlayerPrefs.Save();
+        }
+
         AudioManager.WinGame();
         m_bossKilled = true;
         AddScore(GetTimeBonus());
+    }
+
+    public void SubmitScore(string _level)
+    {
+        string playerName = PlayerPrefs.GetString("name");
+        if (!string.IsNullOrEmpty(playerName))
+        {
+            ScoreboardCore.Data.Score score = new ScoreboardCore.Data.Score();
+            score.Level = _level;
+            score.ScoreValue = Score;
+            score.User = playerName;
+            score.ExtraData.Add("time", $"{GameTime:.00}");
+
+            Func<bool, string, bool> callback = (success, result) =>
+            {
+                Debug.Log($"Submitted {success} {result}");
+                return true;
+            };
+
+
+            ScoreboardComponent.SubmitResult(score, callback);
+        }
     }
 
     public int GetTimeBonus()
@@ -47,6 +81,7 @@ public class GameManager : MonoBehaviour
         RunResources = GetComponentInParent<IRunResources>();
         UIManager = GetComponent<UIManager>();
         AudioManager = GetComponent<AudioManager>();
+        ScoreboardComponent = GetComponent<ScoreboardComponent>();
 
         Instance = this;
     }

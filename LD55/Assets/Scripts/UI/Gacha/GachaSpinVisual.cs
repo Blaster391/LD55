@@ -32,6 +32,7 @@ namespace Gacha
 
         private GachaSystem m_GachaSystem;
         private GachaPanel m_GachaPanel;
+        float m_spinProgressTime = 0;
         public bool IsRolling { get; private set; } = false;
 
         private void Awake()
@@ -44,14 +45,24 @@ namespace Gacha
             StartCoroutine(VisualiseSpinRoutine(rollResult));
         }
 
+        public void SkipSpin()
+        {
+            if(!IsRolling)
+            {
+                return;
+            }
+
+            m_spinProgressTime = m_SpinDuration;
+        }
+
         private IEnumerator VisualiseSpinRoutine(GachaRollResult rollResult)
         {
             IsRolling = true;
 
-            float spinProgressTime = 0;
             int RandomDamage = 0;
+            m_spinProgressTime = 0.0f;
 
-            while (spinProgressTime < m_SpinDuration)
+            while (m_spinProgressTime < m_SpinDuration)
             {
                 // Figure out what to show
                 SlimeAsset selectedSlimeAsset = m_GachaSystem.PickRandomSlime(m_GachaSystem.PickRandomRarity());
@@ -62,7 +73,7 @@ namespace Gacha
                 //m_SlimeDamageModifier.text = $"+{RandomDamage}";
 
                 // Figure out how long to show it
-                float spinProgress = spinProgressTime / m_SpinDuration;
+                float spinProgress = m_spinProgressTime / m_SpinDuration;
                 float timeToShowSlime = (1 - m_SpinSpeedCurve.Evaluate(spinProgress)) * m_SpinSpeed;
 
                 yield return new WaitForSecondsRealtime(timeToShowSlime);
@@ -71,7 +82,7 @@ namespace Gacha
                 m_ImageDisplay.color = Color.clear;
                 yield return new WaitForSecondsRealtime(0.05f);
 
-                spinProgressTime += timeToShowSlime + 0.05f;
+                m_spinProgressTime += timeToShowSlime + 0.05f;
             }
 
             m_ImageDisplay.texture = rollResult.SelectedSlime.GachaSprite.texture;

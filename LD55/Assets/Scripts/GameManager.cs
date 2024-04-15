@@ -31,11 +31,6 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if(IsGameOver())
-        {
-            return;
-        }
-
         if (!IsPaused)
         {
             GameTime += Time.deltaTime;
@@ -44,6 +39,12 @@ public class GameManager : MonoBehaviour
         else
         {
             GameDeltaTime = 0f;
+        }
+
+        if (IsGameOver())
+        {
+            IsPaused = true;
+            return;
         }
 
         float timeRemaining = GetTimeRemaining();

@@ -425,6 +425,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_SpinVisual: {fileID: 4895600103162010720}
+  m_SpinText: {fileID: 5259784512267675513}
 --- !u!1 &687978918911939010
 GameObject:
   m_ObjectHideFlags: 0

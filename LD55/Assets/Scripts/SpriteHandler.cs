@@ -50,7 +50,7 @@ public class SpriteHandler : MonoBehaviour
             m_previousPosition = transform.position;
         }
 
-        m_time += Time.deltaTime;
+        m_time += GameManager.Instance.GameDeltaTime;
 
         if(m_time > m_updateTime)
         {

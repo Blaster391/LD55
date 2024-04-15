@@ -143,7 +143,8 @@ public class EnemySpawnManager : MonoBehaviour
     {
         Vector2 direction = UnityEngine.Random.insideUnitCircle.normalized;
 
-        return Instantiate(enemyPrefab, GameManager.Instance.Player.transform.position + (Vector3)(direction * m_SpawnDistanceFromPlayer), Quaternion.identity, GameManager.Instance.transform);
+        float screenWidth = Camera.main.orthographicSize * 2.0f;
+        return Instantiate(enemyPrefab, GameManager.Instance.Player.transform.position + (Vector3)(direction * screenWidth), Quaternion.identity, GameManager.Instance.transform);
     }
 
     private void IncrementKillCount()

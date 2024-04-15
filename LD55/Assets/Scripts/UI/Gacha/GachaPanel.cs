@@ -18,6 +18,8 @@ namespace Gacha
         private IRunResources m_RunResources;
         [SerializeField]
         private GachaSpinVisual m_SpinVisual;
+        [SerializeField]
+        private TMPro.TextMeshProUGUI m_SpinText;
 
         private GachaRollParams m_RollParams;
         private int m_RollsRemainingWithCustomParams;
@@ -62,13 +64,19 @@ namespace Gacha
         public void Spin()
         {
             if (IsRolling)
+            {
+                m_SpinVisual.SkipSpin();
                 return;
+            }
 
             // If we're in a test scene without one of these then ignore and do it free
             if (m_RunResources != null)
             {
                 if (m_RunResources.SlimeTokens < m_GachaSystem.SlimeTokenCost)
+                {
+                    gameObject.SetActive(false);
                     return;
+                }
 
                 m_RunResources.SpendTokens(m_GachaSystem.SlimeTokenCost);
             }
@@ -87,6 +95,8 @@ namespace Gacha
             RollStarted?.Invoke();
             IsRolling = true;
 
+            m_SpinText.text = "SKIP";
+
             m_SpinVisual.VisualiseSpin(rollResult);
 
             // Wait for the visual to finish
@@ -98,6 +108,8 @@ namespace Gacha
             IsRolling = false;
 
             m_RunResources?.AddSlime(rollResult.SelectedSlime);
+
+            m_SpinText.text = m_RunResources.SlimeTokens >= m_GachaSystem.SlimeTokenCost ? "SPIN" : "GO!";
 
             Debug.Log($"Completed a Spin and got:{Environment.NewLine}{rollResult}");
         }

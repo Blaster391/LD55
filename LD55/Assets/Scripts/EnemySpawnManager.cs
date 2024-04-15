@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class EnemySpawnManager : MonoBehaviour
@@ -27,6 +28,7 @@ public class EnemySpawnManager : MonoBehaviour
         public int MobTotalCountMax;
 
 
+
         // And harder 'boss' like enemies that spawn less frequently but require some focus fire and attention
         public Enemy BossEnemy;
         public float BossSpawnTimer;
@@ -34,6 +36,7 @@ public class EnemySpawnManager : MonoBehaviour
 
         // The number of kills required to move to the next stage
         public int KillCountRequired;
+        public float GameTimeToForceNextStage;
     }
     [Header("Spawning Rules")]
     [SerializeField] 
@@ -74,6 +77,8 @@ public class EnemySpawnManager : MonoBehaviour
             SpawnEnemy(m_bossPrefab);
             m_bossSpawned = true;
         }
+
+        m_SpawnedMobEnemies = m_SpawnedMobEnemies.Where(x  => x != null).ToList(); 
 
         StageData currentStage = m_StageData[m_CurrentStage];
 
@@ -160,9 +165,9 @@ public class EnemySpawnManager : MonoBehaviour
     {
         m_EnemiesKilledThisStage++;
 
-        if (m_EnemiesKilledThisStage > m_StageData[m_CurrentStage].KillCountRequired)
+        if (m_EnemiesKilledThisStage > m_StageData[m_CurrentStage].KillCountRequired || GameManager.Instance.GameTime > m_StageData[m_CurrentStage].GameTimeToForceNextStage)
         {
-            if (m_StageData.Count > m_CurrentStage - 1)
+            if (m_CurrentStage < m_StageData.Count - 1)
             {
                 m_CurrentStage++;
                 m_EnemiesKilledThisStage = 0;

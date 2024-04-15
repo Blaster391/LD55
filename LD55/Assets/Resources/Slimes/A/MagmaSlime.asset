@@ -15,4 +15,7 @@ MonoBehaviour:
   <Name>k__BackingField: Magma Slime
   <Rarity>k__BackingField: 2
   <Prefab>k__BackingField: {fileID: 3938338694274316852, guid: 279f7fc20a75adc49ba7da5818681565, type: 3}
+  <Damage>k__BackingField: High
+  <Speed>k__BackingField: Normal
+  <Ability>k__BackingField: LAVA TRAIL
   <GachaSprite>k__BackingField: {fileID: 21300000, guid: 45ffeaa4b6730a94a91d0115bd6c08b6, type: 3}

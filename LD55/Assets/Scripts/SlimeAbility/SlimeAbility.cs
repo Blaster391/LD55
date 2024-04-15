@@ -24,6 +24,9 @@ public abstract class SlimeAbility : MonoBehaviour
         if (GameManager.Instance.IsPaused)
             return;
 
+        m_CurrentActiveCooldown -= GameManager.Instance.GameDeltaTime;
+        m_CurrentActiveCooldown = Mathf.Max(m_CurrentActiveCooldown, 0.0f);
+
         UpdatePassive(GameManager.Instance.GameDeltaTime);
     }
 

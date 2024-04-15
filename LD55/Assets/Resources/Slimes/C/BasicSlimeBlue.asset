@@ -15,4 +15,6 @@ MonoBehaviour:
   <Name>k__BackingField: Blue Slime
   <Rarity>k__BackingField: 0
   <Prefab>k__BackingField: {fileID: 595395795813838933, guid: 8071e690b42ddd64682b9976fce9e9cb, type: 3}
+  <Damage>k__BackingField: Low
+  <Speed>k__BackingField: Normal
   <GachaSprite>k__BackingField: {fileID: 21300000, guid: 8c99d3e0ccd1c8043b65d3b7773b8128, type: 3}

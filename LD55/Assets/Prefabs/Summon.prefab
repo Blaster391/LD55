@@ -71,7 +71,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1096706945
-  m_SortingLayer: 1
+  m_SortingLayer: -1
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: db6bce74a4859d3449c983c65e60cf6b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -161,7 +161,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: 7a262333c407f264c95b50a7e4af1f9d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -220,6 +220,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5aff8287100ab34985716f09e05d79a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_damage: 1
+  m_bounceForce: 25
+  m_pushForce: 20
+  m_maxRecoilTime: 1
+  m_aggroRange: 6
+  m_chestAggroRange: 7
   m_movementForce: 12500
   m_targetPriority: 1
   m_cohesion: 0.25
@@ -230,12 +236,6 @@ MonoBehaviour:
   m_maxTargetSeparationDistance: 2
   m_separation: 0.6
   m_follow: 1
-  m_damage: 1
-  m_aggroRange: 6
-  m_chestAggroRange: 7
-  m_bounceForce: 25
-  m_pushForce: 20
-  m_maxRecoilTime: 1
 --- !u!50 &7445583349418370594
 Rigidbody2D:
   serializedVersion: 4
@@ -278,4 +278,5 @@ MonoBehaviour:
   m_sprites:
   - {fileID: 21300000, guid: 8c99d3e0ccd1c8043b65d3b7773b8128, type: 3}
   - {fileID: 21300000, guid: 7a262333c407f264c95b50a7e4af1f9d, type: 3}
+  m_chargeSprite: {fileID: 0}
   m_updateTime: 0.5

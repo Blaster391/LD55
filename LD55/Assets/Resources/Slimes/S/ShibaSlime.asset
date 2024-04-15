@@ -15,4 +15,7 @@ MonoBehaviour:
   <Name>k__BackingField: Shibe Slime
   <Rarity>k__BackingField: 3
   <Prefab>k__BackingField: {fileID: 3938338694274316852, guid: 75633f9e8998d7b4b9383b3fb1c5136f, type: 3}
+  <Damage>k__BackingField: Epic
+  <Speed>k__BackingField: High
+  <Ability>k__BackingField: GOODEST BOY (spacebar)
   <GachaSprite>k__BackingField: {fileID: 21300000, guid: e705bccb10788db48838fe5cf21e173a, type: 3}

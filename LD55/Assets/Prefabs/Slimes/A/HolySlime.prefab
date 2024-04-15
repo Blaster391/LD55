@@ -206,6 +206,10 @@ PrefabInstance:
       value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 5169146559436458062, guid: 81d9d6db24bb3c64f889198880581ff2, type: 3}
+      propertyPath: m_maxRecoilTime
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5169146559436458062, guid: 81d9d6db24bb3c64f889198880581ff2, type: 3}
       propertyPath: m_movementForce
       value: 15000
       objectReference: {fileID: 0}

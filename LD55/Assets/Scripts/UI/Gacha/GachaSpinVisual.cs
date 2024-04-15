@@ -25,6 +25,12 @@ namespace Gacha
         [SerializeField]
         private TMPro.TextMeshProUGUI m_SlimeDamageModifier = null;
 
+        [SerializeField]
+        private TMPro.TextMeshProUGUI m_SlimeSpeed = null;
+
+        [SerializeField]
+        private TMPro.TextMeshProUGUI m_SlimeAbility = null;
+
         public event Action<GachaRollResult> SpinVisualComplete;
 
         [SerializeField]
@@ -61,6 +67,12 @@ namespace Gacha
             m_ImageDisplay.color = Color.clear;
             m_ImageDisplay.transform.position = m_imagePosition;
             m_ImageDisplay.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
+
+            m_SlimeRank.text = $"";
+            m_SlimeType.text = $"";
+            m_SlimeDamageModifier.text = $"";
+            m_SlimeSpeed.text = $"";
+            m_SlimeAbility.text = $"";
         }
 
         public void SkipSpin()
@@ -90,7 +102,9 @@ namespace Gacha
                 m_ImageDisplay.color = Color.white;
                 m_SlimeRank.text = $"{selectedSlimeAsset.Rarity}";
                 m_SlimeType.text = $"{selectedSlimeAsset.Name}";
-                //m_SlimeDamageModifier.text = $"+{RandomDamage}";
+                m_SlimeDamageModifier.text = $"{selectedSlimeAsset.Damage}";
+                m_SlimeSpeed.text = $"{selectedSlimeAsset.Speed}";
+                m_SlimeAbility.text = $"{selectedSlimeAsset.Ability}";
 
                 // Figure out how long to show it
                 float spinProgress = m_spinProgressTime / m_SpinDuration;
@@ -109,11 +123,16 @@ namespace Gacha
             m_ImageDisplay.color = Color.white;
             m_SlimeRank.text = $"{rollResult.SelectedSlime.Rarity}";
             m_SlimeType.text = $"{rollResult.SelectedSlime.Name}";
-            //m_SlimeDamageModifier.text = $"+{RandomDamage}";
+            m_SlimeDamageModifier.text = $"{rollResult.SelectedSlime.Damage}";
+            m_SlimeSpeed.text = $"{rollResult.SelectedSlime.Speed}";
+            m_SlimeAbility.text = $"{rollResult.SelectedSlime.Ability}";
+
 
             SpinVisualComplete?.Invoke(rollResult);
 
-            int particles = (int)rollResult.SelectedSlime.Rarity * 10;
+            int rarityValue = (int)rollResult.SelectedSlime.Rarity;
+            int particles = rarityValue * rarityValue * 10;
+            particles += 3;
 
             m_FanfareParticleSystem.Emit(particles);
 

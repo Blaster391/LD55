@@ -15,4 +15,7 @@ MonoBehaviour:
   <Name>k__BackingField: Cat Slime
   <Rarity>k__BackingField: 3
   <Prefab>k__BackingField: {fileID: 3938338694274316852, guid: e6f243e9b64593d459ef98c1a44b6024, type: 3}
+  <Damage>k__BackingField: Epic
+  <Speed>k__BackingField: High
+  <Ability>k__BackingField: KITTEN BLAST (spacebar)
   <GachaSprite>k__BackingField: {fileID: 21300000, guid: 20e18e339e04b9d4b8c1653eeab0b9bd, type: 3}

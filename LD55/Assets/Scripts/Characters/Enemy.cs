@@ -72,7 +72,12 @@ public class Enemy : MonoBehaviour
 
     public void OnDamaged(float _damage)
     {
-        if(m_state == State.Attack && !m_ignoreRecoil)
+        if (m_health <= 0.0f)
+        {
+            return;
+        }
+
+        if (m_state == State.Attack && !m_ignoreRecoil)
         {
             m_recoveryTime = m_maxRecoveryTime * (_damage / 10.0f);
             m_state = State.Recoil;

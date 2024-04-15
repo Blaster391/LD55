@@ -125,4 +125,20 @@ public class Player : MonoBehaviour
 
         MovementInput = movementInput;
     }
+
+    private void OnTriggerEnter2D(Collider2D _collider)
+    {
+        if (_collider.GetComponent<Pickup>() != null)
+        {
+            _collider.GetComponent<Pickup>().StartSuck();
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D _collider)
+    {
+        if (_collider.GetComponent<Pickup>() != null)
+        {
+            _collider.GetComponent<Pickup>().StopSuck();
+        }
+    }
 }

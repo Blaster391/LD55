@@ -20,12 +20,15 @@ public abstract class Pickup : MonoBehaviour
     private float m_bounceMinTotalTime = 0.5f;
     [SerializeField]
     private float m_bounceMaxTotalTime = 1.0f;
+    [SerializeField]
+    private float m_suckSpeed = 1.0f;
 
     private bool m_bounceLeft = false;
     private float m_horizontalBounce = 1.0f;
     private float m_verticalBounce = 1.0f;
     private float m_bounceTime = 0.0f;
     private Vector2 m_initialPosition = Vector2.zero;
+    private bool m_suck = false;
 
     void Start()
     {
@@ -66,12 +69,43 @@ public abstract class Pickup : MonoBehaviour
                 m_initialBounce = false;
             }
         }
+
+        if(m_suck)
+        {
+            Player player = GameManager.Instance.Player;
+            if(player == null)
+            {
+                return;
+            }
+
+            Vector3 direction = player.transform.position - transform.position;
+            direction.Normalize();
+
+            transform.position = transform.position + (direction * m_suckSpeed * Time.deltaTime);
+
+        }
+    }
+
+    public void StartSuck()
+    {
+        m_initialBounce = false;
+        m_suck = true;
+    }
+
+    public void StopSuck()
+    {
+        m_suck = false;
     }
 
     public abstract void OnPickup();
 
     private void OnTriggerEnter2D(Collider2D _collider)
     {
+        if(_collider.isTrigger)
+        {
+            return;
+        }
+
         if(_collider.GetComponent<Player>() != null)
         {
             OnPickup();

@@ -105,6 +105,9 @@ MonoBehaviour:
   m_maxVerticalBounce: 3
   m_initialBounce: 1
   m_bounceTotalTime: 1
+  m_bounceMinTotalTime: 0.5
+  m_bounceMaxTotalTime: 1
+  m_suckSpeed: 2
 --- !u!58 &6173639481213253126
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -157,4 +160,5 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 99979eedea2588b4d91a77ddd17cb927, type: 3}
   - {fileID: 21300000, guid: 288eb23678900a743b5ee8101e8e44c5, type: 3}
   - {fileID: 21300000, guid: 4f0387240bdbcc64484ead920cdfcc3b, type: 3}
+  m_chargeSprite: {fileID: 0}
   m_updateTime: 0.25

@@ -104,6 +104,9 @@ MonoBehaviour:
   m_maxVerticalBounce: 2
   m_initialBounce: 1
   m_bounceTotalTime: 0.5
+  m_bounceMinTotalTime: 0.5
+  m_bounceMaxTotalTime: 1
+  m_suckSpeed: 4
 --- !u!58 &2203391432909646889
 CircleCollider2D:
   m_ObjectHideFlags: 0

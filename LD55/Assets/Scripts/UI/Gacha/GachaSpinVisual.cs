@@ -29,6 +29,9 @@ namespace Gacha
         private TMPro.TextMeshProUGUI m_SlimeSpeed = null;
 
         [SerializeField]
+        private TMPro.TextMeshProUGUI m_SpinCost = null;
+
+        [SerializeField]
         private TMPro.TextMeshProUGUI m_SlimeAbility = null;
 
         public event Action<GachaRollResult> SpinVisualComplete;
@@ -85,6 +88,11 @@ namespace Gacha
             m_spinProgressTime = m_SpinDuration;
         }
 
+        public void UpdateSpinCostUI(int NewCost)
+        {
+            m_SpinCost.text = $"{NewCost}";
+        }
+
         private IEnumerator VisualiseSpinRoutine(GachaRollResult rollResult)
         {
             m_currentImageSpinTime = 0.0f;
@@ -126,7 +134,6 @@ namespace Gacha
             m_SlimeDamageModifier.text = $"{rollResult.SelectedSlime.Damage}";
             m_SlimeSpeed.text = $"{rollResult.SelectedSlime.Speed}";
             m_SlimeAbility.text = $"{rollResult.SelectedSlime.Ability}";
-
 
             SpinVisualComplete?.Invoke(rollResult);
 

@@ -21,5 +21,5 @@ MonoBehaviour:
     Chance: 10
   - Rarity: 3
     Chance: 5
-  <SlimeTokenCost>k__BackingField: 10
-  <SlimeTokenIncreasePerRoll>k__BackingField: 3
+  <SlimeTokenCost>k__BackingField: 8
+  <SlimeTokenIncreasePerRoll>k__BackingField: 2

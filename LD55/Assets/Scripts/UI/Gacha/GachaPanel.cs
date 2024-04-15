@@ -112,6 +112,8 @@ namespace Gacha
 
             m_SpinText.text = m_RunResources.SlimeTokens >= m_GachaSystem.SlimeTokenCost ? "SPIN" : "GO!";
 
+            m_SpinVisual.UpdateSpinCostUI(m_GachaSystem.SlimeTokenCost);
+
             Debug.Log($"Completed a Spin and got:{Environment.NewLine}{rollResult}");
         }
     }

@@ -24134,6 +24134,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 327117243}
     m_Modifications:
+    - target: {fileID: 487739303416715695, guid: 1f4980ed9fef57b43a6f3f38a1ab93b4, type: 3}
+      propertyPath: m_Volume
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 606167045957702692, guid: 1f4980ed9fef57b43a6f3f38a1ab93b4, type: 3}
       propertyPath: m_gachaEndClip
       value: 
@@ -24157,6 +24161,14 @@ PrefabInstance:
     - target: {fileID: 962053659409375930, guid: 1f4980ed9fef57b43a6f3f38a1ab93b4, type: 3}
       propertyPath: m_LocalScale.z
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1124073124961535214, guid: 1f4980ed9fef57b43a6f3f38a1ab93b4, type: 3}
+      propertyPath: m_Volume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1162996336735636034, guid: 1f4980ed9fef57b43a6f3f38a1ab93b4, type: 3}
+      propertyPath: m_Volume
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 1514469068078481344, guid: 1f4980ed9fef57b43a6f3f38a1ab93b4, type: 3}
       propertyPath: m_win
@@ -24226,6 +24238,10 @@ PrefabInstance:
       propertyPath: m_timeLimit
       value: 480
       objectReference: {fileID: 0}
+    - target: {fileID: 2072617012322949160, guid: 1f4980ed9fef57b43a6f3f38a1ab93b4, type: 3}
+      propertyPath: m_Volume
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3438338799539286626, guid: 1f4980ed9fef57b43a6f3f38a1ab93b4, type: 3}
       propertyPath: m_CullingMask.m_Bits
       value: 4294967295
@@ -24241,6 +24257,18 @@ PrefabInstance:
     - target: {fileID: 3571993022442683673, guid: 1f4980ed9fef57b43a6f3f38a1ab93b4, type: 3}
       propertyPath: m_SortingOrder
       value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3970847038564099512, guid: 1f4980ed9fef57b43a6f3f38a1ab93b4, type: 3}
+      propertyPath: m_Volume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4538232307454712820, guid: 1f4980ed9fef57b43a6f3f38a1ab93b4, type: 3}
+      propertyPath: m_Volume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5062372664663606011, guid: 1f4980ed9fef57b43a6f3f38a1ab93b4, type: 3}
+      propertyPath: m_Volume
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 5799908238428093631, guid: 1f4980ed9fef57b43a6f3f38a1ab93b4, type: 3}
       propertyPath: m_Volume
@@ -24330,6 +24358,10 @@ PrefabInstance:
       propertyPath: m_shells.Array.data[1]
       value: 
       objectReference: {fileID: 7829440727052150166, guid: 94fc7c2387cfabf4a82fc831588c7c13, type: 3}
+    - target: {fileID: 7374327938880872561, guid: 1f4980ed9fef57b43a6f3f38a1ab93b4, type: 3}
+      propertyPath: m_Volume
+      value: 0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 7592338382453887889, guid: 1f4980ed9fef57b43a6f3f38a1ab93b4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -24798,6 +24830,14 @@ PrefabInstance:
       propertyPath: m_StageData.Array.data[3].BossEnemies.Array.data[0]
       value: 
       objectReference: {fileID: 4730232450887924286, guid: e405fbde345badd499c7f84bb6986d64, type: 3}
+    - target: {fileID: 8810933020604719228, guid: 1f4980ed9fef57b43a6f3f38a1ab93b4, type: 3}
+      propertyPath: m_Volume
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 9085647584343009918, guid: 1f4980ed9fef57b43a6f3f38a1ab93b4, type: 3}
+      propertyPath: m_Volume
+      value: 0.4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 8381786561641747882, guid: 1f4980ed9fef57b43a6f3f38a1ab93b4, type: 3}

@@ -23,6 +23,9 @@ public abstract class Pickup : MonoBehaviour
     [SerializeField]
     private float m_suckSpeed = 1.0f;
 
+    [SerializeField]
+    private float m_lifespan = 120.0f;
+
     private bool m_bounceLeft = false;
     private float m_horizontalBounce = 1.0f;
     private float m_verticalBounce = 1.0f;
@@ -42,9 +45,10 @@ public abstract class Pickup : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(m_initialBounce)
+        float deltaTime = GameManager.Instance.GameDeltaTime;
+        if (m_initialBounce)
         {
-            m_bounceTime += Time.deltaTime;
+            m_bounceTime += deltaTime;
 
             float alpha = (m_bounceTime / m_bounceMaxTotalTime);
 
@@ -81,9 +85,19 @@ public abstract class Pickup : MonoBehaviour
             Vector3 direction = player.transform.position - transform.position;
             direction.Normalize();
 
-            transform.position = transform.position + (direction * m_suckSpeed * Time.deltaTime);
+            transform.position = transform.position + (direction * m_suckSpeed * deltaTime);
 
         }
+        else
+        {
+            m_lifespan -= deltaTime;
+
+            if(m_lifespan < 0 )
+            {
+                Destroy(gameObject);
+            }
+        }
+
     }
 
     public void StartSuck()

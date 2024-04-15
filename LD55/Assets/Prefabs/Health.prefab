@@ -142,3 +142,4 @@ MonoBehaviour:
   m_bounceMinTotalTime: 0.5
   m_bounceMaxTotalTime: 1
   m_suckSpeed: 0.5
+  m_lifespan: 120

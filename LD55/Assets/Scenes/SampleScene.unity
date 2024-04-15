@@ -24240,7 +24240,7 @@ PrefabInstance:
       objectReference: {fileID: 1921963719118885669, guid: 1073abdd651e29f43a5aba229266ef49, type: 3}
     - target: {fileID: 6933096428254133860, guid: 1f4980ed9fef57b43a6f3f38a1ab93b4, type: 3}
       propertyPath: m_chestCount
-      value: 60
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 6933096428254133860, guid: 1f4980ed9fef57b43a6f3f38a1ab93b4, type: 3}
       propertyPath: m_coralCount

@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     public IRunResources RunResources { get; private set; }
     public WorldSpawnManager WorldSpawnManager { get; private set; }
     public UIManager UIManager { get; private set; }
+    public AudioManager AudioManager { get; private set; }
     public int Score { get; private set; } = 0;
 
     public float GameTime { get; private set; } = 0.0f;
@@ -44,6 +45,7 @@ public class GameManager : MonoBehaviour
         WorldSpawnManager = GetComponent<WorldSpawnManager>();
         RunResources = GetComponentInParent<IRunResources>();
         UIManager = GetComponent<UIManager>();
+        AudioManager = GetComponent<AudioManager>();
 
         Instance = this;
     }

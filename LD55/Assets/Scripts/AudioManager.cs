@@ -56,7 +56,7 @@ public class AudioManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        AudioListener.volume = 0.5f;
+        AudioListener.volume = 0.3f;
 
         m_ostSource.loop = true;
         m_ostSource.clip = m_musicClip;

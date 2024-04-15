@@ -5,6 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    private void Start()
+    {
+        AudioListener.volume = 0.3f;
+    }
+
     public void StartRun()
     {
         SceneManager.LoadScene(m_SceneToLoad);

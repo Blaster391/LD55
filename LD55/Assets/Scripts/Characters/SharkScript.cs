@@ -4,15 +4,11 @@ using UnityEngine;
 
 public class SharkScript : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private void OnCollisionEnter2D(Collision2D _collision)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (_collision.collider.gameObject.layer == 7)
+        {
+            Destroy(_collision.collider.gameObject);
+        }
     }
 }

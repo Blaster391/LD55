@@ -29,6 +29,14 @@ PrefabInstance:
       value: BossShark
       objectReference: {fileID: 0}
     - target: {fileID: 5018452894798370850, guid: dbfb58c5f5344a94d9ea712188210692, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5018452894798370850, guid: dbfb58c5f5344a94d9ea712188210692, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5018452894798370850, guid: dbfb58c5f5344a94d9ea712188210692, type: 3}
       propertyPath: m_LocalPosition.x
       value: 340.48544
       objectReference: {fileID: 0}
@@ -86,19 +94,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8325090502583505455, guid: dbfb58c5f5344a94d9ea712188210692, type: 3}
       propertyPath: m_chargeForce
-      value: 100
+      value: 2000
       objectReference: {fileID: 0}
     - target: {fileID: 8325090502583505455, guid: dbfb58c5f5344a94d9ea712188210692, type: 3}
       propertyPath: m_chargeRange
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8325090502583505455, guid: dbfb58c5f5344a94d9ea712188210692, type: 3}
       propertyPath: m_movementForce
-      value: 1300
+      value: 13000
       objectReference: {fileID: 0}
     - target: {fileID: 8325090502583505455, guid: dbfb58c5f5344a94d9ea712188210692, type: 3}
       propertyPath: m_chargeCooldown
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8577379295525800088, guid: dbfb58c5f5344a94d9ea712188210692, type: 3}
+      propertyPath: m_Mass
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8844895681710896565, guid: dbfb58c5f5344a94d9ea712188210692, type: 3}
       propertyPath: m_Sprite

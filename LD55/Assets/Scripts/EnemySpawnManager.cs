@@ -162,7 +162,7 @@ public class EnemySpawnManager : MonoBehaviour
 
         if (m_EnemiesKilledThisStage > m_StageData[m_CurrentStage].KillCountRequired)
         {
-            if (m_StageData.Count > m_CurrentStage - 1)
+            if (m_CurrentStage < m_StageData.Count - 1)
             {
                 m_CurrentStage++;
                 m_EnemiesKilledThisStage = 0;

@@ -24053,8 +24053,24 @@ PrefabInstance:
       value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 3474552741766115022, guid: 23cf1bbbdbca56b4b9fa279c1e965dbd, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.64
+      objectReference: {fileID: 0}
+    - target: {fileID: 3474552741766115022, guid: 23cf1bbbdbca56b4b9fa279c1e965dbd, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.64
+      objectReference: {fileID: 0}
+    - target: {fileID: 3474552741766115022, guid: 23cf1bbbdbca56b4b9fa279c1e965dbd, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.64
+      objectReference: {fileID: 0}
+    - target: {fileID: 3474552741766115022, guid: 23cf1bbbdbca56b4b9fa279c1e965dbd, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -81.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3474552741766115022, guid: 23cf1bbbdbca56b4b9fa279c1e965dbd, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3508630036357512506, guid: 23cf1bbbdbca56b4b9fa279c1e965dbd, type: 3}
       propertyPath: m_Name
@@ -24690,7 +24706,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7868169789881086556, guid: 23cf1bbbdbca56b4b9fa279c1e965dbd, type: 3}
       propertyPath: m_SlimeTokens
-      value: 19
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 7941599772705570966, guid: 23cf1bbbdbca56b4b9fa279c1e965dbd, type: 3}
       propertyPath: m_fontSize
@@ -25306,7 +25322,7 @@ PrefabInstance:
     - target: {fileID: 8286801540745389469, guid: 1f4980ed9fef57b43a6f3f38a1ab93b4, type: 3}
       propertyPath: m_StageData.Array.data[0].BossEnemy
       value: 
-      objectReference: {fileID: 9142313306062772083, guid: df8173e766e5dd4478570b781f8d3978, type: 3}
+      objectReference: {fileID: 8947751405365852607, guid: 842a3b9acc3239047b8b68b818afb99f, type: 3}
     - target: {fileID: 8286801540745389469, guid: 1f4980ed9fef57b43a6f3f38a1ab93b4, type: 3}
       propertyPath: m_StageData.Array.data[1].BossEnemy
       value: 
@@ -25345,7 +25361,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8286801540745389469, guid: 1f4980ed9fef57b43a6f3f38a1ab93b4, type: 3}
       propertyPath: m_StageData.Array.data[0].BossSpawnTimer
-      value: 30
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8286801540745389469, guid: 1f4980ed9fef57b43a6f3f38a1ab93b4, type: 3}
       propertyPath: m_StageData.Array.data[1].BossSpawnTimer
@@ -25393,7 +25409,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8286801540745389469, guid: 1f4980ed9fef57b43a6f3f38a1ab93b4, type: 3}
       propertyPath: m_StageData.Array.data[0].MobTotalCountMax
-      value: 8
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8286801540745389469, guid: 1f4980ed9fef57b43a6f3f38a1ab93b4, type: 3}
       propertyPath: m_StageData.Array.data[0].MobTotalCountMin
@@ -25441,7 +25457,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8286801540745389469, guid: 1f4980ed9fef57b43a6f3f38a1ab93b4, type: 3}
       propertyPath: m_StageData.Array.data[0].KillCountRequired
-      value: 10
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 8286801540745389469, guid: 1f4980ed9fef57b43a6f3f38a1ab93b4, type: 3}
       propertyPath: m_StageData.Array.data[1].KillCountRequired
@@ -25545,7 +25561,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8286801540745389469, guid: 1f4980ed9fef57b43a6f3f38a1ab93b4, type: 3}
       propertyPath: m_StageData.Array.data[0].GameTimeToForceNextStage
-      value: 30
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 8286801540745389469, guid: 1f4980ed9fef57b43a6f3f38a1ab93b4, type: 3}
       propertyPath: m_StageData.Array.data[0].MobEnemies.Array.data[0]

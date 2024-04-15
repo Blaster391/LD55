@@ -199,7 +199,7 @@ public class Summon : MonoBehaviour
         {
             foreach (Chest chest in m_spawnManager.ActiveChests)
             {
-                if (Vector2.Distance(transform.position, chest.transform.position) < m_chestAggroRange)
+                if (Vector2.Distance(transform.position, chest.transform.position) < m_chestAggroRange && GameHelper.HasLineOfSight(gameObject, chest.gameObject))
                 {
                     m_targetChest = chest;
                     m_state = State.AttackChest;
@@ -210,7 +210,7 @@ public class Summon : MonoBehaviour
 
         foreach (Enemy enemy in m_flockManager.Enemies)
         {
-            if(Vector2.Distance(transform.position, enemy.transform.position) < m_aggroRange && Vector2.Distance(targetPosition, enemy.transform.position) < m_aggroRange)
+            if(Vector2.Distance(transform.position, enemy.transform.position) < m_aggroRange && Vector2.Distance(targetPosition, enemy.transform.position) < m_aggroRange && GameHelper.HasLineOfSight(gameObject, enemy.gameObject))
             {
                 m_targetEnemy = enemy;
                 m_state = State.Attack;
@@ -225,7 +225,7 @@ public class Summon : MonoBehaviour
         {
             foreach (Enemy enemy in m_flockManager.Enemies)
             {
-                if (Vector2.Distance(transform.position, enemy.transform.position) < m_aggroRange)
+                if (Vector2.Distance(transform.position, enemy.transform.position) < m_aggroRange && GameHelper.HasLineOfSight(gameObject, enemy.gameObject))
                 {
                     m_targetEnemy = enemy;
                     return;

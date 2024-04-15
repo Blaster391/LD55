@@ -75,6 +75,7 @@ namespace Gacha
                 if (m_RunResources.SlimeTokens < m_GachaSystem.SlimeTokenCost)
                 {
                     GetComponentInParent<GachaUIManager>().CloseGachaPanel();
+                    m_SpinText.text = "SPIN";
                     return;
                 }
 

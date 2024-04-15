@@ -8,5 +8,7 @@ public class GachaConfig : ScriptableObject
 {
     [field: SerializeField] public List<RarityChance> RarityChances { get; private set; }
 
-    [field: SerializeField] public int SlimeTokenCost { get; private set; }
+    [field: SerializeField] public int SlimeTokenCost { get; set; }
+
+    [field: SerializeField] public int SlimeTokenIncreasePerRoll { get; set; }
 }

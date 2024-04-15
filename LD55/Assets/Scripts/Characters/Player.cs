@@ -8,6 +8,9 @@ public class Player : MonoBehaviour
     private float m_movementSpeed = 1.0f;
 
     [SerializeField]
+    private float m_MaxHealth = 5;
+
+    [SerializeField]
     private int m_health = 5;
     public Vector2 MovementInput { get; private set; } = Vector2.zero;
 
@@ -21,6 +24,8 @@ public class Player : MonoBehaviour
 
     public void AddHealth(int _hp)
     {
+        if(m_health >= m_MaxHealth)
+            return;
         m_health += _hp;
     }
 

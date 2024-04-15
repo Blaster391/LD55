@@ -23899,6 +23899,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -178
       objectReference: {fileID: 0}
+    - target: {fileID: 7868169789881086556, guid: 23cf1bbbdbca56b4b9fa279c1e965dbd, type: 3}
+      propertyPath: m_SlimeTokens
+      value: 18
+      objectReference: {fileID: 0}
     - target: {fileID: 7941599772705570966, guid: 23cf1bbbdbca56b4b9fa279c1e965dbd, type: 3}
       propertyPath: m_fontSize
       value: 301.25

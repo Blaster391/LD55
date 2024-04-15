@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 
 namespace Gacha
@@ -49,10 +50,9 @@ namespace Gacha
     {
         private GachaConfig m_Config;
 
-        public int SlimeTokenCost => m_Config.SlimeTokenCost;
+        public int SlimeTokenCost {get; private set;}
 
         private Dictionary<Rarity, List<SlimeAsset>> m_SlimeDatabase;
-
 
         public IReadOnlyDictionary<Rarity, IReadOnlyList<SlimeAsset>> SlimeDatabase
         {
@@ -115,6 +115,7 @@ namespace Gacha
         private void Awake()
         {
             m_Config = Resources.LoadAll<GachaConfig>("Config")[0]; // Load on its own doesn't find it, idk why
+            SlimeTokenCost = m_Config.SlimeTokenCost;
 
             // Populate our database
             var slimeAssets = Resources.LoadAll<SlimeAsset>("Slimes");
@@ -140,6 +141,9 @@ namespace Gacha
             // Select a random slime of this rarity
             var possibleSlimes = m_SlimeDatabase[selectedRarity];
             result.SelectedSlime = possibleSlimes.ElementAt(Random.Range(0, possibleSlimes.Count));
+
+            // Increase cost for next roll by some amount
+            SlimeTokenCost += m_Config.SlimeTokenIncreasePerRoll;
 
             return result;
         }
